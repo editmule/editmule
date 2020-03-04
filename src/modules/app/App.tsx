@@ -1,14 +1,33 @@
 import React from 'react';
 
 import './App.css';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
 
-import { Nav } from 'modules/nav';
 import Routes from 'Routes';
 
 function App(props: any) {
   return (
-    <div>
-      <Nav />
+    <div className="App container">
+      <Navbar fluid collapseOnSelect>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <Link to="/">Edit Mule</Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav pullRight>
+           <LinkContainer to="/signup">
+             <NavItem>Signup</NavItem>
+           </LinkContainer>
+           <LinkContainer to="/login">
+             <NavItem>Login</NavItem>
+           </LinkContainer>
+         </Nav>
+        </Navbar.Collapse>
+      </Navbar>
       <Routes />
     </div>
   );

@@ -5,8 +5,8 @@ function Home() {
   return (
     <div className="Home">
       <div className="lander">
-        <h1>Scratch</h1>
-        <p>A simple note taking app</p>
+        <h1>Edit Mule</h1>
+        <p>On-demand professional editing</p>
       </div>
     </div>
   );
