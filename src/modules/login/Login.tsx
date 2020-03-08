@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Auth } from "aws-amplify";
 
 import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
@@ -52,15 +53,15 @@ function Login(props: any) {
             onChange={handleFieldChange}
           />
         </FormGroup>
+        <Link to="/login/reset">Forgot password?</Link>
         <LoaderButton
           block
           type="submit"
           bsSize="large"
+          text="Login"
           isLoading={isLoading}
           disabled={!validateForm()}
-        >
-          Login
-      </LoaderButton>
+        />
       </form>
     </div>
   );

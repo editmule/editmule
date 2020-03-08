@@ -1,18 +1,46 @@
-export default {
-  MAX_ATTACHMENT_SIZE: 5000000,
-  STRIPE_KEY: "pk_test_QkHYOwt3hp1FCYUCr01WBHYQ00qq0EaAmN",
+const dev = {
+  STRIPE_KEY: "pk_test_QkHYOwt3hp1FCYUCr01WBHYQ00qq0EaAmNY",
   s3: {
     REGION: "us-east-1",
-    BUCKET: "edit-mule-uploads"
+    BUCKET: "editmule-2-api-dev-attachmentsbucket-ejoo37si6wz"
   },
   apiGateway: {
     REGION: "us-east-1",
-    URL: "https://t8bciryuu8.execute-api.us-east-1.amazonaws.com/prod"
+    URL: "https://v1xqiqwcrc.execute-api.us-east-1.amazonaws.com/dev"
   },
   cognito: {
     REGION: "us-east-1",
-    USER_POOL_ID: "us-east-1_eyKzmzMat",
-    APP_CLIENT_ID: "2v8dlfe5rffhb5nk4f885fegom",
-    IDENTITY_POOL_ID: "us-east-1:d2615f7f-668e-4db3-b3b7-0466b28e46f0"
+    USER_POOL_ID: "us-east-1_unaCRHOVU",
+    APP_CLIENT_ID: "3rbl1nhup1fsgeqgenpmggjpok",
+    IDENTITY_POOL_ID: "us-east-1:67faef25-1dbc-4aa9-b523-be3dd9920edf"
   }
+};
+
+const prod = {
+  STRIPE_KEY: "pk_live_JASopZlaOkFhGj5WnnidVV0100DwSUduBg",
+  s3: {
+    REGION: "us-east-1",
+    BUCKET: "editmule-2-api-prod-attachmentsbucket-4ehmwlpjajxv"
+  },
+  apiGateway: {
+    REGION: "us-east-1",
+    URL: "https://qxn3tijge0.execute-api.us-east-1.amazonaws.com/prod"
+  },
+  cognito: {
+    REGION: "us-east-1",
+    USER_POOL_ID: "us-east-1_0sa3SjRLP",
+    APP_CLIENT_ID: "2rgjidsj9pfu3co173g6p49gfk",
+    IDENTITY_POOL_ID: "us-east-1:743d02dd-99e2-4ed7-ad8f-583398425d6c"
+  }
+};
+
+// Default to dev if not set
+const config = process.env.REACT_APP_STAGE === 'prod'
+  ? prod
+  : dev;
+
+export default {
+  // Add common config values here
+  MAX_ATTACHMENT_SIZE: 5000000,
+  ...config
 };

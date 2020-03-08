@@ -162,20 +162,18 @@ export default function Orders(props: any) {
             type="submit"
             bsSize="large"
             bsStyle="primary"
+            text="Save"
             isLoading={isLoading}
             disabled={!validateForm()}
-          >
-            Save
-        </LoaderButton>
+          />
           <LoaderButton
             block
             bsSize="large"
             bsStyle="danger"
+            text="Delete"
             onClick={handleDelete}
             isLoading={isDeleting}
-          >
-            Delete
-        </LoaderButton>
+          />
         </form>
       )}
     </div>

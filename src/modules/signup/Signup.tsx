@@ -86,10 +86,9 @@ async function handleConfirmationSubmit(event: any) {
           type="submit"
           bsSize="large"
           isLoading={isLoading}
+          text="Verify"
           disabled={!validateConfirmationForm()}
-        >
-          Verify
-        </LoaderButton>
+        />
       </form>
     );
   }
@@ -126,11 +125,10 @@ async function handleConfirmationSubmit(event: any) {
           block
           type="submit"
           bsSize="large"
+          text="Sign Up"
           isLoading={isLoading}
           disabled={!validateForm()}
-        >
-          Signup
-        </LoaderButton>
+        />
       </form>
     );
   }

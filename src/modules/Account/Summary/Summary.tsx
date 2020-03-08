@@ -10,6 +10,7 @@ export default function Summary(props: any) {
     <div className="Account">
       <div className="Account summary">
         <PageHeader>Summary</PageHeader>
+        <p>This is your account summary</p>
       </div>
     </div>
   );

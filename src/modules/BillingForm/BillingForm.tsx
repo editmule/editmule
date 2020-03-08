@@ -69,11 +69,10 @@ function BillingForm({ isLoading, onSubmit, ...props }: any) {
         block
         type="submit"
         bsSize="large"
+        text="Purchase"
         isLoading={isLoading}
         disabled={!validateForm()}
-      >
-        Purchase
-      </LoaderButton>
+      />
     </form>
   );
 }

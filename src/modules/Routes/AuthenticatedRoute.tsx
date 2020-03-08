@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
 export default function AuthenticatedRoute({ component: C, appProps, ...rest }: any) {
-  console.log('AuthenticatedRoute')
   return (
     <Route
       {...rest}

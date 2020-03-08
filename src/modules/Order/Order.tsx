@@ -5,7 +5,7 @@ import { s3Upload } from 'libs/aws';
 
 import { LoaderButton } from 'modules/LoaderButton';
 import config from 'config';
-import './NewOrder.css';
+import './Order.css';
 
 export default function NewNote(props: any) {
   const file = useRef(null);
@@ -72,11 +72,10 @@ export default function NewNote(props: any) {
           type="submit"
           bsSize="large"
           bsStyle="primary"
+          text="Create"
           isLoading={isLoading}
           disabled={!validateForm()}
-        >
-          Create
-        </LoaderButton>
+        />
       </form>
     </div>
   );

@@ -3,6 +3,8 @@ import { API } from 'aws-amplify';
 import { PageHeader } from 'react-bootstrap'
 import { Elements, StripeProvider } from "react-stripe-elements";
 import { BillingForm } from "modules/BillingForm";
+import { LinkContainer } from "react-router-bootstrap";
+import { LoaderButton } from "modules/LoaderButton";
 import config from "config";
 import "./Settings.css";
 
@@ -16,38 +18,53 @@ export default function Settings(props: any) {
   }
 
   async function handleFormSubmit(words: Number, { token, error }: any) {
-  if (error) {
-    alert(error);
-    return;
+    if (error) {
+      alert(error);
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      await billUser({
+        words,
+        source: token.id
+      });
+
+      alert("Your card has been charged successfully!");
+      props.history.push("/");
+    } catch (e) {
+      alert(e);
+      setIsLoading(false);
+    }
   }
 
-  setIsLoading(true);
-
-  try {
-    await billUser({
-      words,
-      source: token.id
-    });
-
-    alert("Your card has been charged successfully!");
-    props.history.push("/");
-  } catch (e) {
-    alert(e);
-    setIsLoading(false);
-  }
-}
-
-return (
-  <div className="Settings">
-    <PageHeader>Settings</PageHeader>
-    <StripeProvider apiKey={config.STRIPE_KEY}>
-      <Elements>
-        <BillingForm
-          isLoading={isLoading}
-          onSubmit={handleFormSubmit}
+  return (
+    <div className="Settings">
+      <PageHeader>Settings</PageHeader>
+      <LinkContainer to="/account/settings/email">
+        <LoaderButton
+          block
+          bsSize="large"
+          text="Change Email"
         />
-      </Elements>
-    </StripeProvider>
-  </div>
-);
+      </LinkContainer>
+      <LinkContainer to="/account/settings/password">
+        <LoaderButton
+          block
+          bsSize="large"
+          text="Change Password"
+        />
+      </LinkContainer>
+      <hr />
+      <StripeProvider apiKey={config.STRIPE_KEY}>
+        <Elements>
+          <BillingForm
+            isLoading={isLoading}
+            onSubmit={handleFormSubmit}
+          />
+        </Elements>
+      </StripeProvider>
+    </div>
+  );
 }

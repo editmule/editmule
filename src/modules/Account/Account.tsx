@@ -5,6 +5,8 @@ import { OrdersList } from 'modules/Account/OrdersList';
 import { Orders } from 'modules/Account/Orders';
 import { Summary } from 'modules/Account/Summary';
 import { Settings } from 'modules/Account/Settings';
+import { ChangeEmail } from 'modules/Account/ChangeEmail';
+import { ChangePassword } from 'modules/Account/ChangePassword';
 import { NotFound } from 'modules/NotFound';
 
 import { Link, Switch, Route } from 'react-router-dom';
@@ -32,6 +34,8 @@ export default function Account(props: any) {
         <Route path='/account/orders' exact component={OrdersList} />
         <Route path='/account/orders/:id' exact component={Orders} />
         <Route path='/account/settings' exact component={Settings} />
+        <Route path='/account/settings/email' exact component={ChangeEmail} />
+        <Route path='/account/settings/password' exact component={ChangePassword} />
         <Route component={NotFound} />
       </Switch>
     </div>

@@ -8,18 +8,19 @@ import UnauthenticatedRoute from './UnauthenticatedRoute';
 import { Home } from 'modules/Home';
 import { Login } from 'modules/Login';
 import { Signup } from 'modules/Signup';
-import { NewOrder } from 'modules/NewOrder';
+import { Order } from 'modules/Order';
 import { Account } from 'modules/Account';
+import { ResetPassword } from 'modules/ResetPassword';
 import { NotFound } from 'modules/NotFound';
-
 
 function Routes({ appProps }: any) {
   return (
     <Switch>
       <AppliedRoute path="/" exact component={Home} appProps={appProps} />
       <UnauthenticatedRoute path="/login" exact component={Login} appProps={appProps} />
+      <UnauthenticatedRoute path="/login/reset" exact component={ResetPassword} appProps={appProps} />
       <UnauthenticatedRoute path="/signup" exact component={Signup} appProps={appProps} />
-      <AuthenticatedRoute path="/order" exact component={NewOrder} appProps={appProps} />
+      <AuthenticatedRoute path="/order" exact component={Order} appProps={appProps} />
       <AuthenticatedRoute path="/account" component={Account} appProps={appProps} />
       { /* Finally, catch all unmatched routes */ }
       <Route component={NotFound} />
