@@ -4,7 +4,7 @@
 # “command” is your build command.
 
 [build]
-  base    = "src"
+  base    = ""
   publish = "build"
   command = "REACT_APP_STAGE=dev npm run build"
 
