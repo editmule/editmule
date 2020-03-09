@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { API } from 'aws-amplify';
 import { PageHeader } from 'react-bootstrap'
-import { Elements, StripeProvider } from "react-stripe-elements";
-import { BillingForm } from "modules/BillingForm";
 import { LinkContainer } from "react-router-bootstrap";
 import { LoaderButton } from "modules/LoaderButton";
 import config from "config";
@@ -56,15 +54,6 @@ export default function Settings(props: any) {
           text="Change Password"
         />
       </LinkContainer>
-      <hr />
-      <StripeProvider apiKey={config.STRIPE_KEY}>
-        <Elements>
-          <BillingForm
-            isLoading={isLoading}
-            onSubmit={handleFormSubmit}
-          />
-        </Elements>
-      </StripeProvider>
     </div>
   );
 }

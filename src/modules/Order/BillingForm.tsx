@@ -3,12 +3,12 @@ import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import { LoaderButton } from "modules/LoaderButton";
 import { useFormFields } from "libs/hooks";
-import "./BillingForm.css";
+import "./Order.css";
 
 function BillingForm({ isLoading, onSubmit, ...props }: any) {
   const [fields, handleFieldChange] = useFormFields({
     name: "",
-    storage: ""
+    words: ""
   });
   const [isProcessing, setIsProcessing] = useState(false);
   const [isCardComplete, setIsCardComplete] = useState(false);
@@ -18,7 +18,6 @@ function BillingForm({ isLoading, onSubmit, ...props }: any) {
   function validateForm() {
     return (
       fields.name !== "" &&
-      fields.storage !== "" &&
       isCardComplete
     );
   }
@@ -36,18 +35,7 @@ function BillingForm({ isLoading, onSubmit, ...props }: any) {
   }
 
   return (
-    <form className="BillingForm" onSubmit={handleSubmitClick}>
-      <FormGroup bsSize="large" controlId="storage">
-        <ControlLabel>Words</ControlLabel>
-        <FormControl
-          min="0"
-          type="number"
-          value={fields.words}
-          onChange={handleFieldChange}
-          placeholder="Number of words"
-        />
-      </FormGroup>
-      <hr />
+    <div className="BillingForm">
       <FormGroup bsSize="large" controlId="name">
         <ControlLabel>Cardholder&apos;s name</ControlLabel>
         <FormControl
@@ -70,10 +58,10 @@ function BillingForm({ isLoading, onSubmit, ...props }: any) {
         type="submit"
         bsSize="large"
         text="Purchase"
-        isLoading={isLoading}
+        isLoading={props.isLoading}
         disabled={!validateForm()}
       />
-    </form>
+    </div>
   );
 }
 

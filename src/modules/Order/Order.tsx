@@ -6,21 +6,20 @@ import { s3Upload } from 'libs/aws';
 import { LoaderButton } from 'modules/LoaderButton';
 import config from 'config';
 import './Order.css';
+import Configuration from './Configuration';
+import Upload from './Upload';
+import Checkout from './Checkout';
 
-export default function NewNote(props: any) {
+export default function Order(props: any) {
   const file = useRef(null);
+  const [currentStep, setCurrentStep] = useState(1);
   const [content, setContent] = useState("");
+  const [wordcount, setWordcount] = useState("");
+  const [delivery, setDelivery] = useState(24);
   const [isLoading, setIsLoading] = useState(false);
 
-  function validateForm() {
-    return content.length > 0;
-  }
-
-  function handleFileChange(event: any) {
-    file.current = event.target.files[0];
-  }
-
-  async function handleSubmit(event: any) {
+  // TODO: Add billing to order (only submit order when billing works)
+  async function handleOrderSubmit(event: any) {
     event.preventDefault();
 
     // @ts-ignore
@@ -38,8 +37,7 @@ export default function NewNote(props: any) {
       const attachment = file.current
         ? await s3Upload(file.current)
         : null;
-
-      await createNote({ content, attachment });
+      await createOrder({ content, attachment });
       props.history.push("/account/orders");
     } catch (e) {
       alert(e);
@@ -47,7 +45,7 @@ export default function NewNote(props: any) {
     }
   }
 
-  function createNote(order: any) {
+  function createOrder(order: any) {
     return API.post("orders", "/orders", {
       body: order
     });
@@ -55,26 +53,31 @@ export default function NewNote(props: any) {
 
   return (
     <div className="NewNote">
-      <form onSubmit={handleSubmit}>
-        <FormGroup controlId="content">
-          <FormControl
-            value={content}
-            componentClass="textarea"
-            onChange={e => setContent((e.target as HTMLTextAreaElement).value)}
-          />
-        </FormGroup>
-        <FormGroup controlId="file">
-          <ControlLabel>Attachment</ControlLabel>
-          <FormControl onChange={handleFileChange} type="file" />
-        </FormGroup>
-        <LoaderButton
-          block
-          type="submit"
-          bsSize="large"
-          bsStyle="primary"
-          text="Create"
+      <form onSubmit={handleOrderSubmit}>
+        <Configuration
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          wordcount={wordcount}
+          setWordcount={setWordcount}
+          delivery={delivery}
+          setDelivery={setDelivery}
+        />
+        <Upload
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          content={content}
+          setContent={setContent}
+          file={file}
+          props={props}
+        />
+        <Checkout
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          wordcount={wordcount}
+          delivery={delivery}
           isLoading={isLoading}
-          disabled={!validateForm()}
+          onSubmit={handleOrderSubmit}
+          config={config}
         />
       </form>
     </div>

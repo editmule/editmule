@@ -51,6 +51,9 @@ function App(props: any) {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
+            <LinkContainer to="/order">
+              <NavItem>Order</NavItem>
+            </LinkContainer>
             {isAuthenticated
               ? <>
                   <LinkContainer to="/account">
