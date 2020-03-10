@@ -11,6 +11,15 @@
   font-size: 24px;
 }
 
+.Configuration radio label {
+  width: 100%;
+}
+
+.Configuration table {
+  table-layout: fixed;
+  margin-bottom: 0;
+}
+
 .OrderSummary {
   /* background-color: grey; */
 }

@@ -1,8 +1,10 @@
 // @ts-nocheck
 import React, { useRef, useState } from 'react';
-import { FormGroup, FormControl, ControlLabel, Form, Row, Col, Radio, Label } from 'react-bootstrap';
+import { FormGroup, FormControl, ControlLabel, Form, Row, Col, Radio, Label, Table, tr, td } from 'react-bootstrap';
+import { wordcountToPricing, calculateSavings } from 'libs/utils';
 
 import { LoaderButton } from 'modules/LoaderButton';
+import ConfigRow from './ConfigRow';
 import './Order.css';
 
 export default function Configuration(props: any) {
@@ -16,47 +18,53 @@ export default function Configuration(props: any) {
   }
 
   return (
-    <div>
+    <div className="Configuration">
       <Row>
-        <Col sm={8}>
+        <Col sm={7}>
           <h1>On-demand editing by a human</h1>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque maximus dictum. Morbi magna nulla, sollicitudin sed tellus eget, sodales tincidunt libero. Aliquam aliquam mi ac blandit finibus.</p>
         </Col>
-        <Col sm={4}>
+        <Col sm={5}>
             <FormGroup
               controlId="wordcount"
               onChange={e => props.setWordcount(parseInt(((e.target as HTMLTextAreaElement).value),10))}
             >
               <ControlLabel>Select word count</ControlLabel>
               <Radio name="wordcount" value="50">
-                50 - $5
+                <Table>
+                  <tr>
+                    <td>{50}</td>
+                    <td>${wordcountToPricing(50).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                    <td></td>
+                  </tr>
+                </Table>
               </Radio>
               <Radio name="wordcount" value="100" >
-                100 - $7
+                <ConfigRow wordcount={100} />
               </Radio>
               <Radio name="wordcount" value="200">
-                200 - $14
+                <ConfigRow wordcount={200} />
               </Radio>
               <Radio name="wordcount" value="300">
-                300 - $20
+                <ConfigRow wordcount={300} />
               </Radio>
               <Radio name="wordcount" value="500">
-                500 - $27
+                <ConfigRow wordcount={500} />
               </Radio>
               <Radio name="wordcount" value="1000">
-                1,000 - $45
+                <ConfigRow wordcount={1000} />
               </Radio>
               <Radio name="wordcount" value="2000">
-                2,000 - $80
+                <ConfigRow wordcount={2000} />
               </Radio>
               <Radio name="wordcount" value="3000">
-                3,000 - $150
+              <ConfigRow wordcount={3000} />
               </Radio>
               <Radio name="wordcount" value="5000">
-                5,000 - $250
+                <ConfigRow wordcount={5000} />
               </Radio>
               <Radio name="wordcount" value="10000">
-                10,000 - $450
+                <ConfigRow wordcount={10000} />
               </Radio>
               <Radio required name="wordcount" value="custom">
                 <FormControl
