@@ -1,7 +1,7 @@
 // @ts-nocheck
-import React, { useRef, useState } from 'react';
-import { FormGroup, FormControl, ControlLabel, Form, Row, Col, Radio, Label, Table, tr, td } from 'react-bootstrap';
-import { wordcountToPricing, calculateSavings } from 'libs/utils';
+import React from 'react';
+import { FormGroup, FormControl, ControlLabel, Row, Col, Radio, Table, tr, td } from 'react-bootstrap';
+import { wordcountToPricing } from 'libs/utils';
 
 import { LoaderButton } from 'modules/LoaderButton';
 import ConfigRow from './ConfigRow';
@@ -32,11 +32,13 @@ export default function Configuration(props: any) {
               <ControlLabel>Select word count</ControlLabel>
               <Radio name="wordcount" value="50">
                 <Table>
-                  <tr>
-                    <td>{50}</td>
-                    <td>${wordcountToPricing(50).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-                    <td></td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>{50}</td>
+                      <td>${wordcountToPricing(50).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
                 </Table>
               </Radio>
               <Radio name="wordcount" value="100" >
@@ -77,7 +79,7 @@ export default function Configuration(props: any) {
               controlId="delivery"
               onChange={e => props.setDelivery((e.target as HTMLTextAreaElement).value)}
             >
-              <ControlLabel>Select delivery</ControlLabel>
+              <ControlLabel>Select guaranteed delivery</ControlLabel>
               <Radio defaultChecked required name="delivery" value="24">
                 24 hours
               </Radio>

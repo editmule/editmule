@@ -3,7 +3,7 @@ import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import { LoaderButton } from "modules/LoaderButton";
 import { useFormFields } from "libs/hooks";
-import "./Order.css";
+import "./Checkout.css";
 
 function BillingForm({ isLoading, onSubmit, ...props }: any) {
   const [fields, handleFieldChange] = useFormFields({

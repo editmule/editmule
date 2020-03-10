@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Auth } from 'aws-amplify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+
 
 import './App.css';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -50,23 +53,40 @@ function App(props: any) {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav pullRight>
+          <Nav >
             <LinkContainer to="/order">
               <NavItem>Order</NavItem>
             </LinkContainer>
+          </Nav>
+          <Nav pullRight>
+            <LinkContainer to="/cart">
+              <NavItem><FontAwesomeIcon icon={faShoppingCart} /></NavItem>
+            </LinkContainer>
             {isAuthenticated
               ? <>
-                  <LinkContainer to="/account">
-                    <NavItem>Account</NavItem>
-                  </LinkContainer>
-                  <NavItem onClick={handleLogout}>Logout</NavItem>
-                </>
-              : <>
-                <LinkContainer to="/signup">
-                  <NavItem>Signup</NavItem>
+              <NavDropdown eventKey="4" title={
+                <FontAwesomeIcon icon={faUserCircle} />
+              } id="account-dropdown">
+                <LinkContainer to="/account">
+                  <MenuItem eventKey="4.1">Account</MenuItem>
                 </LinkContainer>
+                <LinkContainer to="/account/orders">
+                  <MenuItem eventKey="4.2">Orders</MenuItem>
+                </LinkContainer>
+                <LinkContainer to="/account/settings">
+                  <MenuItem eventKey="4.3">Settings</MenuItem>
+                </LinkContainer>
+                <MenuItem divider />
+                <MenuItem eventKey="4.4" onClick={handleLogout}>Log out</MenuItem>
+              </NavDropdown>
+
+              </>
+              : <>
                 <LinkContainer to="/login">
-                  <NavItem>Login</NavItem>
+                  <NavItem>Log in</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/signup">
+                  <NavItem>Sign up</NavItem>
                 </LinkContainer>
               </>
             }

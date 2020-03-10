@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import wordcountToPricing from './wordcountToPricing';
 
 export default function deliveryToPricing(wordcount: Number, delivery: Number) {

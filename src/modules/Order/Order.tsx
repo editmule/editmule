@@ -1,14 +1,10 @@
 import React, { useRef, useState } from 'react';
-import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { API } from 'aws-amplify';
 import { s3Upload } from 'libs/aws';
 
-import { LoaderButton } from 'modules/LoaderButton';
-import config from 'config';
 import './Order.css';
 import Configuration from './Configuration';
 import Upload from './Upload';
-import Checkout from './Checkout';
 
 export default function Order(props: any) {
   const file = useRef(null);
@@ -33,26 +29,24 @@ export default function Order(props: any) {
 
     setIsLoading(true);
 
-    try {
-      const attachment = file.current
-        ? await s3Upload(file.current)
-        : null;
-      await createOrder({ content, attachment });
-      props.history.push("/account/orders");
-    } catch (e) {
-      alert(e);
-      setIsLoading(false);
-    }
-  }
+    alert('adding to cart');
 
-  function createOrder(order: any) {
-    return API.post("orders", "/orders", {
-      body: order
-    });
+    props.history.push('/cart');
+
+    // try {
+    //   const attachment = file.current
+    //     ? await s3Upload(file.current)
+    //     : null;
+    //   // await createOrder({ content, attachment });
+    //   props.history.push("/account/orders");
+    // } catch (e) {
+    //   alert(e);
+    //   setIsLoading(false);
+    // }
   }
 
   return (
-    <div className="NewNote">
+    <div>
       <form onSubmit={handleOrderSubmit}>
         <Configuration
           currentStep={currentStep}
@@ -70,16 +64,17 @@ export default function Order(props: any) {
           file={file}
           props={props}
         />
-        <Checkout
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-          wordcount={wordcount}
-          delivery={delivery}
-          isLoading={isLoading}
-          onSubmit={handleOrderSubmit}
-          config={config}
-        />
       </form>
     </div>
   );
 }
+
+// <Checkout
+//   currentStep={currentStep}
+//   setCurrentStep={setCurrentStep}
+//   wordcount={wordcount}
+//   delivery={delivery}
+//   isLoading={isLoading}
+//   onSubmit={handleOrderSubmit}
+//   config={config}
+// />

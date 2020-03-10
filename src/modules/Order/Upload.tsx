@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 import { LoaderButton } from 'modules/LoaderButton';
@@ -36,9 +36,9 @@ export default function Upload(props: any) {
       <LoaderButton
         block
         bsSize="large"
+        type="submit"
         bsStyle="primary"
         text="Continue"
-        onClick={e=>props.setCurrentStep(3)}
         disabled={!validateForm()}
       />
     </div>
