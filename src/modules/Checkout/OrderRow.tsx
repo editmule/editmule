@@ -8,7 +8,7 @@ export default function OrderRow(props: any) {
       <tbody>
         <tr>
           <td className="summary-item">{props.item}</td>
-          <td align="right">${props.price.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+          <td align="right">${props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
         </tr>
         <tr>
           <td>{props.subtitle}</td>

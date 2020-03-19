@@ -86,16 +86,16 @@ export default function Checkout(props: any) {
             <tbody>
               <tr>
                 <td>Subtotal</td>
-                <td align="right">${subtotal.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                <td align="right">${subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
               </tr>
               <tr>
                 <td>Sales tax</td>
-                <td align="right">${taxes.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                <td align="right">${taxes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
               </tr>
               <hr />
               <tr>
                 <td className="summary-item">Total</td>
-                <td className="summary-item" align="right">${total.toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                <td className="summary-item" align="right">${total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
               </tr>
             </tbody>
           </Table>

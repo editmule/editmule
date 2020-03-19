@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { API } from 'aws-amplify';
 import { s3Upload } from 'libs/aws';
+import config from 'config';
 
 import './Order.css';
 import Configuration from './Configuration';
@@ -29,20 +30,37 @@ export default function Order(props: any) {
 
     setIsLoading(true);
 
-    alert('adding to cart');
+    let attachment = null;
+
+    try {
+      attachment = file.current
+        ? await s3Upload(file.current)
+        : null;
+      // await createOrder({ content, attachment });
+    } catch (e) {
+      alert(e);
+    }
+
+    // @ts-ignore
+    const cart = localStorage.getItem('EditMuleCart') ? JSON.parse(localStorage.getItem('EditMuleCart')) : []
+
+    //@ts-ignore
+    const order = {
+      wordcount: wordcount,
+      delivery: delivery,
+      content: content,
+      attachment: attachment
+    }
+
+    cart.push(order);
+
+    //@ts-ignore
+    localStorage.setItem('EditMuleCart', JSON.stringify(cart));
+
+    setIsLoading(false);
 
     props.history.push('/cart');
 
-    // try {
-    //   const attachment = file.current
-    //     ? await s3Upload(file.current)
-    //     : null;
-    //   // await createOrder({ content, attachment });
-    //   props.history.push("/account/orders");
-    // } catch (e) {
-    //   alert(e);
-    //   setIsLoading(false);
-    // }
   }
 
   return (

@@ -1,5 +1,5 @@
 
-export default function wordcountToPricing(wordcount: Number) {
+export default function wordcountToPricing(wordcount: number) {
 
   let rate = 0;
   if (wordcount <= 75) {
@@ -18,6 +18,5 @@ export default function wordcountToPricing(wordcount: Number) {
     rate = 0.045;
   }
 
-  // @ts-ignore
-  return (wordcount*rate);
+  return ((wordcount*rate).toFixed(2));
 }

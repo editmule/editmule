@@ -35,37 +35,37 @@ export default function Configuration(props: any) {
                   <tbody>
                     <tr>
                       <td>{50}</td>
-                      <td>${wordcountToPricing(50).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                      <td>${wordcountToPricing(50).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                       <td></td>
                     </tr>
                   </tbody>
                 </Table>
               </Radio>
-              <Radio name="wordcount" value="100" >
+              <Radio name="wordcount" value={100}>
                 <ConfigRow wordcount={100} />
               </Radio>
-              <Radio name="wordcount" value="200">
+              <Radio name="wordcount" value={200}>
                 <ConfigRow wordcount={200} />
               </Radio>
-              <Radio name="wordcount" value="300">
+              <Radio name="wordcount" value={300}>
                 <ConfigRow wordcount={300} />
               </Radio>
-              <Radio name="wordcount" value="500">
+              <Radio name="wordcount" value={500}>
                 <ConfigRow wordcount={500} />
               </Radio>
-              <Radio name="wordcount" value="1000">
+              <Radio name="wordcount" value={1000}>
                 <ConfigRow wordcount={1000} />
               </Radio>
-              <Radio name="wordcount" value="2000">
+              <Radio name="wordcount" value={2000}>
                 <ConfigRow wordcount={2000} />
               </Radio>
-              <Radio name="wordcount" value="3000">
+              <Radio name="wordcount" value={3000}>
               <ConfigRow wordcount={3000} />
               </Radio>
-              <Radio name="wordcount" value="5000">
+              <Radio name="wordcount" value={5000}>
                 <ConfigRow wordcount={5000} />
               </Radio>
-              <Radio name="wordcount" value="10000">
+              <Radio name="wordcount" value={10000}>
                 <ConfigRow wordcount={10000} />
               </Radio>
               <Radio required name="wordcount" value="custom">
@@ -80,13 +80,13 @@ export default function Configuration(props: any) {
               onChange={e => props.setDelivery((e.target as HTMLTextAreaElement).value)}
             >
               <ControlLabel>Select guaranteed delivery</ControlLabel>
-              <Radio defaultChecked required name="delivery" value="24">
+              <Radio defaultChecked required name="delivery" value={24}>
                 24 hours
               </Radio>
-              <Radio name="delivery" value="48">
+              <Radio name="delivery" value={48}>
                 48 hours (-15%)
               </Radio>
-              <Radio name="delivery" value="72">
+              <Radio name="delivery" value={72}>
                 72 hours (-25%)
               </Radio>
             </FormGroup>
