@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { PageHeader, ListGroup, ListGroupItem, Table, Row, Col } from 'react-bootstrap';
+import { Button, PageHeader, ListGroup, ListGroupItem, Table, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { subtotalPricing } from 'libs/utils';
@@ -9,30 +9,23 @@ import { LoaderButton } from 'modules/LoaderButton';
 import './Cart.css';
 
 export default function Cart(props: any) {
-  const [orders, setOrders] = useState([]);
-  const [subtotal, setSubTotal] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
+  const initialOrders = loadCart();
+  const initialSubTotal = calculateSubTotal(initialOrders);
 
+  const [orders, setOrders] = useState(initialOrders);
+  const [subtotal, setSubTotal] = useState(initialSubTotal);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Refresh persistent localStorage and subtotal when "orders" state changes
   useEffect(() => {
-    async function onLoad() {
-      try {
-        const orders = await loadCart();
-        const subtotal = await calculateSubTotal(orders); //TODO: reduce cart by wordcount and delivery to price
-        setOrders(orders);
-        setSubTotal(subtotal.toFixed(2));
-      } catch (e) {
-        alert(e);
-      }
-
-      setIsLoading(false);
-    }
-
-    onLoad();
-  }, []);
+    localStorage.setItem('EditMuleCart', JSON.stringify(orders));
+    setSubTotal(calculateSubTotal(orders).toFixed(2));
+  }, [orders]);
 
   function loadCart() {
     // @ts-ignore
-    return localStorage.getItem('EditMuleCart') ? JSON.parse(localStorage.getItem('EditMuleCart')) : [];
+    return localStorage.getItem('EditMuleCart') ? JSON.parse(window.localStorage.getItem('EditMuleCart')) : [{}];
   }
 
   function calculateSubTotal(orders: any){
@@ -41,13 +34,20 @@ export default function Cart(props: any) {
     ), 0);
   }
 
+  function handleDelete(index: number, event: any) {
+    const oldOrders = orders;
+    const newOrders = oldOrders.slice(0,index-1).concat(oldOrders.slice(index, oldOrders.length))
+    setOrders(newOrders);
+  }
+
   function renderOrdersList(orders: any) {
-    return [{}].concat(orders).map((order: any, i) =>
-      i !== 0 ? (
-        <ListGroupItem key={i} header={order.content.trim().split("\n")[0]}>
-          {"Wordcount: " + order.wordcount + '\n'}
+    return [{}].concat(orders).map((order: any, index) =>
+      index !== 0 ? (
+        <ListGroupItem key={index} header={order.content.trim().split("\n")[0]}>
+          {"Wordcount: " + order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '\n'}
           {"Delivery: " + order.delivery + " hours" + '\n'}
-          {"Cost: " + subtotalPricing(order.wordcount, order.delivery) + '\n'}
+          {"Cost: $" + subtotalPricing(order.wordcount, order.delivery).toFixed(2) + '\n'}
+          <Button bsStyle="link" onClick={!isLoading ? handleDelete.bind(this, index) : null}>Delete</Button>
         </ListGroupItem>
       ) : (
           <LinkContainer key="new" to="/order">
@@ -69,12 +69,10 @@ export default function Cart(props: any) {
           <ListGroup>
             {!isLoading && renderOrdersList(orders)}
           </ListGroup>
-          <Link to="/order">
-            Add another order
-          </Link>
         </Col>
         <Col sm={4}>
-          <h2>Subtotal: ${subtotal}</h2>
+          <h3><b>Subtotal: ${subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b></h3>
+          <br />
           <LoaderButton
             block
             type="submit"
@@ -82,6 +80,10 @@ export default function Cart(props: any) {
             text="Checkout"
             onClick={e => (props.history.push('/checkout'))}
           />
+          <br />
+          <Link to="/order">
+            <b>Or add another order</b>
+          </Link>
         </Col>
       </Row>
     </div>
