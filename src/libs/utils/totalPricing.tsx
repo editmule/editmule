@@ -8,5 +8,5 @@ export default function totalPricing(wordcount: number, delivery: number, taxRat
   const deliveryDiscount = deliveryToPricing(wordcount, delivery);
   const taxes = taxesToPricing(+wordcountCost + +deliveryDiscount, taxRate);
 
-  return ((+wordcountCost + +deliveryDiscount + +taxes).toFixed(2));
+  return Number((+wordcountCost + +deliveryDiscount + +taxes).toFixed(2));
 }

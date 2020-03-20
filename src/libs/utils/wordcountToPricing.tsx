@@ -18,5 +18,5 @@ export default function wordcountToPricing(wordcount: number) {
     rate = 0.045;
   }
 
-  return ((wordcount*rate).toFixed(2));
+  return Number((wordcount*rate).toFixed(2));
 }

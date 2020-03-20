@@ -2,9 +2,11 @@
 
 import wordcountToPricing from './wordcountToPricing';
 
-export default function deliveryToPricing(wordcount: number, delivery: number) {
+export default function deliveryToPricing(wordcount: number, delivery: any) {
   const cost = wordcountToPricing(wordcount);
   let discountRate = 0;
+
+  delivery = Number(delivery);
 
   if (delivery==24) {
     discountRate = 0;
@@ -16,5 +18,5 @@ export default function deliveryToPricing(wordcount: number, delivery: number) {
 
   const discount = cost*discountRate
 
-  return ((discount).toFixed(2));
+  return Number((discount).toFixed(2));
 }

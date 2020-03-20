@@ -21,11 +21,11 @@ function Routes({ appProps }: any) {
       <AppliedRoute path="/" exact component={Home} appProps={appProps} />
       <AppliedRoute path="/order" exact component={Order} appProps={appProps} />
       <AppliedRoute path="/cart" exact component={Cart} appProps={appProps} />
-      <AppliedRoute path="/checkout" component={Checkout} appProps={appProps} />
       <UnauthenticatedRoute path="/login" exact component={Login} appProps={appProps} />
       <UnauthenticatedRoute path="/login/reset" exact component={ResetPassword} appProps={appProps} />
       <UnauthenticatedRoute path="/signup" exact component={Signup} appProps={appProps} />
       <AuthenticatedRoute path="/account" component={Account} appProps={appProps} />
+      <AuthenticatedRoute path="/checkout" component={Checkout} appProps={appProps} />
       { /* Finally, catch all unmatched routes */ }
       <Route component={NotFound} />
     </Switch>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   HelpBlock,
   FormGroup,
@@ -19,6 +20,8 @@ export default function Signup(props: any) {
   });
   const [newUser, setNewUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  console.log(props.location.search !== "");
 
   function validateForm() {
     return (
@@ -61,7 +64,6 @@ async function handleConfirmationSubmit(event: any) {
     await Auth.signIn(fields.email, fields.password);
 
     props.userHasAuthenticated(true);
-    props.history.push("/");
   } catch (e) {
     alert(e.message);
     setIsLoading(false);
@@ -129,6 +131,10 @@ async function handleConfirmationSubmit(event: any) {
           isLoading={isLoading}
           disabled={!validateForm()}
         />
+        <br />
+        <Link to={
+          props.location.search !== "" ? "/login?redirect=/checkout" : "/login"
+        }><b>or log in</b></Link>
       </form>
     );
   }

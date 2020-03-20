@@ -5,5 +5,5 @@ export default function calculateSavings(wordcount: number) {
   const newPricing = wordcountToPricing(wordcount);
 
   //@ts-ignore
-  return (((oldPricing-newPricing)/(oldPricing)*100).toFixed(0))
+  return Number(((oldPricing-newPricing)/(oldPricing)*100).toFixed(0))
 }

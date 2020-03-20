@@ -30,7 +30,7 @@ export default function Configuration(props: any) {
               onChange={e => props.setWordcount(parseInt(((e.target as HTMLTextAreaElement).value),10))}
             >
               <ControlLabel>Select word count</ControlLabel>
-              <Radio name="wordcount" value="50">
+              <Radio name="wordcount" value={50}>
                 <Table>
                   <tbody>
                     <tr>

@@ -60,7 +60,9 @@ function App(props: any) {
           </Nav>
           <Nav pullRight>
             <LinkContainer to="/cart">
-              <NavItem><FontAwesomeIcon icon={faShoppingCart} /></NavItem>
+              <NavItem>
+                <FontAwesomeIcon icon={faShoppingCart} />
+              </NavItem>
             </LinkContainer>
             {isAuthenticated
               ? <>

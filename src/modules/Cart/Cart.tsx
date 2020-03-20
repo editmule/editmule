@@ -14,7 +14,6 @@ export default function Cart(props: any) {
 
   const [orders, setOrders] = useState(initialOrders);
   const [subtotal, setSubTotal] = useState(initialSubTotal);
-  const [showEditModal, setShowEditModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   // Refresh persistent localStorage and subtotal when "orders" state changes

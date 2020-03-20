@@ -14,6 +14,7 @@ export default function OrderRow(props: any) {
           <td>{props.subtitle}</td>
         </tr>
       </tbody>
+      <br />
     </Table>
   );
 }
