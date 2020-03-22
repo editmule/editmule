@@ -26,13 +26,13 @@ export default function Checkout(props: any) {
 
   function billUser(data: any) {
     return API.post('orders', '/billing', {
-      body: orders
+      body: data
     });
   }
 
   function createOrders(data: any) {
     return API.post('orders', '/orders', {
-      body: orders
+      body: data
     });
   }
 
@@ -43,6 +43,7 @@ export default function Checkout(props: any) {
 
   async function handleFormSubmit(orders: Array, { token, error }: any) {
     if (error) {
+      console.log(error);
       alert(error);
       return;
     }
@@ -51,7 +52,7 @@ export default function Checkout(props: any) {
 
     try {
       // TODO: Authorize payment (but don't charge until orders complete)
-      const charge = await billUser({
+      const data = await billUser({
         orders,
         source: token.id
       });
@@ -59,10 +60,15 @@ export default function Checkout(props: any) {
       // Create all orders
       await createOrders({
         orders,
-        chargeId: charge.id
+        chargeId: data.chargeId,
       });
 
       alert("Your card has been charged successfully!");
+
+      // Clear cart
+      localStorage.setItem('EditMuleCart', JSON.stringify([]));
+
+      setIsLoading(false);
       props.history.push("/account/orders");
     } catch (e) {
       alert(e);
@@ -74,6 +80,7 @@ export default function Checkout(props: any) {
     return orders.map((order, index) =>
       <OrderRow
         item={'Professional editing'}
+        key={index}
         price={subtotalPricing(order.wordcount, order.delivery).toFixed(2)}
         subtitle={`${order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} words, ${order.delivery} hour delivery`}
       />

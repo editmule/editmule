@@ -27,7 +27,7 @@ function BillingForm({ isLoading, onSubmit, ...props }: any) {
     setIsProcessing(true);
 
     const { token, error } = await props.stripe.createToken({ name: fields.name });
-
+    
     setIsProcessing(false);
 
     onSubmit(props.orders, { token, error });

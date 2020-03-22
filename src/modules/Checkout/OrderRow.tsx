@@ -4,17 +4,20 @@ import { Table } from 'react-bootstrap';
 export default function OrderRow(props: any) {
 
   return (
-    <Table>
-      <tbody>
-        <tr>
-          <td className="summary-item">{props.item}</td>
-          <td align="right">${props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-        </tr>
-        <tr>
-          <td>{props.subtitle}</td>
-        </tr>
-      </tbody>
+    <div>
+      <Table>
+        <tbody>
+          <tr>
+            <td className="summary-item">{props.item}</td>
+            <td align="right">${props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+          </tr>
+          <tr>
+            <td>{props.subtitle}</td>
+          </tr>
+        </tbody>
+      </Table>
       <br />
-    </Table>
+    </div>
+
   );
 }
