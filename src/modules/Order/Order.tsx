@@ -47,8 +47,8 @@ export default function Order(props: any) {
 
     //@ts-ignore
     const order = {
-      wordcount: wordcount,
-      delivery: delivery,
+      wordcount: Number(wordcount),
+      delivery: Number(delivery),
       content: content,
       attachment: attachment
     }
