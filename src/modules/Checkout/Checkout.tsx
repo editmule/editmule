@@ -43,7 +43,6 @@ export default function Checkout(props: any) {
 
   async function handleFormSubmit(orders: Array, { token, error }: any) {
     if (error) {
-      console.log(error);
       alert(error);
       return;
     }
@@ -52,7 +51,7 @@ export default function Checkout(props: any) {
 
     try {
       // TODO: Authorize payment (but don't charge until orders complete)
-      const data = await billUser({
+      const billResponse = await billUser({
         orders,
         source: token.id
       });
@@ -60,7 +59,7 @@ export default function Checkout(props: any) {
       // Create all orders
       await createOrders({
         orders,
-        chargeId: data.chargeId,
+        chargeId: billResponse.chargeId,
       });
 
       alert("Your card has been charged successfully!");
