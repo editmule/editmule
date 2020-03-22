@@ -34,7 +34,7 @@ function BillingForm({ isLoading, onSubmit, ...props }: any) {
   }
 
   return (
-    <div className="BillingForm">
+    <form className="BillingForm" onSubmit={handleSubmitClick}>
       <FormGroup bsSize="large" controlId="name">
         <ControlLabel>Cardholder&apos;s name</ControlLabel>
         <FormControl
@@ -60,7 +60,7 @@ function BillingForm({ isLoading, onSubmit, ...props }: any) {
         isLoading={props.isLoading}
         disabled={!validateForm()}
       />
-    </div>
+    </form>
   );
 }
 
