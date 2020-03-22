@@ -8,11 +8,11 @@ export default function deliveryToPricing(wordcount: number, delivery: any) {
 
   delivery = Number(delivery);
 
-  if (delivery==24) {
+  if (delivery===24) {
     discountRate = 0;
-  } else if (delivery==48) {
+  } else if (delivery===48) {
     discountRate = -0.15;
-  } else if (delivery==72) {
+  } else if (delivery===72) {
     discountRate = -0.25;
   }
 

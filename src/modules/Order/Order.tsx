@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import { API } from 'aws-amplify';
 import { s3Upload } from 'libs/aws';
 import config from 'config';
 
@@ -13,6 +12,8 @@ export default function Order(props: any) {
   const [content, setContent] = useState("");
   const [wordcount, setWordcount] = useState("");
   const [delivery, setDelivery] = useState(24);
+
+  // @ts-ignore
   const [isLoading, setIsLoading] = useState(false);
 
   // TODO: Add billing to order (only submit order when billing works)
@@ -72,6 +73,7 @@ export default function Order(props: any) {
           wordcount={wordcount}
           setWordcount={setWordcount}
           delivery={delivery}
+          isLoading={isLoading}
           setDelivery={setDelivery}
         />
         <Upload
@@ -80,6 +82,7 @@ export default function Order(props: any) {
           content={content}
           setContent={setContent}
           file={file}
+          isLoading={isLoading}
           props={props}
         />
       </form>

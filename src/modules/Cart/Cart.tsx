@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Button, PageHeader, ListGroup, ListGroupItem, Table, Row, Col } from 'react-bootstrap';
+import { Button, PageHeader, ListGroup, ListGroupItem, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { subtotalPricing } from 'libs/utils';
@@ -14,7 +14,7 @@ export default function Cart(props: any) {
 
   const [orders, setOrders] = useState(initialOrders);
   const [subtotal, setSubTotal] = useState(initialSubTotal);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading] = useState(false);
 
   // Refresh persistent localStorage and subtotal when "orders" state changes
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Cart(props: any) {
       index !== 0 ? (
         <ListGroupItem key={index} header={order.content.trim().split("\n")[0]}>
           {"Wordcount: " + order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '\n'}
-          {"Delivery: " + order.delivery + " hours" + '\n'}
+          {"Delivery: " + order.delivery + " hours\n"}
           {"Cost: $" + subtotalPricing(order.wordcount, order.delivery).toFixed(2) + '\n'}
           <Button bsStyle="link" onClick={!isLoading ? handleDelete.bind(this, index) : null}>Delete</Button>
         </ListGroupItem>

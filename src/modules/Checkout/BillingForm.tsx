@@ -7,8 +7,7 @@ import "./Checkout.css";
 
 function BillingForm({ isLoading, onSubmit, ...props }: any) {
   const [fields, handleFieldChange] = useFormFields({
-    name: "",
-    words: ""
+    name: ""
   });
   const [isProcessing, setIsProcessing] = useState(false);
   const [isCardComplete, setIsCardComplete] = useState(false);
@@ -31,7 +30,7 @@ function BillingForm({ isLoading, onSubmit, ...props }: any) {
 
     setIsProcessing(false);
 
-    onSubmit(fields.storage, { token, error });
+    onSubmit(props.orders, { token, error });
   }
 
   return (

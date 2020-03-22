@@ -1,11 +1,12 @@
 // @ts-nocheck
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Elements, StripeProvider } from "react-stripe-elements";
+import { API } from 'aws-amplify';
 import { Modal, Button, PageHeader, Table, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
-import { wordcountToPricing, deliveryToPricing, taxesToPricing, totalPricing, subtotalPricing} from 'libs/utils';
+import { subtotalPricing } from 'libs/utils';
 
 import config from 'config';
 import BillingForm from './BillingForm';
@@ -14,7 +15,7 @@ import './Checkout.css';
 
 export default function Checkout(props: any) {
   const initialOrders = loadCart();
-  const [orders, setOrders] = useState(initialOrders);
+  const [orders] = useState(initialOrders);
   const [infoModalOpen, setInfoModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,9 +24,15 @@ export default function Checkout(props: any) {
   // const finalTax = (Number(taxesToPricing(Number(finalSubTotal)+Number(serviceFee), 0.09))).toFixed(2);
   const grandTotal = (+finalSubTotal + +serviceFee).toFixed(2);
 
-  function billUser(details: any) {
+  function billUser(data: any) {
     return API.post('orders', '/billing', {
-      body: details
+      body: orders
+    });
+  }
+
+  function createOrders(data: any) {
+    return API.post('orders', '/orders', {
+      body: orders
     });
   }
 
@@ -34,7 +41,7 @@ export default function Checkout(props: any) {
     return localStorage.getItem('EditMuleCart') ? JSON.parse(window.localStorage.getItem('EditMuleCart')) : [{}];
   }
 
-  async function handleFormSubmit(words: Number, { token, error }: any) {
+  async function handleFormSubmit(orders: Array, { token, error }: any) {
     if (error) {
       alert(error);
       return;
@@ -43,27 +50,24 @@ export default function Checkout(props: any) {
     setIsLoading(true);
 
     try {
-      await billUser({
-        words,
+      // TODO: Authorize payment (but don't charge until orders complete)
+      const charge = await billUser({
+        orders,
         source: token.id
       });
 
+      // Create all orders
+      await createOrders({
+        orders,
+        chargeId: charge.id
+      });
+
       alert("Your card has been charged successfully!");
-      props.history.push("/");
+      props.history.push("/account/orders");
     } catch (e) {
       alert(e);
       setIsLoading(false);
     }
-  }
-
-  function createOrder(order: any) {
-    return API.post("orders", "/orders", {
-      body: order
-    });
-  }
-
-  function calculateSalesTax() {
-    return 0.0925;
   }
 
   function renderOrderSummary(orders: Array) {
@@ -77,14 +81,16 @@ export default function Checkout(props: any) {
   }
 
   return (
-    <div className="Checkout">
+    <div>
+      <PageHeader>Checkout</PageHeader>
       <Row>
-        <PageHeader>Checkout</PageHeader>
         <Col sm={8}>
         <StripeProvider apiKey={config.STRIPE_KEY}>
           <Elements>
             <BillingForm
               orders={orders}
+              isLoading={isLoading}
+              onSubmit={handleFormSubmit}
             />
           </Elements>
         </StripeProvider>
