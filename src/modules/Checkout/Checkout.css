@@ -36,6 +36,19 @@
   border-color: #66AFE9;
 }
 
+.BillingForm .sublabel {
+  font-weight: normal;
+  color: grey;
+}
+
+.BillingForm .login {
+  margin-bottom: 16px;
+}
+
+.OrderSummary .order-summary-edit {
+  font-size: 32;
+}
+
 .info-modal {
   cursor: pointer;
 }

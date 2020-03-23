@@ -16,8 +16,6 @@ export default function OrderRow(props: any) {
           </tr>
         </tbody>
       </Table>
-      <br />
     </div>
-
   );
 }

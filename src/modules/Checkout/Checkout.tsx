@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState } from 'react';
 import { Elements, StripeProvider } from "react-stripe-elements";
-import { API, Auth } from 'aws-amplify';
+import { API } from 'aws-amplify';
 import { Modal, Button, PageHeader, Table, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
@@ -35,7 +35,7 @@ export default function Checkout(props: any) {
     return localStorage.getItem('EditMuleCart') ? JSON.parse(window.localStorage.getItem('EditMuleCart')) : [{}];
   }
 
-  async function handleFormSubmit(orders: Array, { token, error }: any) {
+  async function handleFormSubmit(orders: Array, email: string, { token, error }: any) {
     if (error) {
       alert(error);
       return;
@@ -47,7 +47,7 @@ export default function Checkout(props: any) {
       // TODO: Authorize payment (but don't charge until orders complete)
       await billUser({
         orders,
-        email: (await Auth.currentAuthenticatedUser()).attributes.email,
+        email: email,
         source: token.id
       });
 
@@ -86,15 +86,15 @@ export default function Checkout(props: any) {
               orders={orders}
               isLoading={isLoading}
               onSubmit={handleFormSubmit}
+              isAuthenticated={props.isAuthenticated}
             />
           </Elements>
         </StripeProvider>
         </Col>
         <Col sm={4} className="OrderSummary">
-          <h3>Order Summary </h3>
+          <h3>Order Summary <span className="order-summary-edit"><Link to="/cart">edit</Link></span></h3>
           <hr />
-          {!isLoading && renderOrderSummary(orders)}
-          <span><Link to="/cart">edit</Link></span>
+          {renderOrderSummary(orders)}
           <hr />
           <Table condensed>
             <tbody>
