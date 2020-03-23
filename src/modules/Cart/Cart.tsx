@@ -23,11 +23,13 @@ export default function Cart(props: any) {
   }, [orders]);
 
   function loadCart() {
-    // @ts-ignore
-    return localStorage.getItem('EditMuleCart') ? JSON.parse(window.localStorage.getItem('EditMuleCart')) : [{}];
+    // Initialize an empty cart if 'EditMuleCart' is not yet set (i.e. incognito browsers or new users)
+    if (!localStorage.getItem('EditMuleCart')) localStorage.setItem('EditMuleCart', JSON.stringify([]));
+
+    return JSON.parse(localStorage.getItem('EditMuleCart'));
   }
 
-  function calculateSubTotal(orders: any){
+  function calculateSubTotal(orders: any) {
     return orders.reduce((subtotal, curr) => (
       subtotal += subtotalPricing(curr.wordcount, curr.delivery)
     ), 0);
@@ -35,7 +37,7 @@ export default function Cart(props: any) {
 
   function handleDelete(index: number, event: any) {
     const oldOrders = orders;
-    const newOrders = oldOrders.slice(0,index-1).concat(oldOrders.slice(index, oldOrders.length))
+    const newOrders = oldOrders.slice(0, index - 1).concat(oldOrders.slice(index, oldOrders.length))
     setOrders(newOrders);
   }
 
@@ -63,7 +65,7 @@ export default function Cart(props: any) {
   return (
     <div className="Cart">
       <PageHeader>Cart</PageHeader>
-      { orders.length >= 1 ?
+      {(orders !== [{}] && orders.length >= 1) ?
         <Row>
           <Col sm={8}>
             <ListGroup>
@@ -86,7 +88,7 @@ export default function Cart(props: any) {
             </Link>
           </Col>
         </Row>
-      :
+        :
         <div>
           <p>Your cart is empty!</p>
           <Link to="/order">
