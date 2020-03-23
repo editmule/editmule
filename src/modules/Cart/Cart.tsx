@@ -63,28 +63,37 @@ export default function Cart(props: any) {
   return (
     <div className="Cart">
       <PageHeader>Cart</PageHeader>
-      <Row>
-        <Col sm={8}>
-          <ListGroup>
-            {!isLoading && renderOrdersList(orders)}
-          </ListGroup>
-        </Col>
-        <Col sm={4}>
-          <h3><b>Subtotal: ${subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b></h3>
-          <br />
-          <LoaderButton
-            block
-            type="submit"
-            bsSize="large"
-            text="Checkout"
-            onClick={e => (props.history.push('/checkout'))}
-          />
-          <br />
+      { orders.length >= 1 ?
+        <Row>
+          <Col sm={8}>
+            <ListGroup>
+              {!isLoading && renderOrdersList(orders)}
+            </ListGroup>
+          </Col>
+          <Col sm={4}>
+            <h3><b>Subtotal: ${subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b></h3>
+            <br />
+            <LoaderButton
+              block
+              type="submit"
+              bsSize="large"
+              text="Checkout"
+              onClick={e => (props.history.push('/checkout'))}
+            />
+            <br />
+            <Link to="/order">
+              <b>Or add another order</b>
+            </Link>
+          </Col>
+        </Row>
+      :
+        <div>
+          <p>Your cart is empty!</p>
           <Link to="/order">
-            <b>Or add another order</b>
+            <b>Add an order</b>
           </Link>
-        </Col>
-      </Row>
+        </div>
+      }
     </div>
   );
 }

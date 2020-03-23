@@ -1,5 +1,5 @@
 const dev = {
-  STRIPE_KEY: "pk_test_QkHYOwt3hp1FCYUCr01WBHYQ00qq0EaAmN",
+  STRIPE_KEY: "pk_test_Xt1sNlUfR6bZwd66WfxRPHGg00E9SpX4Sy",
   s3: {
     REGION: "us-east-1",
     BUCKET: "editmule-2-api-dev-attachmentsbucket-ejoo37si6wz"

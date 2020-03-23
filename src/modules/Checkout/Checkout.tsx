@@ -57,12 +57,6 @@ export default function Checkout(props: any) {
         source: token.id
       });
 
-      // Create all orders
-      await createOrders({
-        orders,
-        chargeId: billResponse.chargeId,
-      });
-
       alert("Your card has been charged successfully!");
 
       // Clear cart
