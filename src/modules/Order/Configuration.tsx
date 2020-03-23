@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import { FormGroup, FormControl, ControlLabel, Row, Col, Radio, Table, tr, td } from 'react-bootstrap';
-import { wordcountToPricing } from 'libs/utils';
+import { wordcountToPricing, deliveryToPricing, subtotalPricing } from 'libs/utils';
 
 import { LoaderButton } from 'modules/LoaderButton';
 import ConfigRow from './ConfigRow';
@@ -35,7 +35,7 @@ export default function Configuration(props: any) {
                   <tbody>
                     <tr>
                       <td>{50}</td>
-                      <td>${wordcountToPricing(50).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                      <td>${Number(wordcountToPricing(50)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                       <td></td>
                     </tr>
                   </tbody>
@@ -81,15 +81,40 @@ export default function Configuration(props: any) {
             >
               <ControlLabel>Select guaranteed delivery</ControlLabel>
               <Radio defaultChecked required name="delivery" value={24}>
-                24 hours
+                <Table>
+                  <tbody>
+                    <tr>
+                      <td>24 hours</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </Table>
               </Radio>
               <Radio name="delivery" value={48}>
-                48 hours (-15%)
+                <Table>
+                  <tbody>
+                    <tr>
+                      <td>48 hours</td>
+                      <td></td>
+                      <td style={{color: 'green'}}>{props.wordcount && '-$'+(Number(-1*deliveryToPricing(props.wordcount, 48)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))}</td>
+                    </tr>
+                  </tbody>
+                </Table>
               </Radio>
               <Radio name="delivery" value={72}>
-                72 hours (-25%)
+              <Table>
+                <tbody>
+                  <tr>
+                    <td>72 hours</td>
+                    <td></td>
+                    <td style={{color: 'green'}}>{props.wordcount && '-$'+(Number(-1*deliveryToPricing(props.wordcount, 72)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))}</td>
+                  </tr>
+                </tbody>
+              </Table>
               </Radio>
             </FormGroup>
+            {props.wordcount && <ControlLabel style={{ marginBottom: '16px'}}>Subtotal: ${subtotalPricing(props.wordcount, props.delivery).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</ControlLabel>}
             <LoaderButton
               block
               bsSize="large"

@@ -9,8 +9,8 @@ export default function ConfigRow(props: any) {
       <tbody>
         <tr>
           <td>{props.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-          <td>${wordcountToPricing(props.wordcount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-          <td>Save {calculateSavings(props.wordcount)}%</td>
+          <td>${Number(wordcountToPricing(props.wordcount)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+          <td style={{color: 'green'}}>Save {calculateSavings(props.wordcount)}%</td>
         </tr>
       </tbody>
     </Table>

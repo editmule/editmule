@@ -3,13 +3,16 @@
 import React from 'react';
 import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
+import { validateURL } from 'libs/utils';
 import { LoaderButton } from 'modules/LoaderButton';
 import './Order.css';
 
 export default function Upload(props: any) {
 
   function validateForm() {
-    return props.content.length > 0;
+    console.log(validateURL(props.content));
+    console.log(props.file.current != null);
+    return (validateURL(props.content) || props.file.current != null);
   }
 
   function handleFileChange(event: any) {
@@ -29,8 +32,8 @@ export default function Upload(props: any) {
           onChange={e => props.setContent((e.target as HTMLTextAreaElement).value)}
         />
       </FormGroup>
+      or, attach a file
       <FormGroup controlId="file">
-        <ControlLabel>Attachment</ControlLabel>
         <FormControl onChange={handleFileChange} type="file" />
       </FormGroup>
       <LoaderButton
