@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState } from 'react';
 import { Elements, StripeProvider } from "react-stripe-elements";
-import { API } from 'aws-amplify';
+import { API, Auth } from 'aws-amplify';
 import { Modal, Button, PageHeader, Table, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
@@ -53,6 +53,7 @@ export default function Checkout(props: any) {
       // TODO: Authorize payment (but don't charge until orders complete)
       const billResponse = await billUser({
         orders,
+        email: (await Auth.currentAuthenticatedUser()).attributes.email,
         source: token.id
       });
 
@@ -144,13 +145,3 @@ export default function Checkout(props: any) {
     </div>
   );
 }
-
-// <Table condensed>
-//   <tbody>
-//     <tr>
-//       <td>Taxes</td>
-//       <td align="right">${finalTax.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-//     </tr>
-//   </tbody>
-// </Table>
-// <hr />

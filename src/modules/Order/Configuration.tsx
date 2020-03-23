@@ -97,7 +97,7 @@ export default function Configuration(props: any) {
                     <tr>
                       <td>48 hours</td>
                       <td></td>
-                      <td style={{color: 'green'}}>{props.wordcount && '-$'+(Number(-1*deliveryToPricing(props.wordcount, 48)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))}</td>
+                      <td style={{color: 'green'}}>{(props.wordcount >= 1) && '-$'+(Number(-1*deliveryToPricing(props.wordcount, 48)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))}</td>
                     </tr>
                   </tbody>
                 </Table>
@@ -108,13 +108,13 @@ export default function Configuration(props: any) {
                   <tr>
                     <td>72 hours</td>
                     <td></td>
-                    <td style={{color: 'green'}}>{props.wordcount && '-$'+(Number(-1*deliveryToPricing(props.wordcount, 72)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))}</td>
+                    <td style={{color: 'green'}}>{(props.wordcount >= 1) && '-$'+(Number(-1*deliveryToPricing(props.wordcount, 72)).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))}</td>
                   </tr>
                 </tbody>
               </Table>
               </Radio>
             </FormGroup>
-            {props.wordcount && <ControlLabel style={{ marginBottom: '16px'}}>Subtotal: ${subtotalPricing(props.wordcount, props.delivery).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</ControlLabel>}
+            {(props.wordcount >= 1) && <ControlLabel style={{ marginBottom: '16px'}}>Subtotal: ${subtotalPricing(props.wordcount, props.delivery).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</ControlLabel>}
             <LoaderButton
               block
               bsSize="large"

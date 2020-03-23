@@ -10,8 +10,6 @@ import './Order.css';
 export default function Upload(props: any) {
 
   function validateForm() {
-    console.log(validateURL(props.content));
-    console.log(props.file.current != null);
     return (validateURL(props.content) || props.file.current != null);
   }
 
