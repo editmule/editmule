@@ -30,12 +30,6 @@ export default function Checkout(props: any) {
     });
   }
 
-  function createOrders(data: any) {
-    return API.post('orders', '/orders', {
-      body: data
-    });
-  }
-
   function loadCart() {
     // @ts-ignore
     return localStorage.getItem('EditMuleCart') ? JSON.parse(window.localStorage.getItem('EditMuleCart')) : [{}];
@@ -51,7 +45,7 @@ export default function Checkout(props: any) {
 
     try {
       // TODO: Authorize payment (but don't charge until orders complete)
-      const billResponse = await billUser({
+      await billUser({
         orders,
         email: (await Auth.currentAuthenticatedUser()).attributes.email,
         source: token.id
