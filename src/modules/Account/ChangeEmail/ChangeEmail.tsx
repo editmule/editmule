@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
-import {
-  HelpBlock,
-  FormGroup,
-  FormControl,
-  ControlLabel
-} from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { LoaderButton } from "modules/LoaderButton";
 import "./ChangeEmail.css";
 
@@ -82,55 +77,55 @@ export default class ChangeEmail extends Component<AppProps, AppState> {
 
   renderUpdateForm() {
     return (
-      <form onSubmit={this.handleUpdateClick}>
-        <FormGroup bsSize="large" controlId="email">
-          <ControlLabel>Email</ControlLabel>
-          <FormControl
+      <Form onSubmit={this.handleUpdateClick}>
+        <Form.Group controlId="email">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             autoFocus
             type="email"
             value={this.state.email}
             onChange={this.handleChange}
           />
-        </FormGroup>
+        </Form.Group>
         <LoaderButton
           block
           type="submit"
-          bsSize="large"
+          size="lg"
           text="Update Email"
           loadingText="Updating…"
           disabled={!this.validatEmailForm()}
           isLoading={this.state.isSendingCode}
         />
-      </form>
+      </Form>
     );
   }
 
   renderConfirmationForm() {
     return (
-      <form onSubmit={this.handleConfirmClick}>
-        <FormGroup bsSize="large" controlId="code">
-          <ControlLabel>Confirmation Code</ControlLabel>
-          <FormControl
+      <Form onSubmit={this.handleConfirmClick}>
+        <Form.Group controlId="code">
+          <Form.Label>Confirmation Code</Form.Label>
+          <Form.Control
             autoFocus
             type="tel"
             value={this.state.code}
             onChange={this.handleChange}
           />
-          <HelpBlock>
+          <Form.Text>
             Please check your email ({this.state.email}) for the confirmation
             code.
-          </HelpBlock>
-        </FormGroup>
+          </Form.Text>
+        </Form.Group>
         <LoaderButton
           block
           type="submit"
-          bsSize="large"
+          size="lg"
           text="Confirm"
           loadingText="Confirm…"
           isLoading={this.state.isConfirming}
           disabled={!this.validateConfirmForm()}
         />
-      </form>
+      </Form>
     );
   }
 

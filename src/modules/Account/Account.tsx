@@ -10,7 +10,6 @@ import { ChangePassword } from 'modules/Account/ChangePassword';
 import { NotFound } from 'modules/NotFound';
 
 import { Link, Switch, Route } from 'react-router-dom';
-import { PageHeader } from 'react-bootstrap';
 
 export default function Account(props: any) {
 
@@ -18,7 +17,9 @@ export default function Account(props: any) {
     <div className="Account">
       <div>
         <div className="Account summary">
-          <PageHeader>Your Account</PageHeader>
+          <div className="pb-2 mt-4 mb-2 border-bottom">
+            Your Account
+          </div>
         </div>
         <ul>
           <li>

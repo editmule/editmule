@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Auth } from "aws-amplify";
 
-import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 import { LoaderButton } from 'modules/LoaderButton';
 import { useFormFields } from 'libs/hooks';
@@ -36,28 +36,30 @@ function Login(props: any) {
   return (
     <div className="Login">
       <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email" bsSize="large">
-          <ControlLabel>Email</ControlLabel>
-          <FormControl
+        <Form.Group controlId="email">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             autoFocus
+            size="lg"
             type="email"
             value={fields.email}
             onChange={handleFieldChange}
           />
-        </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
-          <ControlLabel>Password</ControlLabel>
-          <FormControl
+        </Form.Group>
+        <Form.Group controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            size="lg"
             type="password"
             value={fields.password}
             onChange={handleFieldChange}
           />
-        </FormGroup>
+        </Form.Group>
         <Link to="/login/reset">Forgot password?</Link>
         <LoaderButton
           block
           type="submit"
-          bsSize="large"
+          size="lg"
           text="Login"
           isLoading={isLoading}
           disabled={!validateForm()}

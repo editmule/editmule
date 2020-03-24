@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import { Auth } from "aws-amplify";
 import { Link } from "react-router-dom";
-import {
-  HelpBlock,
-  FormGroup,
-  Glyphicon,
-  FormControl,
-  ControlLabel
-} from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+
 import { LoaderButton } from "modules/LoaderButton";
 import "./ResetPassword.css";
 
@@ -95,66 +92,66 @@ export default class ResetPassword extends Component<AppProps, AppState> {
 
   renderRequestCodeForm() {
     return (
-      <form onSubmit={this.handleSendCodeClick}>
-        <FormGroup bsSize="large" controlId="email">
-          <ControlLabel>Email</ControlLabel>
-          <FormControl
+      <Form onSubmit={this.handleSendCodeClick}>
+        <Form.Group controlId="email">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             autoFocus
             type="email"
             value={this.state.email}
             onChange={this.handleChange}
           />
-        </FormGroup>
+        </Form.Group>
         <LoaderButton
           block
           type="submit"
-          bsSize="large"
+          size="lg"
           loadingText="Sending…"
           text="Send Confirmation"
           isLoading={this.state.isSendingCode}
           disabled={!this.validateCodeForm()}
         />
-      </form>
+      </Form>
     );
   }
 
   renderConfirmationForm() {
     return (
       <form onSubmit={this.handleConfirmClick}>
-        <FormGroup bsSize="large" controlId="code">
-          <ControlLabel>Confirmation Code</ControlLabel>
-          <FormControl
+        <Form.Group controlId="code">
+          <Form.Label>Confirmation Code</Form.Label>
+          <Form.Control
             autoFocus
             type="tel"
             value={this.state.code}
             onChange={this.handleChange}
           />
-          <HelpBlock>
+          <Form.Text>
             Please check your email ({this.state.email}) for the confirmation
             code.
-          </HelpBlock>
-        </FormGroup>
+          </Form.Text>
+        </Form.Group>
         <hr />
-        <FormGroup bsSize="large" controlId="password">
-          <ControlLabel>New Password</ControlLabel>
-          <FormControl
+        <Form.Group controlId="password">
+          <Form.Label>New Password</Form.Label>
+          <Form.Control
             type="password"
             value={this.state.password}
             onChange={this.handleChange}
           />
-        </FormGroup>
-        <FormGroup bsSize="large" controlId="confirmPassword">
-          <ControlLabel>Confirm Password</ControlLabel>
-          <FormControl
+        </Form.Group>
+        <Form.Group controlId="confirmPassword">
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
             type="password"
             onChange={this.handleChange}
             value={this.state.confirmPassword}
           />
-        </FormGroup>
+        </Form.Group>
         <LoaderButton
           block
           type="submit"
-          bsSize="large"
+          size="lg"
           text="Confirm"
           loadingText="Confirm…"
           isLoading={this.state.isConfirming}
@@ -167,7 +164,7 @@ export default class ResetPassword extends Component<AppProps, AppState> {
   renderSuccessMessage() {
     return (
       <div className="success">
-        <Glyphicon glyph="ok" />
+        <FontAwesomeIcon icon={faCheck} />
         <p>Your password has been reset.</p>
         <p>
           <Link to="/login">

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Elements, StripeProvider } from "react-stripe-elements";
 import { API } from 'aws-amplify';
-import { Modal, Button, PageHeader, Table, Row, Col } from 'react-bootstrap';
+import { Modal, Button, Table, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
@@ -82,7 +82,9 @@ export default function Checkout(props: any) {
 
   return (
     <div>
-      <PageHeader>Checkout</PageHeader>
+      <div className="pb-2 mt-4 mb-2 border-bottom">
+        Checkout
+      </div>
       {(orders !== [{}] && orders.length >= 1) ?
         <Row>
           <Col sm={8}>

@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import React from 'react';
-import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 import { validateURL } from 'libs/utils';
 import { LoaderButton } from 'modules/LoaderButton';
@@ -23,22 +23,22 @@ export default function Upload(props: any) {
 
   return (
     <div>
-      <FormGroup controlId="content">
-        <ControlLabel>Google Docs Link</ControlLabel>
-        <FormControl
+      <Form.Group controlId="content">
+        <Form.Label>Google Docs Link</Form.Label>
+        <Form.Control
           value={props.content}
           onChange={e => props.setContent((e.target as HTMLTextAreaElement).value)}
         />
-      </FormGroup>
+      </Form.Group>
       or, attach a file
-      <FormGroup controlId="file">
-        <FormControl onChange={handleFileChange} type="file" />
-      </FormGroup>
+      <Form.Group controlId="file">
+        <Form.Control onChange={handleFileChange} type="file" />
+      </Form.Group>
       <LoaderButton
         block
-        bsSize="large"
+        size="lg"
         type="submit"
-        bsStyle="primary"
+        variant="primary"
         text="Continue"
         disabled={!validateForm()}
       />

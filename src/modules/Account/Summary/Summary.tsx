@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { PageHeader } from 'react-bootstrap'
 import '../Account.css';
 import './Summary.css';
 
@@ -9,7 +8,9 @@ export default function Summary(props: any) {
   return (
     <div className="Account">
       <div className="Account summary">
-        <PageHeader>Summary</PageHeader>
+        <div className="pb-2 mt-4 mb-2 border-bottom">
+          Summary
+        </div>
         <p>This is your account summary</p>
       </div>
     </div>

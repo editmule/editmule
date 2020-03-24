@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Row, Col, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { Button, Row, Col, Form } from "react-bootstrap";
 import { Auth } from 'aws-amplify';
 import { CardElement, injectStripe } from "react-stripe-elements";
 import { LinkContainer } from 'react-router-bootstrap';
@@ -27,33 +27,33 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
   function renderEmailForm() {
     return (
       <div>
-        <FormGroup bsSize="large" controlId="email">
+        <Form.Group controlId="email">
           <Row>
             <Col sm={6}>
               <LinkContainer to="/login?redirect=/checkout">
-                <Button className="login" block bsSize="large" bsStyle="primary">
+                <Button className="login" variant="primary" block>
                   Log in
                 </Button>
               </LinkContainer>
             </Col>
             <Col sm={6}>
               <LinkContainer to="/signup?redirect=/checkout">
-                <Button className="login" block bsSize="large">
+                <Button className="login" variant="light" block size="lg">
                   Sign up
                 </Button>
               </LinkContainer>
             </Col>
           </Row>
           <p>or continue as guest</p>
-          <ControlLabel>Email address <span className="sublabel">Required</span></ControlLabel>
-          <FormControl
+          <Form.Label>Email address <span className="sublabel">Required</span></Form.Label>
+          <Form.Control
             type="text"
             value={fields.email}
             required={!props.isAuthenticated}
             onChange={handleFieldChange}
             placeholder="Email address"
           />
-        </FormGroup>
+        </Form.Group>
         <hr />
       </div>
     );
@@ -75,16 +75,16 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
   return (
     <form className="BillingForm" onSubmit={handleSubmitClick}>
       {!isAuthenticated && renderEmailForm()}
-      <FormGroup bsSize="large" controlId="name">
-        <ControlLabel>Cardholder&apos;s name <span className="sublabel">Required</span></ControlLabel>
-        <FormControl
+      <Form.Group controlId="name">
+        <Form.Label>Cardholder&apos;s name <span className="sublabel">Required</span></Form.Label>
+        <Form.Control
           type="text"
           value={fields.name}
           onChange={handleFieldChange}
           placeholder="Name on the card"
         />
-      </FormGroup>
-      <ControlLabel>Card details <span className="sublabel">Required</span></ControlLabel>
+      </Form.Group>
+      <Form.Label>Card details <span className="sublabel">Required</span></Form.Label>
       <CardElement
         className="card-field"
         onChange={e => setIsCardComplete(e.complete)}
@@ -95,7 +95,7 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
       <LoaderButton
         block
         type="submit"
-        bsSize="large"
+        size="lg"
         text="Purchase"
         isLoading={loading}
         disabled={!validateForm()}

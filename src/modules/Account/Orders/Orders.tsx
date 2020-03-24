@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { API, Storage } from 'aws-amplify';
-import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
 import { LoaderButton } from 'modules/LoaderButton';
 import { s3Upload } from 'libs/aws';
@@ -120,20 +120,24 @@ export default function Orders(props: any) {
   return (
     <div className="Notes">
       {order && (
-        <form onSubmit={handleSubmit}>
-          <FormGroup controlId="content">
-            <FormControl
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="content">
+            <Form.Control
               value={content}
-              componentClass="textarea"
+              as="textarea"
               onChange={e => setContent((e.target as HTMLTextAreaElement).value)}
             />
-          </FormGroup>
+          </Form.Group>
           {
             // @ts-ignore
             order.attachment && (
-              <FormGroup>
-                <ControlLabel>Attachment</ControlLabel>
-                <FormControl.Static>
+              <Form.Group>
+                <Form.Label>Attachment</Form.Label>
+                <Form.File
+                  id="custom-file"
+                  label="Custom file input"
+                  custom
+                >
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
@@ -147,35 +151,52 @@ export default function Orders(props: any) {
                       formatFilename(order.attachment)
                     }
                   </a>
-                </FormControl.Static>
-              </FormGroup>
+                </Form.File>
+
+              </Form.Group>
             )}
-          <FormGroup controlId="file">
+          <Form.Group controlId="file">
             {
               // @ts-ignore
-              !order.attachment && <ControlLabel>Attachment</ControlLabel>
+              !order.attachment && <Form.Label>Attachment</Form.Label>
             }
-            <FormControl onChange={handleFileChange} type="file" />
-          </FormGroup>
+            <Form.Control onChange={handleFileChange} type="file" />
+          </Form.Group>
           <LoaderButton
             block
             type="submit"
-            bsSize="large"
-            bsStyle="primary"
+            size="lg"
+            variant="primary"
             text="Save"
             isLoading={isLoading}
             disabled={!validateForm()}
           />
           <LoaderButton
             block
-            bsSize="large"
-            bsStyle="danger"
+            size="lg"
+            variant="danger"
             text="Delete"
             onClick={handleDelete}
             isLoading={isDeleting}
           />
-        </form>
+        </Form>
       )}
     </div>
   );
 }
+
+// <Form.Control isStatic={true}>
+//   <a
+//     target="_blank"
+//     rel="noopener noreferrer"
+//     href={
+//       // @ts-ignore
+//       order.attachmentURL
+//     }
+//   >
+//     {
+//       // @ts-ignore
+//       formatFilename(order.attachment)
+//     }
+//   </a>
+// </Form.Control>

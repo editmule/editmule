@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Button, PageHeader, ListGroup, ListGroupItem, Row, Col } from 'react-bootstrap';
+import { Button, ListGroup, ListGroupItem, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { subtotalPricing } from 'libs/utils';
@@ -48,7 +48,7 @@ export default function Cart(props: any) {
           {"Wordcount: " + order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '\n'}
           {"Delivery: " + order.delivery + " hours\n"}
           {"Cost: $" + subtotalPricing(order.wordcount, order.delivery).toFixed(2) + '\n'}
-          <Button bsStyle="link" onClick={!isLoading ? handleDelete.bind(this, index) : null}>Delete</Button>
+          <Button variant="link" onClick={!isLoading ? handleDelete.bind(this, index) : null}>Delete</Button>
         </ListGroupItem>
       ) : (
           <LinkContainer key="new" to="/order">
@@ -64,7 +64,9 @@ export default function Cart(props: any) {
 
   return (
     <div className="Cart">
-      <PageHeader>Cart</PageHeader>
+      <div className="pb-2 mt-4 mb-2 border-bottom">
+        Cart
+      </div>
       {(orders !== [{}] && orders.length >= 1) ?
         <Row>
           <Col sm={8}>
@@ -78,7 +80,7 @@ export default function Cart(props: any) {
             <LoaderButton
               block
               type="submit"
-              bsSize="large"
+              size="lg"
               text="Checkout"
               onClick={e => (props.history.push('/checkout'))}
             />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
 
-import { PageHeader, ListGroup, ListGroupItem  } from 'react-bootstrap'
+import { ListGroup } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap';
 import './OrdersList.css';
 
@@ -33,17 +33,17 @@ export default function OrdersList(props: any) {
     return [{}].concat(orders).map((order: any, i) =>
       i !== 0 ? (
         <LinkContainer key={order.orderId} to={`/account/orders/${order.orderId}`}>
-          <ListGroupItem header={order.content.trim().split("\n")[0]}>
-            {"Created: " + new Date(order.createdAt).toLocaleString()}
-          </ListGroupItem>
+          <ListGroup.Item>
+            {order.content.trim().split("\n")[0] + "Created: " + new Date(order.createdAt).toLocaleString()}
+          </ListGroup.Item>
         </LinkContainer>
       ) : (
           <LinkContainer key="new" to="/order">
-            <ListGroupItem>
+            <ListGroup.Item>
               <h4>
                 <b>{"\uFF0B"}</b> Create a new order
-          </h4>
-            </ListGroupItem>
+              </h4>
+            </ListGroup.Item>
           </LinkContainer>
         )
     );
@@ -51,7 +51,9 @@ export default function OrdersList(props: any) {
 
   return (
     <div className="OrdersList orders">
-      <PageHeader>Your Orders</PageHeader>
+      <div className="pb-2 mt-4 mb-2 border-bottom">
+        Your Orders
+      </div>
       <ListGroup>
         {!isLoading && renderOrdersList(orders)}
       </ListGroup>

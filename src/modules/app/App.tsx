@@ -3,11 +3,10 @@ import { Auth } from 'aws-amplify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
-
 import './App.css';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import { Routes } from 'modules/Routes';
 
@@ -42,54 +41,57 @@ function App(props: any) {
     props.history.push('/login');
   }
 
+  // This fixes react-router-bootstrap failing to nullify active links in different navs within the same navbar
+  const RouterNavLink = ({ children, ...props }: any) => (
+    <LinkContainer {...props}>
+      <Nav.Link active={false}>
+        {children}
+      </Nav.Link>
+    </LinkContainer>
+  )
+
   return (
     !isAuthenticating &&
     <div className="App container">
-      <Navbar fluid collapseOnSelect>
-        <Navbar.Header>
+      <Navbar bg="light" expand="lg" collapseOnSelect>
+        <LinkContainer to="/">
           <Navbar.Brand>
-            <Link to="/">Edit Mule</Link>
+            Edit Mule
           </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav >
-            <LinkContainer to="/order">
-              <NavItem>Order</NavItem>
-            </LinkContainer>
+        </LinkContainer>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <RouterNavLink to="/order">
+              Order
+            </RouterNavLink>
           </Nav>
-          <Nav pullRight>
-            <LinkContainer to="/cart">
-              <NavItem>
-                <FontAwesomeIcon icon={faShoppingCart} />
-              </NavItem>
-            </LinkContainer>
+          <Nav className="justify-content-end">
+            <RouterNavLink to="/cart">
+              <FontAwesomeIcon icon={faShoppingCart} />
+            </RouterNavLink>
             {isAuthenticated
               ? <>
               <NavDropdown eventKey="4" title={
                 <FontAwesomeIcon icon={faUserCircle} />
               } id="account-dropdown">
-                <LinkContainer to="/account">
-                  <MenuItem eventKey="4.1">Account</MenuItem>
-                </LinkContainer>
                 <LinkContainer to="/account/orders">
-                  <MenuItem eventKey="4.2">Orders</MenuItem>
+                  <NavDropdown.Item eventKey="4.2">Orders</NavDropdown.Item>
                 </LinkContainer>
                 <LinkContainer to="/account/settings">
-                  <MenuItem eventKey="4.3">Settings</MenuItem>
+                  <NavDropdown.Item eventKey="4.3">Settings</NavDropdown.Item>
                 </LinkContainer>
-                <MenuItem divider />
-                <MenuItem eventKey="4.4" onClick={handleLogout}>Log out</MenuItem>
+                <NavDropdown.Divider />
+                <NavDropdown.Item eventKey="4.4" onClick={handleLogout}>Log out</NavDropdown.Item>
               </NavDropdown>
-
               </>
               : <>
-                <LinkContainer to="/login">
-                  <NavItem>Log in</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/signup">
-                  <NavItem>Sign up</NavItem>
-                </LinkContainer>
+                <RouterNavLink to="/login">
+                  Log in
+                </RouterNavLink>
+                <RouterNavLink to="/signup">
+                  Sign up
+                </RouterNavLink>
               </>
             }
           </Nav>
