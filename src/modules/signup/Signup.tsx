@@ -21,8 +21,6 @@ export default function Signup(props: any) {
   const [newUser, setNewUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(props.location.search !== "");
-
   function validateForm() {
     return (
       fields.email.length > 0 &&

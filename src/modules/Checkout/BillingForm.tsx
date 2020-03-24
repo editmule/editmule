@@ -15,7 +15,7 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isCardComplete, setIsCardComplete] = useState(false);
 
-  isLoading = isProcessing || isLoading;
+  const loading = isProcessing || isLoading;
 
   function validateForm() {
     return (
@@ -69,7 +69,7 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
 
     setIsProcessing(false);
 
-    onSubmit(props.orders, email, { token, error });
+    onSubmit(props.orders, email, isAuthenticated, { token, error });
   }
 
   return (
@@ -97,7 +97,7 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
         type="submit"
         bsSize="large"
         text="Purchase"
-        isLoading={props.isLoading}
+        isLoading={loading}
         disabled={!validateForm()}
       />
     </form>

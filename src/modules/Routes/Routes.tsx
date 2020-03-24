@@ -13,6 +13,7 @@ import { Cart } from 'modules/Cart';
 import { Checkout } from 'modules/Checkout';
 import { Account } from 'modules/Account';
 import { ResetPassword } from 'modules/ResetPassword';
+import { Thanks } from 'modules/Thanks';
 import { NotFound } from 'modules/NotFound';
 
 function Routes({ appProps }: any) {
@@ -22,6 +23,7 @@ function Routes({ appProps }: any) {
       <AppliedRoute path="/order" exact component={Order} appProps={appProps} />
       <AppliedRoute path="/cart" exact component={Cart} appProps={appProps} />
       <AppliedRoute path="/checkout" component={Checkout} appProps={appProps} />
+      <AppliedRoute path="/thanks/:order" component={Thanks} appProps={appProps} />
       <UnauthenticatedRoute path="/login" exact component={Login} appProps={appProps} />
       <UnauthenticatedRoute path="/login/reset" exact component={ResetPassword} appProps={appProps} />
       <UnauthenticatedRoute path="/signup" exact component={Signup} appProps={appProps} />
