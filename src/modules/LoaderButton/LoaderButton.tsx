@@ -14,13 +14,18 @@ export default function LoaderButton({
   ...props
 }: any) {
   return (
-    <Button
-      className={`LoaderButton ${className}`}
+    <button
+      type="submit"
+      className={`${className} LoaderButton`}
       disabled={disabled || isLoading}
       {...props}
     >
-      {isLoading && <FontAwesomeIcon icon={faSync} className="spinning"/>}
+      {isLoading &&
+        <div className="spinner-border text-primary text-light" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      }
       {!isLoading ? text : loadingText}
-    </Button>
+    </button>
   );
 }

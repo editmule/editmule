@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Auth } from "aws-amplify";
 
@@ -14,6 +14,10 @@ function Login(props: any) {
     email: "",
     password: ""
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
 
   function validateForm() {
     return fields.email.length > 0 && fields.password.length > 0;
@@ -34,37 +38,50 @@ function Login(props: any) {
   }
 
   return (
-    <div className="Login">
-      <form onSubmit={handleSubmit}>
-        <Form.Group controlId="email">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            autoFocus
-            size="lg"
-            type="email"
-            value={fields.email}
-            onChange={handleFieldChange}
-          />
-        </Form.Group>
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            size="lg"
-            type="password"
-            value={fields.password}
-            onChange={handleFieldChange}
-          />
-        </Form.Group>
-        <Link to="/login/reset">Forgot password?</Link>
-        <LoaderButton
-          block
-          type="submit"
-          size="lg"
-          text="Login"
-          isLoading={isLoading}
-          disabled={!validateForm()}
-        />
-      </form>
+    <div className="main-container">
+      <section className="height-70 text-center">
+        <div className="container pos-vertical-center">
+          <div className="row">
+            <div className="col-md-7 col-lg-5">
+              <h2>Log in</h2>
+              <form onSubmit={handleSubmit} className="text-left">
+                <Form.Group controlId="email">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    autoFocus
+                    size="lg"
+                    type="email"
+                    value={fields.email}
+                    onChange={handleFieldChange}
+                  />
+                </Form.Group>
+                <Form.Group controlId="password">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    size="lg"
+                    type="password"
+                    value={fields.password}
+                    onChange={handleFieldChange}
+                  />
+                </Form.Group>
+                <LoaderButton
+                  block
+                  type="submit"
+                  size="lg"
+                  text="Log in"
+                  isLoading={isLoading}
+                  disabled={!validateForm()}
+                  className="btn btn--primary type--uppercase"
+                />
+              </form>
+              <span className="type--fine-print block">Don't have an account yet? <Link to="/signup">Create an account</Link>
+              </span>
+              <span className="type--fine-print block">Forgot your password? <Link to="/login/reset">Recover your account</Link>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

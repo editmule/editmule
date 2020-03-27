@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Elements, StripeProvider } from "react-stripe-elements";
 import { API } from 'aws-amplify';
 import { Modal, Button, Table, Row, Col } from 'react-bootstrap';
@@ -18,6 +18,10 @@ export default function Checkout(props: any) {
   const [orders] = useState(initialOrders);
   const [infoModalOpen, setInfoModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
 
   const finalSubTotal = (Number(orders.reduce((prev, next) => prev + subtotalPricing(next.wordcount, next.delivery), 0))).toFixed(2);
   const serviceFee = (Number(finalSubTotal * 0.15)).toFixed(2);
@@ -81,71 +85,121 @@ export default function Checkout(props: any) {
   }
 
   return (
-    <div>
-      <div className="pb-2 mt-4 mb-2 border-bottom">
-        Checkout
-      </div>
-      {(orders !== [{}] && orders.length >= 1) ?
-        <Row>
-          <Col sm={8}>
-            <StripeProvider apiKey={config.STRIPE_KEY}>
-              <Elements>
-                <BillingForm
-                  orders={orders}
-                  isLoading={isLoading}
-                  onSubmit={handleFormSubmit}
-                  isAuthenticated={props.isAuthenticated}
-                />
-              </Elements>
-            </StripeProvider>
-          </Col>
-          <Col sm={4} className="OrderSummary">
-            <h3>Order Summary <span className="order-summary-edit"><Link to="/cart">edit</Link></span></h3>
-            <hr />
-            {renderOrderSummary(orders)}
-            <hr />
-            <Table condensed>
-              <tbody>
-                <tr>
-                  <td>Subtotal</td>
-                  <td align="right">${finalSubTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-                </tr>
-                <tr>
-                  <td>Service Fee <FontAwesomeIcon className="info-modal" icon={faInfoCircle} onClick={() => setInfoModalOpen(true)} /></td>
-                  <td align="right">${serviceFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-                </tr>
-              </tbody>
-            </Table>
-            <hr />
-            <Table condensed>
-              <tbody>
-                <tr>
-                  <td className="summary-item">Total</td>
-                  <td className="summary-item" align="right">${grandTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-                </tr>
-              </tbody>
-            </Table>
-          </Col>
-        </Row>
-        :
-        <div>
-          <p>Your cart is empty!</p>
-          <Link to="/order">
-            <b>Add an order</b>
-          </Link>
+    <div className="main-container">
+      <section>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <h1>Checkout</h1>
+              <hr />
+            </div>
+          </div>
         </div>
+      </section>
+      {(orders !== [{}] && orders.length >= 1) ?
+        <section>
+          <div class="container">
+            <Row>
+              <Col sm={8}>
+                <StripeProvider apiKey={config.STRIPE_KEY}>
+                  <Elements>
+                    <BillingForm
+                      orders={orders}
+                      isLoading={isLoading}
+                      onSubmit={handleFormSubmit}
+                      isAuthenticated={props.isAuthenticated}
+                    />
+                  </Elements>
+                </StripeProvider>
+              </Col>
+              <div class="col-md-4">
+                <div class="boxed boxed--border">
+                <div class="row">
+                  <div class="col-12">
+                    <h3>Order Summary</h3>
+                  </div>
+                </div>
+                  <div class="row">
+                    <div class="col-8">
+                      <span class="h5">Order Subtotal:</span>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span>${finalSubTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-8">
+                      <span class="h5">Service Fee: <FontAwesomeIcon className="info-modal" icon={faInfoCircle} onClick={() => setInfoModalOpen(true)} /></span>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span>${serviceFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-8">
+                      <span class="h5">Total:</span>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span class="h5">${grandTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Row>
+          </div>
+        </section>
+        :
+        <section className="height-30 text-center">
+          <div className="container pos-vertical-center">
+            <div className="row">
+              <div className="col-md-12">
+                <h2>Your cart is empty!</h2>
+                <Link to="/order">Add an order</Link>
+              </div>
+            </div>
+          </div>
+        </section>
       }
-        <Modal show={infoModalOpen} onHide={() => setInfoModalOpen(false)}>
-          <Modal.Header closeButton>
-            <Modal.Title>What's a service fee?</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Edit Mule orders include a service fee equal to 15% of the subtotal. This fee helps to keep our platform up and running.</Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => setInfoModalOpen(false)}>
-              Got it
+      <Modal show={infoModalOpen} onHide={() => setInfoModalOpen(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>What's a service fee?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Edit Mule orders include a service fee equal to 15% of the subtotal. This fee helps to keep our platform up and running.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setInfoModalOpen(false)}>
+            Got it
           </Button>
-          </Modal.Footer>
-        </Modal>
+        </Modal.Footer>
+      </Modal>
     </div>
-      );
-    }
+  );
+}
+
+// <Col sm={4} className="OrderSummary">
+//   <h3>Order Summary <span className="order-summary-edit"><Link to="/cart">edit</Link></span></h3>
+//   <hr />
+//   {renderOrderSummary(orders)}
+//   <hr />
+//   <Table condensed>
+//     <tbody>
+//       <tr>
+//         <td>Subtotal</td>
+//         <td align="right">${finalSubTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+//       </tr>
+//       <tr>
+//         <td>Service Fee <FontAwesomeIcon className="info-modal" icon={faInfoCircle} onClick={() => setInfoModalOpen(true)} /></td>
+//         <td align="right">${serviceFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+//       </tr>
+//     </tbody>
+//   </Table>
+//   <hr />
+//   <Table condensed>
+//     <tbody>
+//       <tr>
+//         <td className="summary-item">Total</td>
+//         <td className="summary-item" align="right">${grandTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+//       </tr>
+//     </tbody>
+//   </Table>
+// </Col>

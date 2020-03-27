@@ -22,26 +22,29 @@ export default function Upload(props: any) {
   }
 
   return (
-    <div>
-      <Form.Group controlId="content">
-        <Form.Label>Google Docs Link</Form.Label>
-        <Form.Control
-          value={props.content}
-          onChange={e => props.setContent((e.target as HTMLTextAreaElement).value)}
-        />
-      </Form.Group>
-      or, attach a file
-      <Form.Group controlId="file">
-        <Form.Control onChange={handleFileChange} type="file" />
-      </Form.Group>
-      <LoaderButton
-        block
-        size="lg"
-        type="submit"
-        variant="primary"
-        text="Continue"
-        disabled={!validateForm()}
-      />
-    </div>
+      <div className="row">
+        <div className="col-md-7 col-lg-5">
+          <Form.Group controlId="content">
+            <Form.Label>Google Docs Link</Form.Label>
+            <Form.Control
+              value={props.content}
+              onChange={e => props.setContent((e.target as HTMLTextAreaElement).value)}
+            />
+          </Form.Group>
+          or, attach a file
+          <Form.Group controlId="file">
+            <Form.Control onChange={handleFileChange} type="file" />
+          </Form.Group>
+          <LoaderButton
+            block
+            size="lg"
+            type="submit"
+            variant="primary"
+            className="btn btn--primary type--uppercase"
+            text="Continue"
+            disabled={!validateForm()}
+          />
+        </div>
+      </div>
   );
 }

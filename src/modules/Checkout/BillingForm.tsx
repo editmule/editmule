@@ -44,7 +44,7 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
               </LinkContainer>
             </Col>
           </Row>
-          <p>or continue as guest</p>
+          <hr data-title="Or continue as a guest" />
           <Form.Label>Email address <span className="sublabel">Required</span></Form.Label>
           <Form.Control
             type="text"
@@ -54,7 +54,6 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
             placeholder="Email address"
           />
         </Form.Group>
-        <hr />
       </div>
     );
   }
@@ -97,6 +96,7 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
         type="submit"
         size="lg"
         text="Purchase"
+        className="btn btn--primary type--uppercase"
         isLoading={loading}
         disabled={!validateForm()}
       />

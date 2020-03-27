@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { Auth } from "aws-amplify";
 import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
@@ -108,6 +108,7 @@ export default class ResetPassword extends Component<AppProps, AppState> {
           size="lg"
           loadingText="Sending…"
           text="Send Confirmation"
+          className="btn btn--primary type--uppercase"
           isLoading={this.state.isSendingCode}
           disabled={!this.validateCodeForm()}
         />
@@ -154,6 +155,7 @@ export default class ResetPassword extends Component<AppProps, AppState> {
           size="lg"
           text="Confirm"
           loadingText="Confirm…"
+          className="btn btn--primary type--uppercase"
           isLoading={this.state.isConfirming}
           disabled={!this.validateResetForm()}
         />

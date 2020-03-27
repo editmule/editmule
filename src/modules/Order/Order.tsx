@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { s3Upload } from 'libs/aws';
 import config from 'config';
 
@@ -15,6 +15,10 @@ export default function Order(props: any) {
 
   // @ts-ignore
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
 
   // TODO: Add billing to order (only submit order when billing works)
   async function handleOrderSubmit(event: any) {
@@ -65,27 +69,31 @@ export default function Order(props: any) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleOrderSubmit}>
-        <Configuration
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-          wordcount={wordcount}
-          setWordcount={setWordcount}
-          delivery={delivery}
-          isLoading={isLoading}
-          setDelivery={setDelivery}
-        />
-        <Upload
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-          content={content}
-          setContent={setContent}
-          file={file}
-          isLoading={isLoading}
-          props={props}
-        />
-      </form>
+    <div className="main-container">
+      <section>
+        <div className="container">
+          <form onSubmit={handleOrderSubmit}>
+            <Configuration
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
+              wordcount={wordcount}
+              setWordcount={setWordcount}
+              delivery={delivery}
+              isLoading={isLoading}
+              setDelivery={setDelivery}
+            />
+            <Upload
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
+              content={content}
+              setContent={setContent}
+              file={file}
+              isLoading={isLoading}
+              props={props}
+            />
+          </form>
+        </div>
+      </section>
     </div>
   );
 }

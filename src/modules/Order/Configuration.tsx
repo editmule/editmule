@@ -31,13 +31,16 @@ export default function Configuration(props: any) {
   }
 
   return (
-    <div className="Configuration">
-      <Row>
-        <Col sm={7}>
-          <h1>On-demand editing by a human</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque maximus dictum. Morbi magna nulla, sollicitudin sed tellus eget, sodales tincidunt libero. Aliquam aliquam mi ac blandit finibus.</p>
-        </Col>
-        <Col sm={5}>
+      <div className="row justify-content-between">
+        <div class="col-md-6 col-lg-5">
+          <div class="mt--3">
+          <h1>On-demand editing by a real human</h1>
+          <p class="lead">
+              Start building a beautiful site for your startup &mdash; right in the comfort of your browser.
+          </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-5">
           <Form.Group
             controlId="wordcount"
             onChange={e => props.setWordcount(parseInt(((e.target as HTMLTextAreaElement).value), 10))}
@@ -69,7 +72,7 @@ export default function Configuration(props: any) {
                   type="text"
                   placeholder="Enter word count"
                 />
-              }/>
+              } />
           </Form.Group>
           <Form.Group
             controlId="delivery"
@@ -134,12 +137,12 @@ export default function Configuration(props: any) {
             block
             size="lg"
             variant="primary"
+            className="btn btn--primary type--uppercase"
             text="Continue"
             onClick={e => props.setCurrentStep(2)}
             disabled={!validateForm()}
           />
-        </Col>
-      </Row>
-    </div>
+        </div>
+      </div>
   );
 }

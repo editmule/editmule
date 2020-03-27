@@ -1,8 +1,10 @@
 // @ts-nocheck
 import React, { useState, useEffect } from 'react';
-import { Button, ListGroup, ListGroupItem, Row, Col } from 'react-bootstrap';
+import { Modal, Button, ListGroup, ListGroupItem, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { subtotalPricing } from 'libs/utils';
 
 import { LoaderButton } from 'modules/LoaderButton';
@@ -11,15 +13,28 @@ import './Cart.css';
 export default function Cart(props: any) {
   const initialOrders = loadCart();
   const initialSubTotal = calculateSubTotal(initialOrders);
+  const initialServiceFee = (Number(initialSubTotal * 0.15)).toFixed(2);
+  const initialGrandTotal = (+initialSubTotal + +initialServiceFee).toFixed(2);
 
   const [orders, setOrders] = useState(initialOrders);
   const [subtotal, setSubTotal] = useState(initialSubTotal);
+  const [serviceFee, setServiceFee] = useState(initialServiceFee);
+  const [grandTotal, setGrandTotal] = useState(initialGrandTotal);
+  const [infoModalOpen, setInfoModalOpen] = useState(false);
   const [isLoading] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
 
   // Refresh persistent localStorage and subtotal when "orders" state changes
   useEffect(() => {
     localStorage.setItem('EditMuleCart', JSON.stringify(orders));
-    setSubTotal(calculateSubTotal(orders).toFixed(2));
+    const newSubtotal = calculateSubTotal(orders).toFixed(2);
+    const newServiceFee = (Number(newSubtotal * 0.15)).toFixed(2);
+    setSubTotal(newSubtotal);
+    setServiceFee(newServiceFee);
+    setGrandTotal((+newSubtotal + +newServiceFee).toFixed(2));
   }, [orders]);
 
   function loadCart() {
@@ -63,41 +78,94 @@ export default function Cart(props: any) {
   }
 
   return (
-    <div className="Cart">
-      <div className="pb-2 mt-4 mb-2 border-bottom">
-        Cart
-      </div>
-      {(orders !== [{}] && orders.length >= 1) ?
-        <Row>
-          <Col sm={8}>
-            <ListGroup>
-              {!isLoading && renderOrdersList(orders)}
-            </ListGroup>
-          </Col>
-          <Col sm={4}>
-            <h3><b>Subtotal: ${subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b></h3>
-            <br />
-            <LoaderButton
-              block
-              type="submit"
-              size="lg"
-              text="Checkout"
-              onClick={e => (props.history.push('/checkout'))}
-            />
-            <br />
-            <Link to="/order">
-              <b>Or add another order</b>
-            </Link>
-          </Col>
-        </Row>
-        :
-        <div>
-          <p>Your cart is empty!</p>
-          <Link to="/order">
-            <b>Add an order</b>
-          </Link>
+    <div className="main-container">
+      <section>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <h1>Cart</h1>
+              <hr />
+            </div>
+          </div>
         </div>
+      </section>
+      {(orders !== [{}] && orders.length >= 1) ?
+        <section>
+          <div className="container">
+            <Row>
+              <Col sm={8}>
+                <ListGroup>
+                  {!isLoading && renderOrdersList(orders)}
+                </ListGroup>
+              </Col>
+              <div class="col-md-4">
+                <div class="boxed boxed--border">
+                  <div class="col-12">
+                    <h3>Order Summary</h3>
+                  </div>
+                  <div class="row">
+                    <div class="col-8">
+                      <span class="h5">Order Subtotal:</span>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span>${subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-8">
+                      <span class="h5">Service Fee: <FontAwesomeIcon className="info-modal" icon={faInfoCircle} onClick={() => setInfoModalOpen(true)} /></span>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span>${serviceFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-8">
+                      <span class="h5">Total:</span>
+                    </div>
+                    <div class="col-4 text-right">
+                      <span class="h5">${grandTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+                    </div>
+                  </div>
+                </div>
+                <LoaderButton
+                  block
+                  type="submit"
+                  className="btn btn--primary"
+                  size="lg"
+                  text="Continue"
+                  onClick={e => (props.history.push('/checkout'))}
+                />
+                <br />
+                <span className="type--fine-print block">or <Link to="/order">add another order</Link></span>
+              </div>
+            </Row>
+          </div>
+        </section>
+        :
+        <section className="height-30 text-center">
+          <div className="container pos-vertical-center">
+            <div className="row">
+              <div className="col-md-12">
+                <h2>Your cart is empty!</h2>
+                <Link to="/order">Add an order</Link>
+              </div>
+            </div>
+          </div>
+        </section>
       }
+      <Modal show={infoModalOpen} onHide={() => setInfoModalOpen(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>What's a service fee?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Edit Mule orders include a service fee equal to 15% of the subtotal. This fee helps to keep our platform up and running.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setInfoModalOpen(false)}>
+            Got it
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
