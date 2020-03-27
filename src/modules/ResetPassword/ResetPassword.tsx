@@ -106,7 +106,6 @@ export default class ResetPassword extends Component<AppProps, AppState> {
           block
           type="submit"
           size="lg"
-          loadingText="Sending…"
           text="Send Confirmation"
           className="btn btn--primary type--uppercase"
           isLoading={this.state.isSendingCode}
@@ -154,7 +153,6 @@ export default class ResetPassword extends Component<AppProps, AppState> {
           type="submit"
           size="lg"
           text="Confirm"
-          loadingText="Confirm…"
           className="btn btn--primary type--uppercase"
           isLoading={this.state.isConfirming}
           disabled={!this.validateResetForm()}

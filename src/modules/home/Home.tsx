@@ -87,20 +87,27 @@ function Home() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="text-center">
         <div className="container">
           <div className="row">
-            <div className="col">
-              <div className="slider slider--inline-arrows slider--arrows-hover text-center" data-timing="false">
-                <ul className="slides">
-                  <li className="col-md-3 col-6"> <img alt="Image" className="image--xxs" src="img/partner-1.png"></img> </li>
-                  <li className="col-md-3 col-6"> <img alt="Image" className="image--xxs" src="img/partner-2.png"></img> </li>
-                  <li className="col-md-3 col-6"> <img alt="Image" className="image--xxs" src="img/partner-3.png"></img> </li>
-                  <li className="col-md-3 col-6"> <img alt="Image" className="image--xxs" src="img/partner-4.png"></img> </li>
-                  <li className="col-md-3 col-6"> <img alt="Image" className="image--xxs" src="img/partner-5.png"></img> </li>
-                  <li className="col-md-3 col-6"> <img alt="Image" className="image--xxs" src="img/partner-6.png"></img> </li>
-                </ul>
-              </div>
+            <div className="col-md-12">
+              <ul className="list-inline list-inline--images">
+                <li>
+                  <img alt="Image" src="img/partner-1.png" />
+                </li>
+                <li>
+                  <img alt="Image" src="img/partner-5.png" />
+                </li>
+                <li>
+                  <img alt="Image" src="img/partner-7.png" />
+                </li>
+                <li>
+                  <img alt="Image" src="img/partner-4.png" />
+                </li>
+                <li>
+                  <img alt="Image" src="img/partner-6.png" />
+                </li>
+              </ul>
             </div>
           </div>
         </div>

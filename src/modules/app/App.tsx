@@ -99,74 +99,74 @@ function App(props: any) {
                   </div>
                 </div>
                 <div className="col-lg-11 col-md-12 text-right text-left-xs text-left-sm">
-                  <div className="bar__module">
-                    {isAuthenticated
-                      ? <ul className="menu-horizontal text-left">
-                        <li className="dropdown">
-                          <span className="dropdown__trigger">
-                            Account
-                          </span>
-                          <div className="dropdown__container">
-                            <div className="container">
-                              <div className="row">
-                                <div className="dropdown__content col-lg-2">
-                                  <ul className="menu-vertical">
-                                    <li>
-                                      <LinkContainer to="/account/orders">
-                                        <a href="">Orders</a>
-                                      </LinkContainer>
-                                    </li>
-                                    <li>
-                                      <LinkContainer to="/account/settings">
-                                        <a href="">Settings</a>
-                                      </LinkContainer>
-                                    </li>
-                                    <li className="separate" onClick={handleLogout}>
-                                      <a href="">Log Out</a>
-                                    </li>
-                                  </ul>
+                  {isAuthenticated
+                    ? <>
+                      <div className="bar__module">
+                        <ul className="menu-horizontal text-left">
+                          <li className="dropdown">
+                            <span className="dropdown__trigger">
+                              Account
+                            </span>
+                            <div className="dropdown__container">
+                              <div className="container">
+                                <div className="row">
+                                  <div className="dropdown__content col-lg-2">
+                                    <ul className="menu-vertical">
+                                      <li>
+                                        <LinkContainer to="/account/orders">
+                                          <a href="">Orders</a>
+                                        </LinkContainer>
+                                      </li>
+                                      <li>
+                                        <LinkContainer to="/account/settings">
+                                          <a href="">Settings</a>
+                                        </LinkContainer>
+                                      </li>
+                                      <li className="separate" onClick={handleLogout}>
+                                        <a href="">Log Out</a>
+                                      </li>
+                                    </ul>
+                                  </div>
                                 </div>
                               </div>
                             </div>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="bar__module">
+                        <LinkContainer to="/order">
+                          <div className="btn btn--sm btn--primary type--uppercase">
+                            <span className="btn__text">
+                              Order Now
+                            </span>
                           </div>
-                        </li>
-                        <li>
-                          <LinkContainer to="/order">
-                            <div className="btn btn--sm type--uppercase">
-                              <span className="btn__text">
-                                Order Now
-                              </span>
-                            </div>
-                          </LinkContainer>
-                        </li>
-                      </ul>
-                      : <ul className="menu-horizontal text-left">
-                        <li>
-                          <LinkContainer to="/login">
-                            <a href="">Log In</a>
-                          </LinkContainer>
-                        </li>
-                        <li>
-                          <LinkContainer to="/signup">
-                            <div className="btn btn--sm type--uppercase">
-                              <span className="btn__text">
-                                Sign Up
-                              </span>
-                            </div>
-                          </LinkContainer>
-                        </li>
-                        <li>
-                          <LinkContainer to="/order">
-                            <div className="btn btn--sm btn--primary type--uppercase">
-                              <span className="btn__text">
-                                Order Now
-                              </span>
-                            </div>
-                          </LinkContainer>
-                        </li>
-                      </ul>
-                    }
-                  </div>
+                        </LinkContainer>
+                      </div>
+                    </>
+                    : <>
+                      <div className="bar__module">
+                        <ul className="menu-horizontal text-left">
+                          <li>
+                            <LinkContainer to="/login">
+                              <a href="">Log In</a>
+                            </LinkContainer>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="bar__module">
+                        <LinkContainer to="/signup">
+                          <div className="btn btn--sm type--uppercase">
+                            <span className="btn__text">Sign Up</span>
+                          </div>
+                        </LinkContainer>
+                        <LinkContainer to="/order">
+                          <div className="btn btn--sm btn--primary type--uppercase">
+                            <span className="btn__text">Order Now</span>
+                          </div>
+                        </LinkContainer>
+                      </div>
+                    </>
+                  }
                 </div>
               </div>
             </div>
@@ -186,7 +186,7 @@ function App(props: any) {
           </div>
         </div>
       </footer>
-    </div>
+    </div >
   );
 }
 
