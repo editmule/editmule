@@ -1,10 +1,8 @@
 // @ts-nocheck
 import React from 'react';
-import { Form, Row, Col, Table } from 'react-bootstrap';
 import { wordcountToPricing, deliveryToPricing, subtotalPricing, calculateSavings } from 'libs/utils';
 
 import { LoaderButton } from 'modules/LoaderButton';
-import ConfigRow from './ConfigRow';
 import './Order.css';
 
 export default function Configuration(props: any) {
@@ -59,11 +57,11 @@ export default function Configuration(props: any) {
       <div className="col-md-6 col-lg-5">
         <div>
           <h2>On-demand editing by real humans (not bots)</h2>
-          <p class="lead">
+          <p className="lead">
             Edit Mule is the fastest and easiest way to get documents professionally proofread and copyedited. Write flawlessly and project your brand in the best light, guaranteed.
           </p>
         </div>
-        <hr class="short" />
+        <hr className="short" />
         <div className="boxed boxed--lg boxed--border hidden-xs feature-large">
           <div className="feature feature-2"> <i className="icon icon-Clock-Back color--primary"></i>
             <div className="feature__body">
@@ -119,7 +117,7 @@ export default function Configuration(props: any) {
                   <label for="wordcount-custom">
                     <div className="row">
                       <div style={{ width: '100%' }} className="col-12 text-left">
-                        <input class="validate-required" id="wordcount-custom" type="text" name="wordcount" placeholder="Custom wordcount" />
+                        <input className="validate-required" id="wordcount-custom" type="text" name="wordcount" placeholder="Custom wordcount" />
                       </div>
                       <div className="col-6 text-right">
                       </div>

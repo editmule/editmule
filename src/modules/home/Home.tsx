@@ -30,7 +30,7 @@ function Home() {
               </LinkContainer>
             </div>
             <div className="col-md-6 col-lg-5 pull-right">
-              <img alt="Image" src="img/crypto-2.svg"></img>
+              <img alt="Image" src="/img/crypto-2.svg"></img>
             </div>
           </div>
         </div>
@@ -124,11 +124,11 @@ function Home() {
       <section className="switchable feature-large switchable--switch">
         <div className="container">
           <div className="row justify-content-around">
-            <div className="col-md-6"> <img alt="Image" className="border--round box-shadow-wide" src="img/landing-11.jpg"></img> </div>
+            <div className="col-md-6"> <img alt="Image" className="border--round box-shadow-wide" src="/img/writer.jpg"></img> </div>
             <div className="col-md-6 col-lg-5">
               <div className="switchable__text">
-                <h2>Perfect for bootstrapped startups</h2>
-                <p className="lead"> Launching an attractive and scalable website quickly and affordably is important for modern startups — Stack offers massive value without looking 'bargain-bin'. </p> <a href="#">Learn More »</a>
+                <h2>Write flawlessly</h2>
+                <p className="lead">With delivery in as little as 24 hours, professional copyediting and proofreading has never been easier.</p>
               </div>
             </div>
           </div>
@@ -140,19 +140,19 @@ function Home() {
             <div className="col-md-12">
               <ul className="list-inline list-inline--images">
                 <li>
-                  <img alt="Image" src="img/partner-1.png" />
+                  <img alt="Image" src="/img/partner-1.png" />
                 </li>
                 <li>
-                  <img alt="Image" src="img/partner-5.png" />
+                  <img alt="Image" src="/img/partner-5.png" />
                 </li>
                 <li>
-                  <img alt="Image" src="img/partner-7.png" />
+                  <img alt="Image" src="/img/partner-7.png" />
                 </li>
                 <li>
-                  <img alt="Image" src="img/partner-4.png" />
+                  <img alt="Image" src="/img/partner-4.png" />
                 </li>
                 <li>
-                  <img alt="Image" src="img/partner-6.png" />
+                  <img alt="Image" src="/img/partner-6.png" />
                 </li>
               </ul>
             </div>
@@ -164,8 +164,15 @@ function Home() {
           <div className="row justify-content-between">
             <div className="col-md-6 col-lg-5">
               <div className="switchable__text">
-                <h2>Perfect for bootstrapped startups</h2>
-                <p className="lead"> Launching an attractive and scalable website quickly and affordably is important for modern startups — Stack offers massive value without looking 'bargain-bin'. </p>
+                <h2>Built for professionals</h2>
+                <p className="lead">With no minimum word count, Edit Mule makes it easy to write your best on any document. Never again let typos, awkward sentences, or grammar mistakes get in the way of your best work.</p>
+                <LinkContainer to="/order">
+                  <a className="btn type--uppercase" href="#">
+                    <span className="btn__text">
+                      Get Started
+                    </span>
+                  </a>
+                </LinkContainer>
               </div>
             </div>
             <div className="col-md-6">
@@ -193,7 +200,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="space--xs">
         <div className="container">
           <div className="row">
             <div className="col-md-12">

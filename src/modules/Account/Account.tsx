@@ -6,13 +6,12 @@ import './Account.css';
 
 import { OrdersList } from 'modules/Account/OrdersList';
 import { Orders } from 'modules/Account/Orders';
-import { Summary } from 'modules/Account/Summary';
 import { Settings } from 'modules/Account/Settings';
 import { ChangeEmail } from 'modules/Account/ChangeEmail';
 import { ChangePassword } from 'modules/Account/ChangePassword';
 import { NotFound } from 'modules/NotFound';
 
-import { Link, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 export default function Account(props: any) {
   const [currentUser, setCurrentUser] = useState();

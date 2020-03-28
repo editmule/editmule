@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
 
-import { ListGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { subtotalPricing } from 'libs/utils';
@@ -80,7 +79,7 @@ export default function OrdersList(props: any) {
       <LinkContainer key={index} to={`/account/orders/` + order.orderId}>
         <tr>
           <td>{order.content ? <span data-tooltip={order.content}>{truncate(order.content)}</span>
-            : formatformatFilename(order.attachment)}</td>
+            : formatFilename(order.attachment)}</td>
           <td>{order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
           <td>{order.delivery} hours</td>
           <td>{order.status}</td>

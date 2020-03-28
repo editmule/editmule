@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 import './App.css';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { withRouter } from 'react-router-dom';
 
@@ -12,34 +9,9 @@ import { Routes } from 'modules/Routes';
 
 function App(props: any) {
 
-  const initialOrders = loadCart();
-  const [isAuthenticating, setIsAuthenticating] = useState<Boolean>(true);
+  const [isAuthenticating] = useState<Boolean>(true);
   const [isAuthenticated, userHasAuthenticated] = useState(false);
-  const [orders, setOrders] = useState(initialOrders);
 
-  // window.addEventListener("storage", (e) => {
-  //   console.log(e)
-  //   // setOrders({ orders: true});
-  // });
-
-
-  useEffect(() => {
-    onLoad();
-  }, []);
-
-  async function onLoad() {
-    try {
-      await Auth.currentSession();
-      userHasAuthenticated(true);
-    }
-    catch (e) {
-      if (e !== 'No current user') {
-        alert(e);
-      }
-    }
-
-    setIsAuthenticating(false);
-  }
 
   async function handleLogout() {
     await Auth.signOut();
@@ -48,20 +20,6 @@ function App(props: any) {
 
     props.history.push('/');
   }
-
-  function loadCart() {
-    // @ts-ignore
-    return localStorage.getItem('EditMuleCart') ? JSON.parse(window.localStorage.getItem('EditMuleCart')) : [{}];
-  }
-
-  // This fixes react-router-bootstrap failing to nullify active links in different navs within the same navbar
-  const RouterNavLink = ({ children, ...props }: any) => (
-    <LinkContainer {...props}>
-      <Nav.Link active={false}>
-        {children}
-      </Nav.Link>
-    </LinkContainer>
-  )
 
   return (
     !isAuthenticating &&
@@ -73,7 +31,7 @@ function App(props: any) {
               <div className="row">
                 <div className="col-3 col-md-2">
                   <a href="">
-                    <img className="logo logo-dark" alt="logo" src="img/logo-dark.png"></img>
+                    <img className="logo logo-dark" alt="logo" src="/img/logo-dark.png"></img>
                     <img className="logo logo-light" alt="logo" src="/img/logo-light.png"></img>
                   </a>
                 </div>
@@ -184,14 +142,28 @@ function App(props: any) {
         </div>
       </div>
       <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
-      <footer className="footer-7 text-center-xs">
+      <footer className="footer-3 text-center-xs space--xs ">
         <div className="container">
           <div className="row">
-            <div className="col-sm-6">
-              <span className="type--fine-print">© <span className="update-year">2020</span> Edit Mule — All Rights Reserved</span>
+            <div className="col-md-6">
+              <img alt="Image" className="logo" src="/img/logo-dark.png" />
+              <ul className="list-inline list--hover">
+                <li className="list-inline-item">
+                  <LinkContainer to="/order">
+                    <a href="#">
+                      <span className="type--fine-print">Get Started</span>
+                    </a>
+                  </LinkContainer>
+                </li>
+                <li className="list-inline-item">
+                  <span className="type--fine-print">hello@editmule.com</span>
+                </li>
+              </ul>
             </div>
-            <div className="col-sm-6 text-right text-center-xs">
-              <span className="type--fine-print">hello@editmule.com</span>
+            <div className="col-md-6 text-md-right text-center-xs">
+              <span className="type--fine-print">&copy; <span className="update-year"></span> Edit Mule</span>
+              <a className="type--fine-print" href="#">Privacy Policy</a>
+              <a className="type--fine-print" href="#">Legal</a>
             </div>
           </div>
         </div>
@@ -199,55 +171,6 @@ function App(props: any) {
     </div >
   );
 }
-
-// <Navbar bg="light" expand="lg" collapseOnSelect>
-//   <LinkContainer to="/">
-//     <Navbar.Brand>
-//       Edit Mule
-//     </Navbar.Brand>
-//   </LinkContainer>
-//   <Navbar.Toggle aria-controls="basic-navbar-nav" />
-//   <Navbar.Collapse id="basic-navbar-nav">
-//     <Nav className="mr-auto">
-//       <RouterNavLink to="/order">
-//         Order
-//       </RouterNavLink>
-//     </Nav>
-//     <Nav className="justify-content-end">
-//       <RouterNavLink to="/cart">
-//         <FontAwesomeIcon icon={faShoppingCart} />
-//         {
-//           (orders !== [{}] && orders.length >= 1) ?
-//           ` (${orders.length})` : null
-//         }
-//       </RouterNavLink>
-//       {isAuthenticated
-//         ? <>
-//         <NavDropdown eventKey="4" title={
-//           <FontAwesomeIcon icon={faUserCircle} />
-//         } id="account-dropdown">
-//           <LinkContainer to="/account/orders">
-//             <NavDropdown.Item eventKey="4.2">Orders</NavDropdown.Item>
-//           </LinkContainer>
-//           <LinkContainer to="/account/settings">
-//             <NavDropdown.Item eventKey="4.3">Settings</NavDropdown.Item>
-//           </LinkContainer>
-//           <NavDropdown.Divider />
-//           <NavDropdown.Item eventKey="4.4" onClick={handleLogout}>Log out</NavDropdown.Item>
-//         </NavDropdown>
-//         </>
-//         : <>
-//           <RouterNavLink to="/login">
-//             Log in
-//           </RouterNavLink>
-//           <RouterNavLink to="/signup">
-//             Sign up
-//           </RouterNavLink>
-//         </>
-//       }
-//     </Nav>
-//   </Navbar.Collapse>
-// </Navbar>
 
 // @ts-ignore
 export default withRouter(App);

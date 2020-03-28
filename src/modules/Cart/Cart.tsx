@@ -1,8 +1,6 @@
 // @ts-nocheck
 import React, { useState, useEffect, useRef } from 'react';
-import { Modal, Button, ListGroup, ListGroupItem, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { subtotalPricing } from 'libs/utils';
@@ -89,7 +87,7 @@ export default function Cart(props: any) {
       index !== 0 ?
         <tr>
           <td>{order.content ? <span data-tooltip={order.content}>{truncate(order.content)}</span>
-            : formatformatFilename(order.attachment)}</td>
+            : formatFilename(order.attachment)}</td>
           <td>{order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
           <td>{order.delivery} hours</td>
           <td>${subtotalPricing(order.wordcount, order.delivery).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
@@ -115,7 +113,7 @@ export default function Cart(props: any) {
         <section>
           <div className="container">
             <div className="row">
-              <div className="col-sm-8">
+              <div className="col-md-8">
                 <table>
                   <thead>
                     <tr>

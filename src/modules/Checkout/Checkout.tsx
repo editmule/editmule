@@ -2,7 +2,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Elements, StripeProvider } from "react-stripe-elements";
 import { API } from 'aws-amplify';
-import { Modal, Button, Table, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
@@ -10,7 +9,6 @@ import { subtotalPricing } from 'libs/utils';
 
 import config from 'config';
 import BillingForm from './BillingForm';
-import OrderRow from './OrderRow';
 import './Checkout.css';
 
 export default function Checkout(props: any) {
@@ -66,7 +64,7 @@ export default function Checkout(props: any) {
 
     try {
       // TODO: Authorize payment (but don't charge until orders complete)
-      const response = await billUser({
+      await billUser({
         orders,
         email: email,
         isAuthenticated: isAuthenticated,
@@ -79,26 +77,13 @@ export default function Checkout(props: any) {
       localStorage.setItem('EditMuleCart', JSON.stringify([]));
 
       setIsLoading(false);
-      if (props.isAuthenticated) {
-        props.history.push("/account/orders");
-      } else {
-        props.history.push(`/thanks/${response.orders[0].orderNum}`);
-      }
+
+      props.history.push("/thanks");
+
     } catch (e) {
       alert(e);
       setIsLoading(false);
     }
-  }
-
-  function renderOrderSummary(orders: Array) {
-    return orders.map((order, index) =>
-      <OrderRow
-        item={'Professional editing'}
-        key={index}
-        price={subtotalPricing(order.wordcount, order.delivery).toFixed(2)}
-        subtitle={`${order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} words, ${order.delivery} hour delivery`}
-      />
-    );
   }
 
   return (
@@ -113,11 +98,11 @@ export default function Checkout(props: any) {
           </div>
         </div>
       </section>
-      {(orders !== [{}] && orders.length >= 1) ?
+      {(orders !== [{}] && orders !== [] && orders.length >= 1) ?
         <section>
-          <div class="container">
+          <div className="container">
             <div className="row justify-content-between">
-              <div className="col-sm-7">
+              <div className="col-md-7">
                 <StripeProvider apiKey={config.STRIPE_KEY}>
                   <Elements>
                     <BillingForm
@@ -129,36 +114,36 @@ export default function Checkout(props: any) {
                   </Elements>
                 </StripeProvider>
               </div>
-              <div class="col-md-4">
-                <div class="boxed boxed--border">
-                <div class="row">
-                  <div class="col-12">
+              <div className="col-md-4">
+                <div className="boxed boxed--border">
+                <div className="row">
+                  <div className="col-12">
                     <h3>Order Summary</h3>
                   </div>
                 </div>
-                  <div class="row">
-                    <div class="col-8">
-                      <span class="h5">Order Subtotal:</span>
+                  <div className="row">
+                    <div className="col-8">
+                      <span className="h5">Order Subtotal:</span>
                     </div>
-                    <div class="col-4 text-right">
+                    <div className="col-4 text-right">
                       <span>${finalSubTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-8">
-                      <span class="h5">Service Fee: <FontAwesomeIcon className="info-modal" icon={faInfoCircle} onClick={() => setInfoModalOpen(true)} /></span>
+                  <div className="row">
+                    <div className="col-8">
+                      <span className="h5">Service Fee: <FontAwesomeIcon className="info-modal" icon={faInfoCircle} onClick={() => setInfoModalOpen(true)} /></span>
                     </div>
-                    <div class="col-4 text-right">
+                    <div className="col-4 text-right">
                       <span>${serviceFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
                     </div>
                   </div>
                   <hr />
-                  <div class="row">
-                    <div class="col-8">
-                      <span class="h5">Total:</span>
+                  <div className="row">
+                    <div className="col-8">
+                      <span className="h5">Total:</span>
                     </div>
-                    <div class="col-4 text-right">
-                      <span class="h5">${grandTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+                    <div className="col-4 text-right">
+                      <span className="h5">${grandTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
                     </div>
                   </div>
                 </div>
