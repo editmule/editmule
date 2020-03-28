@@ -17,10 +17,10 @@ function App(props: any) {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [orders, setOrders] = useState(initialOrders);
 
-  window.addEventListener("storage", (e) => {
-    console.log(e)
-    // setOrders({ orders: true});
-  });
+  // window.addEventListener("storage", (e) => {
+  //   console.log(e)
+  //   // setOrders({ orders: true});
+  // });
 
 
   useEffect(() => {
@@ -92,8 +92,8 @@ function App(props: any) {
                   <div className="bar__module">
                     <LinkContainer to="/">
                       <a href="">
-                        <img className="logo logo-dark" alt="logo" src="img/logo-dark.png"></img>
-                        <img className="logo logo-light" alt="logo" src="img/logo-light.png"></img>
+                        <img className="logo logo-dark" alt="logo" src="/img/logo-dark.png"></img>
+                        <img className="logo logo-light" alt="logo" src="/img/logo-light.png"></img>
                       </a>
                     </LinkContainer>
                   </div>

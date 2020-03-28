@@ -92,6 +92,7 @@ export default class ChangeEmail extends Component<AppProps, AppState> {
           type="submit"
           size="lg"
           text="Update Email"
+          className="btn btn-primary"
           loadingText="Updating…"
           disabled={!this.validatEmailForm()}
           isLoading={this.state.isSendingCode}
@@ -121,6 +122,7 @@ export default class ChangeEmail extends Component<AppProps, AppState> {
           type="submit"
           size="lg"
           text="Confirm"
+          className="btn btn-primary"
           loadingText="Confirm…"
           isLoading={this.state.isConfirming}
           disabled={!this.validateConfirmForm()}
@@ -132,6 +134,7 @@ export default class ChangeEmail extends Component<AppProps, AppState> {
   render() {
     return (
       <div className="ChangeEmail">
+        <h4>Settings</h4>
         {!this.state.codeSent
           ? this.renderUpdateForm()
           : this.renderConfirmationForm()}

@@ -92,7 +92,7 @@ export default function Cart(props: any) {
             : formatformatFilename(order.attachment)}</td>
           <td>{order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
           <td>{order.delivery} hours</td>
-          <td>${subtotalPricing(order.wordcount, order.delivery).toFixed(2)}</td>
+          <td>${subtotalPricing(order.wordcount, order.delivery).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
           <td><span data-tooltip="Delete document"><FontAwesomeIcon className="info-modal" icon={faTimesCircle} onClick={!isLoading ? handleDelete.bind(this, index) : null} /></span></td>
         </tr>
         : null

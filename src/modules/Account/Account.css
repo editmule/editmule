@@ -1,0 +1,8 @@
+.Account .table-hover tbody tr:hover > th {
+  background-color: #D1D119;
+  cursor: pointer;
+}
+
+.Account .user-icon {
+  padding: 0.46428571em; 
+}

@@ -7,23 +7,27 @@ export default function Settings(props: any) {
 
   return (
     <div className="Settings">
-      <div className="pb-2 mt-4 mb-2 border-bottom">
-        Settings
+      <h4>Settings</h4>
+      <div className="row">
+        <LinkContainer to="/account/settings/email">
+          <LoaderButton
+            block
+            size="lg"
+            className="btn btn--primary"
+            text="Change Email"
+          />
+        </LinkContainer>
       </div>
-      <LinkContainer to="/account/settings/email">
-        <LoaderButton
-          block
-          size="lg"
-          text="Change Email"
-        />
-      </LinkContainer>
-      <LinkContainer to="/account/settings/password">
-        <LoaderButton
-          block
-          size="lg"
-          text="Change Password"
-        />
-      </LinkContainer>
+      <div className="row">
+        <LinkContainer to="/account/settings/password">
+          <LoaderButton
+            block
+            size="lg"
+            className="btn btn--primary"
+            text="Change Password"
+          />
+        </LinkContainer>
+      </div>
     </div>
   );
 }

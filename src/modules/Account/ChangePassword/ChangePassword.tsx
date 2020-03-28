@@ -65,6 +65,7 @@ export default class ChangePassword extends Component<AppProps, AppState> {
   render() {
     return (
       <div className="ChangePassword">
+        <h4>Change Password</h4>
         <Form onSubmit={this.handleChangeClick}>
           <Form.Group controlId="oldPassword">
             <Form.Label>Old Password</Form.Label>
@@ -95,6 +96,7 @@ export default class ChangePassword extends Component<AppProps, AppState> {
             block
             type="submit"
             size="lg"
+            className="btn btn-primary"
             text="Change Password"
             loadingText="Changing…"
             disabled={!this.validateForm()}

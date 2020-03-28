@@ -118,7 +118,8 @@ export default function Orders(props: any) {
   }
 
   return (
-    <div className="Notes">
+    <div className="">
+      <h4>Order</h4>
       {order && (
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="content">
@@ -166,7 +167,7 @@ export default function Orders(props: any) {
             block
             type="submit"
             size="lg"
-            variant="primary"
+            className="btn btn-primary"
             text="Save"
             isLoading={isLoading}
             disabled={!validateForm()}
@@ -174,7 +175,7 @@ export default function Orders(props: any) {
           <LoaderButton
             block
             size="lg"
-            variant="danger"
+            className="btn btn-danger"
             text="Delete"
             onClick={handleDelete}
             isLoading={isDeleting}

@@ -1,8 +1,12 @@
+// @ts-nocheck
+
 import React, { useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
 
-import { ListGroup } from 'react-bootstrap'
+import { ListGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
+import { subtotalPricing } from 'libs/utils';
 import './OrdersList.css';
 
 export default function OrdersList(props: any) {
@@ -29,34 +33,74 @@ export default function OrdersList(props: any) {
     return API.get('orders', '/orders');
   }
 
+  function formatFilename(str: string) {
+    return str.replace(/^\w+-/, "");
+  }
+
+  function truncate(input: string) {
+    if (input.length > 20)
+      return input.substring(0, 20) + '...';
+    else
+      return input;
+  };
+
+  function renderContent() {
+    return (
+      (orders !== [{}] && orders.length >= 1) ?
+        <table>
+          <thead>
+            <tr>
+              <th className="border-bottom">Document</th>
+              <th className="border-bottom">Word count</th>
+              <th className="border-bottom">Delivery</th>
+              <th className="border-bottom">Status</th>
+              <th className="border-bottom">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {renderOrdersList(orders)}
+          </tbody>
+        </table>
+      :
+      <section className="height-30 text-center">
+        <div className="container pos-vertical-center">
+          <div className="row">
+            <div className="col-md-12">
+              <h2>You have no orders!</h2>
+              <Link to="/order">Add an order</Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   function renderOrdersList(orders: any) {
-    return [{}].concat(orders).map((order: any, i) =>
-      i !== 0 ? (
-        <LinkContainer key={order.orderId} to={`/account/orders/${order.orderId}`}>
-          <ListGroup.Item>
-            {order.content.trim().split("\n")[0] + "Created: " + new Date(order.createdAt).toLocaleString()}
-          </ListGroup.Item>
-        </LinkContainer>
-      ) : (
-          <LinkContainer key="new" to="/order">
-            <ListGroup.Item>
-              <h4>
-                <b>{"\uFF0B"}</b> Create a new order
-              </h4>
-            </ListGroup.Item>
-          </LinkContainer>
-        )
-    );
+    return (orders).map((order: any, index: number) => (
+      <LinkContainer key={index} to={`/account/orders/` + order.orderId}>
+        <tr>
+          <td>{order.content ? <span data-tooltip={order.content}>{truncate(order.content)}</span>
+            : formatformatFilename(order.attachment)}</td>
+          <td>{order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+          <td>{order.delivery} hours</td>
+          <td>{order.status}</td>
+          <td>${(subtotalPricing(order.wordcount, order.delivery)*1.15).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+        </tr>
+      </LinkContainer>
+    ));
   }
 
   return (
-    <div className="OrdersList orders">
-      <div className="pb-2 mt-4 mb-2 border-bottom">
-        Your Orders
-      </div>
-      <ListGroup>
-        {!isLoading && renderOrdersList(orders)}
-      </ListGroup>
+    <div className="">
+      <h4>Orders</h4>
+      { isLoading ?
+        <section className="height-30 text-center">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </section>
+        : renderContent()
+      }
     </div>
   );
 }
