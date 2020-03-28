@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Modal, Button, ListGroup, ListGroupItem, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -23,8 +23,17 @@ export default function Cart(props: any) {
   const [infoModalOpen, setInfoModalOpen] = useState(false);
   const [isLoading] = useState(false);
 
+  const node = useRef();
+
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+
+    // add when mounted
+    document.addEventListener("mousedown", handleClick);
+    // return function to be called when unmounted
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+    };
   }, []);
 
   // Refresh persistent localStorage and subtotal when "orders" state changes
@@ -36,6 +45,14 @@ export default function Cart(props: any) {
     setServiceFee(newServiceFee);
     setGrandTotal((+newSubtotal + +newServiceFee).toFixed(2));
   }, [orders]);
+
+  function handleClick(event: any) {
+    if (node.current.contains(event.target)) {
+      return;
+    }
+    // outside click
+    setInfoModalOpen(false);
+  };
 
   function loadCart() {
     // Initialize an empty cart if 'EditMuleCart' is not yet set (i.e. incognito browsers or new users)
@@ -79,7 +96,7 @@ export default function Cart(props: any) {
 
   return (
     <div className="main-container">
-      <section>
+      <section className="space--xs">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -98,34 +115,34 @@ export default function Cart(props: any) {
                   {!isLoading && renderOrdersList(orders)}
                 </ListGroup>
               </Col>
-              <div class="col-md-4">
-                <div class="boxed boxed--border">
-                  <div class="col-12">
+              <div className="col-md-4">
+                <div className="boxed boxed--border">
+                  <div className="col-12">
                     <h3>Order Summary</h3>
                   </div>
-                  <div class="row">
-                    <div class="col-8">
-                      <span class="h5">Order Subtotal:</span>
+                  <div className="row">
+                    <div className="col-8">
+                      <span className="h5">Order Subtotal:</span>
                     </div>
-                    <div class="col-4 text-right">
+                    <div className="col-4 text-right">
                       <span>${subtotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-8">
-                      <span class="h5">Service Fee: <FontAwesomeIcon className="info-modal" icon={faInfoCircle} onClick={() => setInfoModalOpen(true)} /></span>
+                  <div className="row">
+                    <div className="col-8">
+                      <span className="h5">Service Fee: <FontAwesomeIcon className="info-modal" icon={faInfoCircle} onClick={() => setInfoModalOpen(true)} /></span>
                     </div>
-                    <div class="col-4 text-right">
+                    <div className="col-4 text-right">
                       <span>${serviceFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
                     </div>
                   </div>
                   <hr />
-                  <div class="row">
-                    <div class="col-8">
-                      <span class="h5">Total:</span>
+                  <div className="row">
+                    <div className="col-8">
+                      <span className="h5">Total:</span>
                     </div>
-                    <div class="col-4 text-right">
-                      <span class="h5">${grandTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+                    <div className="col-4 text-right">
+                      <span className="h5">${grandTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
                     </div>
                   </div>
                 </div>
@@ -155,17 +172,18 @@ export default function Cart(props: any) {
           </div>
         </section>
       }
-      <Modal show={infoModalOpen} onHide={() => setInfoModalOpen(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>What's a service fee?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Edit Mule orders include a service fee equal to 15% of the subtotal. This fee helps to keep our platform up and running.</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setInfoModalOpen(false)}>
-            Got it
-          </Button>
-        </Modal.Footer>
-      </Modal>
+
+      <div ref={node} className={`modal-container ${infoModalOpen ? 'modal-active' : null}`}>
+        <div className="modal-content rounded">
+          <div className="boxed boxed--lg">
+            <h2>What's a service fee?</h2>
+            <hr className="short" />
+            <p className="lead">
+              Edit Mule orders include a service fee equal to 15% of the order subtotal. This fee helps to keep our platform up and running.
+                </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

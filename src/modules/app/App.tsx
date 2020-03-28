@@ -88,7 +88,7 @@ function App(props: any) {
           <nav id="menu1" className="bar bar-1 hidden-xs">
             <div className="container">
               <div className="row">
-                <div className="col-lg-1 col-md-2 hidden-xs">
+                <div className="col-lg-2 col-md-2 hidden-xs">
                   <div className="bar__module">
                     <LinkContainer to="/">
                       <a href="">
@@ -98,7 +98,7 @@ function App(props: any) {
                     </LinkContainer>
                   </div>
                 </div>
-                <div className="col-lg-11 col-md-12 text-right text-left-xs text-left-sm">
+                <div className="col-lg-10 col-md-10 text-right text-left-xs text-left-sm">
                   {isAuthenticated
                     ? <>
                       <div className="bar__module">

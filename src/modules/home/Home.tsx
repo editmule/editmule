@@ -11,12 +11,12 @@ function Home() {
 
   return (
     <div className="main-container">
-      <section>
+      <section className="space--sm">
         <div className="container">
           <div className="row align-items-center justify-content-around">
             <div className="col-md-6 col-lg-5">
               <h1>
-                On-demand editing by a real human
+                On-demand editing by real humans
               </h1>
               <p className="lead">
                 Clear, concise, consistent English proofreading and copyediting delivered within hours
@@ -24,52 +24,99 @@ function Home() {
               <LinkContainer to="/order">
                 <a className="btn btn--primary type--uppercase" href="#order">
                   <span className="btn__text">
-                    Let's Go
+                    Get Started
                   </span>
                 </a>
               </LinkContainer>
             </div>
-            <div className="col-6">
-              <img alt="Image" src="img/crypto-1.svg"></img>
+            <div className="col-md-6 col-lg-5 pull-right">
+              <img alt="Image" src="img/crypto-2.svg"></img>
             </div>
           </div>
         </div>
       </section>
-      <section>
+      <section className="text-center hidden-xs">
         <div className="container">
           <div className="row">
-            <div className="col-md-4">
-              <div className="feature feature-1"> <img alt="Image" src="img/cowork-1.jpg"></img>
-                <div className="feature__body boxed boxed--lg boxed--border">
-                  <h3>Press Releases</h3>
-                  <p className="lead"> Save time with a multitude of styled components designed to showcase your content </p>
-                  <a href="#">
-                    Learn More
-                  </a>
-                </div>
-              </div>
+            <div className="col-md-3">
+              <LinkContainer to="/order">
+                <a href="#" className="block">
+                  <div className="feature boxed boxed--border border--round">
+                    <i className="icon--lg icon-Newspaper"></i>
+                    <span className="h5 color--primary">Press Releases</span>
+                  </div>
+                </a>
+              </LinkContainer>
             </div>
-            <div className="col-md-4">
-              <div className="feature feature-1"> <img alt="Image" src="img/landing-1.jpg"></img>
-                <div className="feature__body boxed boxed--lg boxed--border">
-                  <h3>Product Briefs</h3>
-                  <p className="lead"> Save time with a multitude of styled components designed to showcase your content </p>
-                  <a href="#">
-                    Learn More
-                  </a>
-                </div>
-              </div>
+            <div className="col-md-3">
+              <LinkContainer to="/order">
+                <a href="#" className="block">
+                  <div className="feature boxed boxed--border border--round">
+                    <i className="icon--lg icon-Speach-BubbleDialog"></i>
+                    <span className="h5 color--primary">Memos and Announcements</span>
+                  </div>
+                </a>
+              </LinkContainer>
             </div>
-            <div className="col-md-4">
-              <div className="feature feature-1"> <img alt="Image" src="img/inner-6.jpg"></img>
-                <div className="feature__body boxed boxed--lg boxed--border">
-                  <h3>Internal Memos</h3>
-                  <p className="lead"> Save time with a multitude of styled components designed to showcase your content </p>
-                  <a href="#">
-                    Learn More
-                  </a>
-                </div>
-              </div>
+            <div className="col-md-3">
+              <LinkContainer to="/order">
+                <a href="#" className="block">
+                  <div className="feature boxed boxed--border border--round">
+                    <i className="icon--lg icon-Tablet"></i>
+                    <span className="h5 color--primary">Blog Posts</span>
+                  </div>
+                </a>
+              </LinkContainer>
+            </div>
+            <div className="col-md-3">
+              <LinkContainer to="/order">
+                <a href="#" className="block">
+                  <div className="feature boxed boxed--border border--round">
+                    <i className="icon--lg icon-Project"></i>
+                    <span className="h5 color--primary">Reports and Proposals</span>
+                  </div>
+                </a>
+              </LinkContainer>
+            </div>
+            <div className="col-md-3">
+              <LinkContainer to="/order">
+                <a href="#" className="block">
+                  <div className="feature boxed boxed--border border--round">
+                    <i className="icon--lg icon-CPU"></i>
+                    <span className="h5 color--primary">Product Briefs</span>
+                  </div>
+                </a>
+              </LinkContainer>
+            </div>
+            <div className="col-md-3">
+              <LinkContainer to="/order">
+                <a href="#" className="block">
+                  <div className="feature boxed boxed--border border--round">
+                    <i className="icon--lg icon-Email"></i>
+                    <span className="h5 color--primary">Emails</span>
+                  </div>
+                </a>
+              </LinkContainer>
+            </div>
+            <div className="col-md-3">
+              <LinkContainer to="/order">
+                <a href="#" className="block">
+                  <div className="feature boxed boxed--border border--round">
+                    <i className="icon--lg icon-Notepad"></i>
+                    <span className="h5 color--primary">Applications</span>
+                  </div>
+                </a>
+              </LinkContainer>
+            </div>
+            <div className="col-md-3">
+              <LinkContainer to="/order">
+                <a href="#" className="block">
+                  <div className="feature boxed boxed--border border--round">
+                    <i className="icon--lg icon-Spell-Check"></i>
+                    <span className="h5 color--primary">Miscellaneous</span>
+                  </div>
+                </a>
+              </LinkContainer>
             </div>
           </div>
         </div>
@@ -140,6 +187,33 @@ function Home() {
                     <h5>Unlimited Revisions</h5>
                     <p>Made some changes and need the document looked at again? Send it back.</p>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="cta cta-1 cta--horizontal boxed boxed--border text-center-xs row justify-content-center">
+                <div className="col-lg-3 col-md-4">
+                  <h4>Let's get started</h4>
+                </div>
+                <div className="col-lg-4 col-md-5">
+                  <p className="lead">
+                    Start writing flawlessly
+                  </p>
+                </div>
+                <div className="col-lg-4 col-md-3 text-center">
+                  <LinkContainer to="/order">
+                    <a className="btn btn--primary type--uppercase" href="#">
+                      <span className="btn__text">
+                        Order Now
+                      </span>
+                    </a>
+                  </LinkContainer>
                 </div>
               </div>
             </div>

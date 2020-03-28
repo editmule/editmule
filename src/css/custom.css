@@ -1,1 +1,17 @@
 /*! Place your custom styles here */
+
+@media all and (max-width: 767px) {
+  .boxed {
+    padding: 1.23809524em;
+    margin-bottom: 15px;
+  }
+  .boxed.boxed--lg {
+    padding: 1.23809524em;
+  }
+  .boxed div[class*='col-']:not(.boxed) {
+    padding: 0 1.23809524em !important;
+  }
+  .boxed:last-child {
+    margin-bottom: 15px;
+  }
+}

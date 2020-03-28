@@ -70,7 +70,7 @@ export default function Order(props: any) {
 
   return (
     <div className="main-container">
-      <section>
+      <section className="space--xs">
         <div className="container">
           <form onSubmit={handleOrderSubmit}>
             <Configuration

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Elements, StripeProvider } from "react-stripe-elements";
 import { API } from 'aws-amplify';
 import { Modal, Button, Table, Row, Col } from 'react-bootstrap';
@@ -19,9 +19,26 @@ export default function Checkout(props: any) {
   const [infoModalOpen, setInfoModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const node = useRef();
+
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+
+    // add when mounted
+    document.addEventListener("mousedown", handleClick);
+    // return function to be called when unmounted
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+    };
   }, []);
+
+  function handleClick(event: any) {
+    if (node.current.contains(event.target)) {
+      return;
+    }
+    // outside click
+    setInfoModalOpen(false);
+  };
 
   const finalSubTotal = (Number(orders.reduce((prev, next) => prev + subtotalPricing(next.wordcount, next.delivery), 0))).toFixed(2);
   const serviceFee = (Number(finalSubTotal * 0.15)).toFixed(2);
@@ -86,7 +103,7 @@ export default function Checkout(props: any) {
 
   return (
     <div className="main-container">
-      <section>
+      <section className="space--xs">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -161,17 +178,18 @@ export default function Checkout(props: any) {
           </div>
         </section>
       }
-      <Modal show={infoModalOpen} onHide={() => setInfoModalOpen(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>What's a service fee?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Edit Mule orders include a service fee equal to 15% of the subtotal. This fee helps to keep our platform up and running.</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setInfoModalOpen(false)}>
-            Got it
-          </Button>
-        </Modal.Footer>
-      </Modal>
+
+      <div ref={node} className={`modal-container ${infoModalOpen ? 'modal-active' : null}`}>
+        <div className="modal-content rounded">
+          <div className="boxed boxed--lg">
+            <h2>What's a service fee?</h2>
+            <hr className="short" />
+            <p className="lead">
+              Edit Mule orders include a service fee equal to 15% of the order subtotal. This fee helps to keep our platform up and running.
+                </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
