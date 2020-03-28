@@ -4,7 +4,7 @@ import { Modal, Button, ListGroup, ListGroupItem, Row, Col } from 'react-bootstr
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
+import { faInfoCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { subtotalPricing } from 'libs/utils';
 
 import { LoaderButton } from 'modules/LoaderButton';
@@ -61,6 +61,17 @@ export default function Cart(props: any) {
     return JSON.parse(localStorage.getItem('EditMuleCart'));
   }
 
+  function formatFilename(str: string) {
+    return str.replace(/^\w+-/, "");
+  }
+
+  function truncate(input) {
+    if (input.length > 20)
+      return input.substring(0, 20) + '...';
+    else
+      return input;
+  };
+
   function calculateSubTotal(orders: any) {
     return orders.reduce((subtotal, curr) => (
       subtotal += subtotalPricing(curr.wordcount, curr.delivery)
@@ -74,24 +85,18 @@ export default function Cart(props: any) {
   }
 
   function renderOrdersList(orders: any) {
-    return [{}].concat(orders).map((order: any, index) =>
-      index !== 0 ? (
-        <ListGroupItem key={index} header={order.content.trim().split("\n")[0]}>
-          {"Wordcount: " + order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '\n'}
-          {"Delivery: " + order.delivery + " hours\n"}
-          {"Cost: $" + subtotalPricing(order.wordcount, order.delivery).toFixed(2) + '\n'}
-          <Button variant="link" onClick={!isLoading ? handleDelete.bind(this, index) : null}>Delete</Button>
-        </ListGroupItem>
-      ) : (
-          <LinkContainer key="new" to="/order">
-            <ListGroupItem>
-              <h4>
-                <b>{"\uFF0B"}</b> Create a new order
-              </h4>
-            </ListGroupItem>
-          </LinkContainer>
-        )
-    );
+    return [{}].concat(orders).map((order: any, index) => (
+      index !== 0 ?
+        <tr>
+          <td>{order.content ? <span data-tooltip={order.content}>{truncate(order.content)}</span>
+            : formatformatFilename(order.attachment)}</td>
+          <td>{order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+          <td>{order.delivery} hours</td>
+          <td>${subtotalPricing(order.wordcount, order.delivery).toFixed(2)}</td>
+          <td><span data-tooltip="Delete document"><FontAwesomeIcon className="info-modal" icon={faTimesCircle} onClick={!isLoading ? handleDelete.bind(this, index) : null} /></span></td>
+        </tr>
+        : null
+    ));
   }
 
   return (
@@ -109,12 +114,23 @@ export default function Cart(props: any) {
       {(orders !== [{}] && orders.length >= 1) ?
         <section>
           <div className="container">
-            <Row>
-              <Col sm={8}>
-                <ListGroup>
-                  {!isLoading && renderOrdersList(orders)}
-                </ListGroup>
-              </Col>
+            <div className="row">
+              <div className="col-sm-8">
+                <table>
+                  <thead>
+                    <tr>
+                      <th className="border-bottom">Document</th>
+                      <th className="border-bottom">Word count</th>
+                      <th className="border-bottom">Delivery</th>
+                      <th className="border-bottom">Total</th>
+                      <th className="border-bottom"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {!isLoading && renderOrdersList(orders)}
+                  </tbody>
+                </table>
+              </div>
               <div className="col-md-4">
                 <div className="boxed boxed--border">
                   <div className="col-12">
@@ -151,13 +167,13 @@ export default function Cart(props: any) {
                   type="submit"
                   className="btn btn--primary"
                   size="lg"
-                  text="Continue"
+                  text="Proceed to checkout"
                   onClick={e => (props.history.push('/checkout'))}
                 />
                 <br />
                 <span className="type--fine-print block">or <Link to="/order">add another order</Link></span>
               </div>
-            </Row>
+            </div>
           </div>
         </section>
         :
@@ -187,3 +203,28 @@ export default function Cart(props: any) {
     </div>
   );
 }
+
+
+// index !== 0 ? (
+//   <tr>
+//     <td>1</td>
+//     <td>{order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+//     <td>{order.delivery} hours</td>
+//     <td>{subtotalPricing(order.wordcount, order.delivery).toFixed(2)}</td>
+//   </tr>
+//   <ListGroupItem key={index} header={order.content.trim().split("\n")[0]}>
+//     {"Wordcount: " + order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '\n'}
+//     {"Delivery: " + order.delivery + " hours\n"}
+//     {"Cost: $" + subtotalPricing(order.wordcount, order.delivery).toFixed(2) + '\n'}
+//     <Button variant="link" onClick={!isLoading ? handleDelete.bind(this, index) : null}>Delete</Button>
+//   </ListGroupItem>
+// ) : (
+//     <LinkContainer key="new" to="/order">
+//       <ListGroupItem>
+//         <h4>
+//           <b>{"\uFF0B"}</b> Create a new order
+//         </h4>
+//       </ListGroupItem>
+//     </LinkContainer>
+//   )
+// );

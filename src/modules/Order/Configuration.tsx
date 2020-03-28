@@ -55,7 +55,7 @@ export default function Configuration(props: any) {
   }
 
   return (
-    <div className="row justify-content-between">
+    <div className="row justify-content-around">
       <div className="col-md-6 col-lg-5">
         <div>
           <h2>On-demand editing by real humans (not bots)</h2>

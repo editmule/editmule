@@ -18,6 +18,7 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
   const loading = isProcessing || isLoading;
 
   function validateForm() {
+    console.log(fields.name);
     return (
       fields.name !== "" &&
       isCardComplete
@@ -26,39 +27,40 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
 
   function renderEmailForm() {
     return (
-      <div>
-        <Form.Group controlId="email">
-          <Row>
-            <Col sm={6}>
-              <LinkContainer to="/login?redirect=/checkout">
-                <Button className="login" variant="primary" block>
-                  Log in
-                </Button>
-              </LinkContainer>
-            </Col>
-            <Col sm={6}>
-              <LinkContainer to="/signup?redirect=/checkout">
-                <Button className="login" variant="light" block size="lg">
-                  Sign up
-                </Button>
-              </LinkContainer>
-            </Col>
-          </Row>
+      <>
+        <div className="col-sm-6">
+          <LinkContainer to="/login?redirect=/checkout">
+            <div className="btn block btn--primary">
+              <span className="btn__text">Log in</span>
+            </div>
+          </LinkContainer>
+        </div>
+        <div className="col-sm-6">
+          <LinkContainer to="/signup?redirect=/checkout">
+            <div className="btn block">
+              <span className="btn__text">Sign Up</span>
+            </div>
+          </LinkContainer>
+        </div>
+        <div className="col-12">
           <hr data-title="Or continue as a guest" />
-          <Form.Label>Email address <span className="sublabel">Required</span></Form.Label>
-          <Form.Control
+          <label>Email address</label>
+          <input
+            className="validate-required"
             type="text"
+            id="email"
             value={fields.email}
             required={!props.isAuthenticated}
-            onChange={handleFieldChange}
+            onChange={(e) => handleFieldChange(e)}
             placeholder="Email address"
           />
-        </Form.Group>
-      </div>
+        </div>
+      </ >
     );
   }
 
   async function handleSubmitClick(event: any) {
+
     event.preventDefault();
 
     setIsProcessing(true);
@@ -72,34 +74,40 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
   }
 
   return (
-    <form className="BillingForm" onSubmit={handleSubmitClick}>
+    <form className="BillingForm row" onSubmit={handleSubmitClick}>
       {!isAuthenticated && renderEmailForm()}
-      <Form.Group controlId="name">
-        <Form.Label>Cardholder&apos;s name <span className="sublabel">Required</span></Form.Label>
-        <Form.Control
+      <div className="col-12">
+        <label>Cardholder&apos;s name</label>
+        <input
+          className="validate-required"
           type="text"
+          id="name"
           value={fields.name}
           onChange={handleFieldChange}
           placeholder="Name on the card"
         />
-      </Form.Group>
-      <Form.Label>Card details <span className="sublabel">Required</span></Form.Label>
-      <CardElement
-        className="card-field"
-        onChange={e => setIsCardComplete(e.complete)}
-        style={{
-          base: { fontSize: "18px", fontFamily: '"Open Sans", sans-serif' }
-        }}
-      />
-      <LoaderButton
-        block
-        type="submit"
-        size="lg"
-        text="Purchase"
-        className="btn btn--primary type--uppercase"
-        isLoading={loading}
-        disabled={!validateForm()}
-      />
+      </div>
+      <div className="col-12">
+        <label>Card details</label>
+        <CardElement
+          className="card-field validate-required"
+          onChange={e => setIsCardComplete(e.complete)}
+          style={{
+            base: { fontSize: "18px", fontFamily: '"Open Sans", sans-serif', fontWeight: 400 }
+          }}
+        />
+      </div>
+      <div className="col-12">
+        <LoaderButton
+          block
+          type="submit"
+          size="lg"
+          text="Place your order"
+          className="btn btn--primary type--uppercase"
+          isLoading={loading}
+          disabled={!validateForm()}
+        />
+      </div>
     </form>
   );
 }

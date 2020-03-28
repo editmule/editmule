@@ -15,3 +15,11 @@
     margin-bottom: 15px;
   }
 }
+
+table th {
+  background: none;
+}
+
+table {
+  border-collapse: collapse;
+}

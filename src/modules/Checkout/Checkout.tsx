@@ -116,8 +116,8 @@ export default function Checkout(props: any) {
       {(orders !== [{}] && orders.length >= 1) ?
         <section>
           <div class="container">
-            <Row>
-              <Col sm={8}>
+            <div className="row justify-content-between">
+              <div className="col-sm-7">
                 <StripeProvider apiKey={config.STRIPE_KEY}>
                   <Elements>
                     <BillingForm
@@ -128,7 +128,7 @@ export default function Checkout(props: any) {
                     />
                   </Elements>
                 </StripeProvider>
-              </Col>
+              </div>
               <div class="col-md-4">
                 <div class="boxed boxed--border">
                 <div class="row">
@@ -163,7 +163,7 @@ export default function Checkout(props: any) {
                   </div>
                 </div>
               </div>
-            </Row>
+            </div>
           </div>
         </section>
         :

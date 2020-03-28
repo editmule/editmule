@@ -103,6 +103,11 @@ function App(props: any) {
                     ? <>
                       <div className="bar__module">
                         <ul className="menu-horizontal text-left">
+                          <li>
+                            <LinkContainer to="/cart">
+                              <a href="">Cart</a>
+                            </LinkContainer>
+                          </li>
                           <li className="dropdown">
                             <span className="dropdown__trigger">
                               Account
@@ -146,6 +151,11 @@ function App(props: any) {
                     : <>
                       <div className="bar__module">
                         <ul className="menu-horizontal text-left">
+                          <li>
+                            <LinkContainer to="/cart">
+                              <a href="">Cart</a>
+                            </LinkContainer>
+                          </li>
                           <li>
                             <LinkContainer to="/login">
                               <a href="">Log In</a>
