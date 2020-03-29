@@ -92,7 +92,7 @@ export default class ResetPassword extends Component<AppProps, AppState> {
 
   renderRequestCodeForm() {
     return (
-      <Form onSubmit={this.handleSendCodeClick}>
+      <Form onSubmit={this.handleSendCodeClick} className="text-left">
         <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
@@ -103,7 +103,6 @@ export default class ResetPassword extends Component<AppProps, AppState> {
           />
         </Form.Group>
         <LoaderButton
-          block
           type="submit"
           size="lg"
           text="Send Confirmation"
@@ -117,7 +116,7 @@ export default class ResetPassword extends Component<AppProps, AppState> {
 
   renderConfirmationForm() {
     return (
-      <form onSubmit={this.handleConfirmClick}>
+      <form onSubmit={this.handleConfirmClick} className="text-left">
         <Form.Group controlId="code">
           <Form.Label>Confirmation Code</Form.Label>
           <Form.Control
@@ -149,7 +148,6 @@ export default class ResetPassword extends Component<AppProps, AppState> {
           />
         </Form.Group>
         <LoaderButton
-          block
           type="submit"
           size="lg"
           text="Confirm"
@@ -177,12 +175,19 @@ export default class ResetPassword extends Component<AppProps, AppState> {
 
   render() {
     return (
-      <div className="ResetPassword">
-        {!this.state.codeSent
-          ? this.renderRequestCodeForm()
-          : !this.state.confirmed
-            ? this.renderConfirmationForm()
-            : this.renderSuccessMessage()}
+      <div className="main-container">
+        <section className="height-70 text-center">
+          <div className="container pos-vertical-center">
+            <div className="col-md-7 col-lg-5">
+              <h2>Reset password</h2>
+              {!this.state.codeSent
+                ? this.renderRequestCodeForm()
+                : !this.state.confirmed
+                  ? this.renderConfirmationForm()
+                  : this.renderSuccessMessage()}
+            </div>
+          </div>
+        </section>
       </div>
     );
   }

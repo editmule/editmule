@@ -18,11 +18,11 @@ export default function Configuration(props: any) {
   function renderPrices() {
     const wordcounts = [100, 200, 300, 500, 1000, 2000, 3000, 5000, 10000]
     return wordcounts.map((wordcount, index) =>
-      <div className="row mt-2">
+      <div className="row mt-2" key={index}>
         <div className="col-12">
           <div style={{ width: '100%' }} className="input-radio input-radio--innerlabel">
             <input id={`wordcount-${wordcount}`} type="radio" name="wordcount" value={wordcount} />
-            <label for={`wordcount-${wordcount}`}>
+            <label htmlFor={`wordcount-${wordcount}`}>
               <div className="row">
                 <div className="col-4 text-left">
                   {wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -95,7 +95,7 @@ export default function Configuration(props: any) {
               <div className="col-12">
                 <div style={{ width: '100%' }} className="input-radio input-radio--innerlabel">
                   <input id="wordcount-50" required type="radio" name="wordcount" value={50} />
-                  <label for="wordcount-50">
+                  <label htmlFor="wordcount-50">
                     <div className="row">
                       <div className="col-4 text-left">
                         50
@@ -114,7 +114,7 @@ export default function Configuration(props: any) {
             <div className="row">
               <div className="col-12 mt-2">
                 <div style={{ width: '100%' }} className="validate-required">
-                  <label for="wordcount-custom">
+                  <label htmlFor="wordcount-custom">
                     <div className="row">
                       <div style={{ width: '100%' }} className="col-12 text-left">
                         <input className="validate-required" id="wordcount-custom" type="text" name="wordcount" placeholder="Custom wordcount" />
@@ -138,7 +138,7 @@ export default function Configuration(props: any) {
               <div className="col-12">
                 <div style={{ width: '100%' }} className="input-radio input-radio--innerlabel">
                   <input id="delivery-24" defaultChecked required type="radio" name="delivery" value={24} />
-                  <label for="delivery-24">
+                  <label htmlFor="delivery-24">
                     <div className="row">
                       <div className="col-4 text-left">
                         24 hours
@@ -155,7 +155,7 @@ export default function Configuration(props: any) {
               <div className="col-12 mt-2">
                 <div style={{ width: '100%' }} className="input-radio input-radio--innerlabel">
                   <input id="delivery-48" required type="radio" name="delivery" value={48} />
-                  <label for="delivery-48">
+                  <label htmlFor="delivery-48">
                     <div className="row">
                       <div className="col-4 text-left">
                         48 hours
@@ -172,7 +172,7 @@ export default function Configuration(props: any) {
               <div className="col-12 mt-2">
                 <div style={{ width: '100%' }} className="input-radio input-radio--innerlabel">
                   <input id="delivery-72" required type="radio" name="delivery" value={72} />
-                  <label for="delivery-72">
+                  <label htmlFor="delivery-72">
                     <div className="row">
                       <div className="col-4 text-left">
                         72 hours
@@ -188,7 +188,6 @@ export default function Configuration(props: any) {
           </div>
           <br />
           <LoaderButton
-            block
             size="lg"
             variant="primary"
             className="btn btn--primary type--uppercase"

@@ -23,3 +23,16 @@ table th {
 table {
   border-collapse: collapse;
 }
+
+.form-help-text {
+  line-height: normal;
+}
+
+.btn.btn-link {
+  border: none !important;
+  padding: 0;
+}
+
+.fee-modal {
+  padding: 3.71428571em;
+}

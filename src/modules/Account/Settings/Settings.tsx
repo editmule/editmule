@@ -11,7 +11,6 @@ export default function Settings(props: any) {
       <div className="row">
         <LinkContainer to="/account/settings/email">
           <LoaderButton
-            block
             size="lg"
             className="btn btn--primary"
             text="Change Email"
@@ -21,7 +20,6 @@ export default function Settings(props: any) {
       <div className="row">
         <LinkContainer to="/account/settings/password">
           <LoaderButton
-            block
             size="lg"
             className="btn btn--primary"
             text="Change Password"

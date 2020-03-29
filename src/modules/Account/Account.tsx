@@ -22,7 +22,6 @@ export default function Account(props: any) {
       try {
         const currentUser = await Auth.currentAuthenticatedUser();
         setCurrentUser(currentUser);
-        console.log(currentUser.attributes.email);
       } catch (e) {
         alert(e);
       }

@@ -30,7 +30,7 @@ function Home() {
               </LinkContainer>
             </div>
             <div className="col-md-6 col-lg-5 pull-right">
-              <img alt="Image" src="/img/crypto-2.svg"></img>
+              <img alt="Header" src="/img/crypto-2.svg"></img>
             </div>
           </div>
         </div>

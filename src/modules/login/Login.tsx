@@ -9,6 +9,7 @@ import { useFormFields } from 'libs/hooks';
 import './Login.css';
 
 function Login(props: any) {
+  const [loginError, setLoginError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [fields, handleFieldChange] = useFormFields({
     email: "",
@@ -26,13 +27,14 @@ function Login(props: any) {
   async function handleSubmit(event: any) {
     event.preventDefault();
 
+    setLoginError('');
     setIsLoading(true);
 
     try {
       await Auth.signIn(fields.email, fields.password);
       props.userHasAuthenticated(true);
     } catch (e) {
-      alert(e.message);
+      setLoginError(e.message);
       setIsLoading(false);
     }
   }
@@ -64,8 +66,15 @@ function Login(props: any) {
                     onChange={handleFieldChange}
                   />
                 </Form.Group>
+                {
+                  loginError &&
+                  <div className="alert bg--error">
+                    <div className="alert__body">
+                      <span>{loginError}</span>
+                    </div>
+                  </div>
+                }
                 <LoaderButton
-                  block
                   type="submit"
                   size="lg"
                   text="Log in"

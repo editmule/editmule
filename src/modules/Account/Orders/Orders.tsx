@@ -164,7 +164,6 @@ export default function Orders(props: any) {
             <Form.Control onChange={handleFileChange} type="file" />
           </Form.Group>
           <LoaderButton
-            block
             type="submit"
             size="lg"
             className="btn btn-primary"
@@ -173,7 +172,6 @@ export default function Orders(props: any) {
             disabled={!validateForm()}
           />
           <LoaderButton
-            block
             size="lg"
             className="btn btn-danger"
             text="Delete"
@@ -185,19 +183,3 @@ export default function Orders(props: any) {
     </div>
   );
 }
-
-// <Form.Control isStatic={true}>
-//   <a
-//     target="_blank"
-//     rel="noopener noreferrer"
-//     href={
-//       // @ts-ignore
-//       order.attachmentURL
-//     }
-//   >
-//     {
-//       // @ts-ignore
-//       formatFilename(order.attachment)
-//     }
-//   </a>
-// </Form.Control>

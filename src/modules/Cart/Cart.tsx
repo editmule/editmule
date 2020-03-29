@@ -1,7 +1,8 @@
 // @ts-nocheck
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Modal } from 'react-bootstrap';
 import { faInfoCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { subtotalPricing } from 'libs/utils';
 
@@ -25,13 +26,6 @@ export default function Cart(props: any) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // add when mounted
-    document.addEventListener("mousedown", handleClick);
-    // return function to be called when unmounted
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-    };
   }, []);
 
   // Refresh persistent localStorage and subtotal when "orders" state changes
@@ -43,14 +37,6 @@ export default function Cart(props: any) {
     setServiceFee(newServiceFee);
     setGrandTotal((+newSubtotal + +newServiceFee).toFixed(2));
   }, [orders]);
-
-  function handleClick(event: any) {
-    if (node.current.contains(event.target)) {
-      return;
-    }
-    // outside click
-    setInfoModalOpen(false);
-  };
 
   function loadCart() {
     // Initialize an empty cart if 'EditMuleCart' is not yet set (i.e. incognito browsers or new users)
@@ -85,8 +71,8 @@ export default function Cart(props: any) {
   function renderOrdersList(orders: any) {
     return [{}].concat(orders).map((order: any, index) => (
       index !== 0 ?
-        <tr>
-          <td>{order.content ? <span data-tooltip={order.content}>{truncate(order.content)}</span>
+        <tr key={index}>
+          <td>{order.content ? <span className="btn btn-link" data-tooltip={order.content}>{truncate(order.content)}</span>
             : formatFilename(order.attachment)}</td>
           <td>{order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
           <td>{order.delivery} hours</td>
@@ -161,9 +147,8 @@ export default function Cart(props: any) {
                   </div>
                 </div>
                 <LoaderButton
-                  block
                   type="submit"
-                  className="btn btn--primary"
+                  className="btn btn--primary type--uppercase"
                   size="lg"
                   text="Proceed to checkout"
                   onClick={e => (props.history.push('/checkout'))}
@@ -187,42 +172,34 @@ export default function Cart(props: any) {
         </section>
       }
 
-      <div ref={node} className={`modal-container ${infoModalOpen ? 'modal-active' : null}`}>
-        <div className="modal-content rounded">
-          <div className="boxed boxed--lg">
-            <h2>What's a service fee?</h2>
-            <hr className="short" />
-            <p className="lead">
-              Edit Mule orders include a service fee equal to 15% of the order subtotal. This fee helps to keep our platform up and running.
-                </p>
-          </div>
-        </div>
-      </div>
+      <Modal
+        show={infoModalOpen}
+        onHide={() => setInfoModalOpen(false)}
+        centered
+      >
+        <Modal.Body className="fee-modal">
+          <h2>What's a service fee?</h2>
+          <hr className="short" />
+          <p className="lead">
+            Edit Mule orders include a service fee equal to 15% of the order subtotal. This fee helps to keep our platform up and running.
+          </p>
+        </Modal.Body>
+      </Modal>
+
+
     </div>
   );
 }
 
-
-// index !== 0 ? (
-//   <tr>
-//     <td>1</td>
-//     <td>{order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-//     <td>{order.delivery} hours</td>
-//     <td>{subtotalPricing(order.wordcount, order.delivery).toFixed(2)}</td>
-//   </tr>
-//   <ListGroupItem key={index} header={order.content.trim().split("\n")[0]}>
-//     {"Wordcount: " + order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '\n'}
-//     {"Delivery: " + order.delivery + " hours\n"}
-//     {"Cost: $" + subtotalPricing(order.wordcount, order.delivery).toFixed(2) + '\n'}
-//     <Button variant="link" onClick={!isLoading ? handleDelete.bind(this, index) : null}>Delete</Button>
-//   </ListGroupItem>
-// ) : (
-//     <LinkContainer key="new" to="/order">
-//       <ListGroupItem>
-//         <h4>
-//           <b>{"\uFF0B"}</b> Create a new order
-//         </h4>
-//       </ListGroupItem>
-//     </LinkContainer>
-//   )
-// );
+//
+// <div ref={node} className={`modal-container ${infoModalOpen ? 'modal-active' : null}`}>
+//   <div className="modal-content rounded">
+//     <div className="boxed boxed--lg">
+//       <h2>What's a service fee?</h2>
+//       <hr className="short" />
+//       <p className="lead">
+//         Edit Mule orders include a service fee equal to 15% of the order subtotal. This fee helps to keep our platform up and running.
+//       </p>
+//     </div>
+//   </div>
+// </div>

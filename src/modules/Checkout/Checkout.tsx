@@ -5,6 +5,7 @@ import { API } from 'aws-amplify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
+import { Modal } from 'react-bootstrap';
 import { subtotalPricing } from 'libs/utils';
 
 import config from 'config';
@@ -14,6 +15,7 @@ import './Checkout.css';
 export default function Checkout(props: any) {
   const initialOrders = loadCart();
   const [orders] = useState(initialOrders);
+  const [checkoutError, setCheckoutError] = useState('');
   const [infoModalOpen, setInfoModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,22 +23,7 @@ export default function Checkout(props: any) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // add when mounted
-    document.addEventListener("mousedown", handleClick);
-    // return function to be called when unmounted
-    return () => {
-      document.removeEventListener("mousedown", handleClick);
-    };
   }, []);
-
-  function handleClick(event: any) {
-    if (node.current.contains(event.target)) {
-      return;
-    }
-    // outside click
-    setInfoModalOpen(false);
-  };
 
   const finalSubTotal = (Number(orders.reduce((prev, next) => prev + subtotalPricing(next.wordcount, next.delivery), 0))).toFixed(2);
   const serviceFee = (Number(finalSubTotal * 0.15)).toFixed(2);
@@ -71,8 +58,6 @@ export default function Checkout(props: any) {
         source: token.id
       });
 
-      alert("Your card has been charged successfully!");
-
       // Clear cart
       localStorage.setItem('EditMuleCart', JSON.stringify([]));
 
@@ -81,7 +66,7 @@ export default function Checkout(props: any) {
       props.history.push("/thanks");
 
     } catch (e) {
-      alert(e);
+      setCheckoutError("Uh oh, something went wrong. Please try again.");
       setIsLoading(false);
     }
   }
@@ -106,6 +91,7 @@ export default function Checkout(props: any) {
                 <StripeProvider apiKey={config.STRIPE_KEY}>
                   <Elements>
                     <BillingForm
+                      checkoutError={checkoutError}
                       orders={orders}
                       isLoading={isLoading}
                       onSubmit={handleFormSubmit}
@@ -164,45 +150,19 @@ export default function Checkout(props: any) {
         </section>
       }
 
-      <div ref={node} className={`modal-container ${infoModalOpen ? 'modal-active' : null}`}>
-        <div className="modal-content rounded">
-          <div className="boxed boxed--lg">
-            <h2>What's a service fee?</h2>
-            <hr className="short" />
-            <p className="lead">
-              Edit Mule orders include a service fee equal to 15% of the order subtotal. This fee helps to keep our platform up and running.
-                </p>
-          </div>
-        </div>
-      </div>
+      <Modal
+        show={infoModalOpen}
+        onHide={() => setInfoModalOpen(false)}
+        centered
+      >
+        <Modal.Body className="fee-modal">
+          <h2>What's a service fee?</h2>
+          <hr className="short" />
+          <p className="lead">
+            Edit Mule orders include a service fee equal to 15% of the order subtotal. This fee helps to keep our platform up and running.
+          </p>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }
-
-// <Col sm={4} className="OrderSummary">
-//   <h3>Order Summary <span className="order-summary-edit"><Link to="/cart">edit</Link></span></h3>
-//   <hr />
-//   {renderOrderSummary(orders)}
-//   <hr />
-//   <Table condensed>
-//     <tbody>
-//       <tr>
-//         <td>Subtotal</td>
-//         <td align="right">${finalSubTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-//       </tr>
-//       <tr>
-//         <td>Service Fee <FontAwesomeIcon className="info-modal" icon={faInfoCircle} onClick={() => setInfoModalOpen(true)} /></td>
-//         <td align="right">${serviceFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-//       </tr>
-//     </tbody>
-//   </Table>
-//   <hr />
-//   <Table condensed>
-//     <tbody>
-//       <tr>
-//         <td className="summary-item">Total</td>
-//         <td className="summary-item" align="right">${grandTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-//       </tr>
-//     </tbody>
-//   </Table>
-// </Col>

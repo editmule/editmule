@@ -88,12 +88,10 @@ export default class ChangeEmail extends Component<AppProps, AppState> {
           />
         </Form.Group>
         <LoaderButton
-          block
           type="submit"
           size="lg"
           text="Update Email"
           className="btn btn-primary"
-          loadingText="Updating…"
           disabled={!this.validatEmailForm()}
           isLoading={this.state.isSendingCode}
         />
@@ -118,12 +116,10 @@ export default class ChangeEmail extends Component<AppProps, AppState> {
           </Form.Text>
         </Form.Group>
         <LoaderButton
-          block
           type="submit"
           size="lg"
           text="Confirm"
           className="btn btn-primary"
-          loadingText="Confirm…"
           isLoading={this.state.isConfirming}
           disabled={!this.validateConfirmForm()}
         />

@@ -93,7 +93,6 @@ export default class ChangePassword extends Component<AppProps, AppState> {
             />
           </Form.Group>
           <LoaderButton
-            block
             type="submit"
             size="lg"
             className="btn btn-primary"

@@ -6,7 +6,7 @@ import { LoaderButton } from "modules/LoaderButton";
 import { useFormFields } from "libs/hooks";
 import "./Checkout.css";
 
-function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
+function BillingForm({ checkoutError, isLoading, onSubmit, isAuthenticated, ...props }: any) {
   const [fields, handleFieldChange] = useFormFields({
     name: "",
     email: ""
@@ -17,7 +17,6 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
   const loading = isProcessing || isLoading;
 
   function validateForm() {
-    console.log(fields.name);
     return (
       fields.name !== "" &&
       isCardComplete
@@ -96,9 +95,18 @@ function BillingForm({ isLoading, onSubmit, isAuthenticated, ...props }: any) {
           }}
         />
       </div>
+      {
+        checkoutError &&
+        <div className="col-12">
+          <div className="alert bg--error">
+            <div className="alert__body">
+              <span>{checkoutError}</span>
+            </div>
+          </div>
+        </div>
+      }
       <div className="col-12">
         <LoaderButton
-          block
           type="submit"
           size="lg"
           text="Place your order"

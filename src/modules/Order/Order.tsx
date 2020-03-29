@@ -97,13 +97,3 @@ export default function Order(props: any) {
     </div>
   );
 }
-
-// <Checkout
-//   currentStep={currentStep}
-//   setCurrentStep={setCurrentStep}
-//   wordcount={wordcount}
-//   delivery={delivery}
-//   isLoading={isLoading}
-//   onSubmit={handleOrderSubmit}
-//   config={config}
-// />
