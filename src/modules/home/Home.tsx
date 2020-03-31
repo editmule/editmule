@@ -140,6 +140,7 @@ function Home() {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
+              <p>EDIT MULE IS TRUSTED BY THOUSANDS OF PROFESSIONALS WORLD-WIDE</p>
               <ul className="list-inline list-inline--images">
                 <li>
                   <img alt="Image" src="/img/partner-1.png" />

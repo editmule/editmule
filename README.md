@@ -27,6 +27,12 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `yarn deploy`
+
+To deploy the app to the development staging server (`staging.editmule.com`), run simply `yarn deploy`.
+
+To deploy the app to production (`www.editmule.com`), run `NODE_ENV=production yarn deploy`.
+
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**

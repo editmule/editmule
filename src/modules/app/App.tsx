@@ -4,6 +4,7 @@ import { Auth } from 'aws-amplify';
 import './App.css';
 import { LinkContainer } from 'react-router-bootstrap';
 import { withRouter } from 'react-router-dom';
+import config from 'config';
 
 import { Routes } from 'modules/Routes';
 
