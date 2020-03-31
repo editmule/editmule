@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { s3Upload } from 'libs/aws';
 import config from 'config';
+import ReactGA from 'react-ga';
 
 import './Order.css';
 import Configuration from './Configuration';
@@ -18,7 +19,7 @@ export default function Order(props: any) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log(props.isAuthenticated);
+    ReactGA.pageview(window.location.pathname + window.location.search); // No route, but worthwhile to know
   }, []);
 
   // TODO: Add billing to order (only submit order when billing works)

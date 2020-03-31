@@ -29,7 +29,7 @@ export default class ChangePassword extends Component<AppProps, AppState> {
   }
 
   componentDidMount() {
-    ReactGA.pageview(location.pathname + location.search);
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   validateForm() {

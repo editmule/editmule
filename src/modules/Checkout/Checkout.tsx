@@ -24,7 +24,7 @@ export default function Checkout(props: any) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    ReactGA.pageview(location.pathname + location.search);
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
 
   const finalSubTotal = (Number(orders.reduce((prev, next) => prev + subtotalPricing(next.wordcount, next.delivery), 0))).toFixed(2);

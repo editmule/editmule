@@ -15,7 +15,7 @@ export default function OrdersList(props: any) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    ReactGA.pageview(location.pathname + location.search);
+    ReactGA.pageview(window.location.pathname + window.location.search);
 
     async function onLoad() {
       try {

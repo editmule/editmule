@@ -27,7 +27,7 @@ export default function Cart(props: any) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    ReactGA.pageview(location.pathname + location.search);
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
 
 

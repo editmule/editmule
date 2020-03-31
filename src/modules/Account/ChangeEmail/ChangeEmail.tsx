@@ -32,7 +32,7 @@ export default class ChangeEmail extends Component<AppProps, AppState> {
   }
 
   componentDidMount() {
-    ReactGA.pageview(location.pathname + location.search);
+    ReactGA.pageview(window.location.pathname + window.location.search);
   }
 
   validatEmailForm() {

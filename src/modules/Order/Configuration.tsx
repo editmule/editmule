@@ -1,11 +1,15 @@
 // @ts-nocheck
-import React from 'react';
+import React, { useEffect } from 'react';
 import { wordcountToPricing, deliveryToPricing, subtotalPricing, calculateSavings } from 'libs/utils';
 
 import { LoaderButton } from 'modules/LoaderButton';
 import './Order.css';
 
 export default function Configuration(props: any) {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   function validateForm() {
     return (props.wordcount && props.delivery);
