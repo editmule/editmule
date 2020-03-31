@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import ReactGA from 'react-ga';
 
 import './Thanks.css';
 
 export default function Thanks(props: any) {
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+    ReactGA.pageview(location.pathname + location.search);
   }, []);
 
   return (

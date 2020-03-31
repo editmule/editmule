@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { LoaderButton } from "modules/LoaderButton";
+import ReactGA from 'react-ga';
+
 import "./Settings.css";
 
 export default function Settings(props: any) {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    ReactGA.pageview(location.pathname + location.search);
+  }, []);
 
   return (
     <div className="Settings">

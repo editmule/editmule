@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { API } from 'aws-amplify';
+import ReactGA from 'react-ga';
 
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -13,6 +14,9 @@ export default function OrdersList(props: any) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    ReactGA.pageview(location.pathname + location.search);
+
     async function onLoad() {
       try {
         const orders = await loadOrders();

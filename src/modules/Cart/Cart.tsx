@@ -3,9 +3,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal } from 'react-bootstrap';
-import { faInfoCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
-import { subtotalPricing } from 'libs/utils';
+import { faInfoCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import ReactGA from 'react-ga';
 
+import { subtotalPricing } from 'libs/utils';
 import { LoaderButton } from 'modules/LoaderButton';
 import './Cart.css';
 
@@ -26,7 +27,9 @@ export default function Cart(props: any) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    ReactGA.pageview(location.pathname + location.search);
   }, []);
+
 
   // Refresh persistent localStorage and subtotal when "orders" state changes
   useEffect(() => {

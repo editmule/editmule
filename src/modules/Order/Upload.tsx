@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import { validateURL } from 'libs/utils';
 import { LoaderButton } from 'modules/LoaderButton';
@@ -29,6 +30,21 @@ export default function Upload(props: any) {
     }
   }
 
+  function renderFileUpload() {
+    return (props.isAuthenticated ?
+      <>
+        <hr data-title="Or attach a file" />
+        <Form.Group controlId="file">
+          <Form.Control onChange={handleFileChange} type="file" />
+        </Form.Group>
+      </>
+    :
+      <>
+        <hr />
+        <p className="text-center">Oops! You must be logged in to upload a file. <Link to="/login?redirect=/order">Log in</Link></p>
+      </>);
+  }
+
   function handleLinkChange(event: any) {
     props.setContent((event.target as HTMLTextAreaElement).value);
     setValidated(validateURL((event.target as HTMLTextAreaElement).value));
@@ -54,13 +70,8 @@ export default function Upload(props: any) {
           <input onChange={e => handleLinkChange(e)} value={props.content} className="validate-required" type="text" name="Google Docs link" />
           <span className="type--fine-print block">or <a onClick={e => setShowDocumentUpload(true)} href="#">upload your document</a></span>
           {
-            showDocumentUpload &&
-            <>
-              <hr data-title="Or attach a file" />
-              <Form.Group controlId="file">
-                <Form.Control onChange={handleFileChange} type="file" />
-              </Form.Group>
-            </>
+            showDocumentUpload && renderFileUpload()
+
           }
           <br />
           <LoaderButton

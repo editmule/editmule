@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Auth } from "aws-amplify";
+import ReactGA from 'react-ga';
 
 import { Form } from 'react-bootstrap';
 
@@ -17,7 +18,8 @@ function Login(props: any) {
   });
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+    ReactGA.pageview(location.pathname + location.search);
   }, []);
 
   function validateForm() {

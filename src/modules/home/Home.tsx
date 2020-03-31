@@ -1,12 +1,14 @@
 import React, { useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
+import ReactGA from 'react-ga';
 
 import "./Home.css";
 
 function Home() {
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+    ReactGA.pageview(location.pathname + location.search);
   }, []);
 
   return (

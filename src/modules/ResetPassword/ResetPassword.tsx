@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import ReactGA from 'react-ga';
 
 import { LoaderButton } from "modules/LoaderButton";
 import "./ResetPassword.css";
@@ -37,6 +38,10 @@ export default class ResetPassword extends Component<AppProps, AppState> {
       isConfirming: false,
       isSendingCode: false
     };
+  }
+
+  componentDidMount() {
+    ReactGA.pageview(location.pathname + location.search);
   }
 
   validateCodeForm() {

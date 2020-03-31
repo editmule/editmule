@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Auth } from "aws-amplify";
 import { Form } from "react-bootstrap";
 import { LoaderButton } from "modules/LoaderButton";
+import ReactGA from 'react-ga';
+
 import "./ChangeEmail.css";
 
 interface AppProps {
@@ -27,6 +29,10 @@ export default class ChangeEmail extends Component<AppProps, AppState> {
       isConfirming: false,
       isSendingCode: false
     };
+  }
+
+  componentDidMount() {
+    ReactGA.pageview(location.pathname + location.search);
   }
 
   validatEmailForm() {

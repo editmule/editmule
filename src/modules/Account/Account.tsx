@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Auth } from "aws-amplify";
+import ReactGA from 'react-ga';
 
 import './Account.css';
 
@@ -18,6 +19,9 @@ export default function Account(props: any) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+    ReactGA.pageview(location.pathname + location.search);
+
     async function onLoad() {
       try {
         const currentUser = await Auth.currentAuthenticatedUser();

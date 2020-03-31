@@ -6,9 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 import { Modal } from 'react-bootstrap';
-import { subtotalPricing } from 'libs/utils';
+import ReactGA from 'react-ga';
 
 import config from 'config';
+import { subtotalPricing } from 'libs/utils';
 import BillingForm from './BillingForm';
 import './Checkout.css';
 
@@ -23,6 +24,7 @@ export default function Checkout(props: any) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    ReactGA.pageview(location.pathname + location.search);
   }, []);
 
   const finalSubTotal = (Number(orders.reduce((prev, next) => prev + subtotalPricing(next.wordcount, next.delivery), 0))).toFixed(2);

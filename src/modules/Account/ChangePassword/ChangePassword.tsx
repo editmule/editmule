@@ -3,6 +3,7 @@ import { Auth } from "aws-amplify";
 import { Form } from "react-bootstrap";
 import { LoaderButton } from "modules/LoaderButton";
 import "./ChangePassword.css";
+import ReactGA from 'react-ga';
 
 interface AppProps {
   history: any;
@@ -25,6 +26,10 @@ export default class ChangePassword extends Component<AppProps, AppState> {
       isChanging: false,
       confirmPassword: ""
     };
+  }
+
+  componentDidMount() {
+    ReactGA.pageview(location.pathname + location.search);
   }
 
   validateForm() {

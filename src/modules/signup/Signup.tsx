@@ -4,8 +4,9 @@ import { Form } from 'react-bootstrap';
 import { Auth } from 'aws-amplify'
 import { LoaderButton } from 'modules/LoaderButton';
 import { useFormFields } from 'libs/hooks';
-import './Signup.css';
+import ReactGA from 'react-ga';
 
+import './Signup.css';
 export default function Signup(props: any) {
   const [fields, handleFieldChange] = useFormFields({
     email: "",
@@ -19,7 +20,8 @@ export default function Signup(props: any) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+    ReactGA.pageview(location.pathname + location.search);
   }, []);
 
   function validateForm() {

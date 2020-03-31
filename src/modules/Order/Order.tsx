@@ -17,7 +17,8 @@ export default function Order(props: any) {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+    console.log(props.isAuthenticated);
   }, []);
 
   // TODO: Add billing to order (only submit order when billing works)
@@ -81,6 +82,7 @@ export default function Order(props: any) {
               delivery={delivery}
               isLoading={isLoading}
               setDelivery={setDelivery}
+              isAuthenticated={props.isAuthenticated}
             />
             <Upload
               currentStep={currentStep}
@@ -90,6 +92,7 @@ export default function Order(props: any) {
               file={file}
               isLoading={isLoading}
               props={props}
+              isAuthenticated={props.isAuthenticated}
             />
           </form>
         </div>

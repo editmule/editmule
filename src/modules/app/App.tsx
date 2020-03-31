@@ -47,10 +47,12 @@ function App(props: any) {
             <div className="container">
               <div className="row">
                 <div className="col-3 col-md-2">
-                  <a href="">
-                    <img className="logo logo-dark" alt="logo" src="/img/logo-dark.png"></img>
-                    <img className="logo logo-light" alt="logo" src="/img/logo-light.png"></img>
-                  </a>
+                  <LinkContainer to="/">
+                    <a href="">
+                      <img className="logo logo-dark" alt="logo" src="/img/logo-dark.png"></img>
+                      <img className="logo logo-light" alt="logo" src="/img/logo-light.png"></img>
+                    </a>
+                  </LinkContainer>
                 </div>
                 <a href="" className="col-9 col-md-10 text-right">
                   <div className="hamburger-toggle" data-toggle-class="#menu1;hidden-xs hidden-sm">

@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { API, Storage } from 'aws-amplify';
 import { Form } from 'react-bootstrap';
+import ReactGA from 'react-ga';
 
 import { LoaderButton } from 'modules/LoaderButton';
 import { s3Upload } from 'libs/aws';
@@ -14,6 +15,11 @@ export default function Orders(props: any) {
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    ReactGA.pageview(location.pathname + location.search);
+  }, []);
 
   useEffect(() => {
     function loadOrder() {
