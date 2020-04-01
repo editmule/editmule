@@ -22,8 +22,8 @@ export default function Upload(props: any) {
   }
 
   function handleFileChange(event: any) {
-    props.file.current = event.target.files[0];
-    if (props.file.current.name !== "") {
+    props.file.current = event.target.files ? event.target.files[0] : null;
+    if (props.file.current && props.file.current.name !== "") {
       setValidated(true);
     } else {
       setValidated(false);
@@ -36,6 +36,7 @@ export default function Upload(props: any) {
         <hr data-title="Or attach a file" />
         <Form.Group controlId="file">
           <Form.Control onChange={handleFileChange} type="file" />
+          <span className="type--fine-print block">or <a onClick={handleDocumentUploadCancel} href="#">cancel</a></span>
         </Form.Group>
       </>
     :
@@ -43,6 +44,17 @@ export default function Upload(props: any) {
         <hr />
         <p className="text-center">Oops! You must be logged in to upload a file. <Link to="/login?redirect=/order">Log in</Link></p>
       </>);
+  }
+
+  function handleDocumentUpload(event: any) {
+    props.setContent("");
+    setShowDocumentUpload(true);
+  }
+
+  function handleDocumentUploadCancel(event: any) {
+    event.target.value = null;
+    handleFileChange(event);
+    setShowDocumentUpload(false);
   }
 
   function handleLinkChange(event: any) {
@@ -67,8 +79,14 @@ export default function Upload(props: any) {
       <div className="col-md-5 col-lg-5">
         <div className="boxed boxed--border">
           <label>Google Docs link</label>
-          <input onChange={e => handleLinkChange(e)} value={props.content} className="validate-required" type="text" name="Google Docs link" />
-          <span className="type--fine-print block">or <a onClick={e => setShowDocumentUpload(true)} href="#">upload your document</a></span>
+          <input
+            onChange={e => handleLinkChange(e)}
+            value={props.content}
+            className="validate-required"
+            type="text"
+            disabled={showDocumentUpload}
+            name="Google Docs link" />
+          <span className="type--fine-print block">or <a onClick={handleDocumentUpload} href="#">upload your document</a></span>
           {
             showDocumentUpload && renderFileUpload()
 

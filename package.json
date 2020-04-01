@@ -40,7 +40,10 @@
     "eject": "react-scripts eject",
     "predeploy": "node ./scripts/predeploy.js",
     "deploy": "node ./scripts/deploy.js",
-    "postdeploy": "node ./scripts/postdeploy.js"
+    "postdeploy": "node ./scripts/postdeploy.js",
+    "predeploy:prod": "NODE_ENV=production node ./scripts/predeploy.js",
+    "deploy:prod": "NODE_ENV=production node ./scripts/deploy.js",
+    "postdeploy:prod": "NODE_ENV=production node ./scripts/postdeploy.js"
   },
   "eslintConfig": {
     "extends": "react-app"
