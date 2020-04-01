@@ -57,7 +57,7 @@ export default class ChangeEmail extends Component<AppProps, AppState> {
 
     try {
       const user = await Auth.currentAuthenticatedUser();
-      await Auth.updateUserAttributes(user, { email: this.state.email });
+      await Auth.updateUserAttributes(user, { email: this.state.email.toLowerCase() });
 
       this.setState({ codeSent: true });
     } catch (e) {

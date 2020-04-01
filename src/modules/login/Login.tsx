@@ -33,7 +33,7 @@ function Login(props: any) {
     setIsLoading(true);
 
     try {
-      await Auth.signIn(fields.email, fields.password);
+      await Auth.signIn(fields.email.toLowerCase(), fields.password);
       props.userHasAuthenticated(true);
     } catch (e) {
       setLoginError(e.message);

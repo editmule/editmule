@@ -64,7 +64,7 @@ function BillingForm({ checkoutError, isLoading, onSubmit, isAuthenticated, ...p
     setIsProcessing(true);
 
     const { token, error } = await props.stripe.createToken({ name: fields.name });
-    const email = isAuthenticated ? (await Auth.currentAuthenticatedUser()).attributes.email : fields.email;
+    const email = isAuthenticated ? (await Auth.currentAuthenticatedUser()).attributes.email.toLowerCase() : fields.email.toLowerCase();
 
     setIsProcessing(false);
 

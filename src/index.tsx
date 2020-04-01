@@ -34,7 +34,8 @@ Amplify.configure({
   }
 });
 
-ReactGA.initialize('UA-162301238-1');
+if (config.CONFIG_MODE === 'production')
+  ReactGA.initialize('UA-162301238-1');
 
 ReactDOM.render(
   <Router >

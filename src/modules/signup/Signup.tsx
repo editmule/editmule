@@ -44,7 +44,7 @@ export default function Signup(props: any) {
 
     try {
       const newUser = await Auth.signUp({
-        username: fields.email,
+        username: fields.email.toLowerCase(),
         password: fields.password
       });
       setIsLoading(false);
@@ -76,8 +76,8 @@ export default function Signup(props: any) {
     setIsLoading(true);
 
     try {
-      await Auth.confirmSignUp(fields.email, fields.confirmationCode);
-      await Auth.signIn(fields.email, fields.password);
+      await Auth.confirmSignUp(fields.email.toLowerCase(), fields.confirmationCode);
+      await Auth.signIn(fields.email.toLowerCase(), fields.password);
 
       props.userHasAuthenticated(true);
     } catch (e) {
