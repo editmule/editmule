@@ -79,7 +79,7 @@ export default function Checkout(props: any) {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1>Checkout</h1>
+              <h1>Secure Checkout</h1>
               <hr />
             </div>
           </div>

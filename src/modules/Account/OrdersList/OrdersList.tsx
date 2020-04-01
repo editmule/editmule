@@ -41,7 +41,7 @@ export default function OrdersList(props: any) {
   }
 
   function truncate(input: string) {
-    if (input.length > 20)
+    if (input && input.length > 20)
       return input.substring(0, 20) + '...';
     else
       return input;

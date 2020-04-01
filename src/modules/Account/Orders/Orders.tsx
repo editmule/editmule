@@ -49,7 +49,8 @@ export default function Orders(props: any) {
   }, [props.match.params.id]);
 
   function validateForm() {
-    return content.length > 0;
+    if (content) return content.length > 0;
+    return false;
   }
 
   function formatFilename(str: string) {
