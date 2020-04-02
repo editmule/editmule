@@ -41,7 +41,7 @@ const staging = {
 // Production: full client-facing site with live production resources (www.editmule.com)
 const production = {
   CONFIG_MODE: "production",
-  STRIPE_KEY: "pk_live_JASopZlaOkFhGj5WnnidVV0100DwSUduBg",
+  STRIPE_KEY: "pk_live_IEIYI2JPp6fW6ygw0PEX35hi00wzj259FP",
   s3: {
     REGION: "us-east-1",
     BUCKET: "editmule-2-api-prod-attachmentsbucket-4ehmwlpjajxv"

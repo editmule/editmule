@@ -43,7 +43,7 @@ export default function Checkout(props: any) {
 
   async function handleFormSubmit(orders: Array, email: string, isAuthenticated: boolean, { token, error }: any) {
     if (error) {
-      alert(error);
+      setCheckoutError(error.message);
       return;
     }
 
@@ -66,7 +66,7 @@ export default function Checkout(props: any) {
       props.history.push("/thanks");
 
     } catch (e) {
-      setCheckoutError("Uh oh, something went wrong. Please try again.");
+      setCheckoutError(`Uh oh, something went wrong. Please try again. Error: ${e.message}`);
       setIsLoading(false);
     }
   }
