@@ -82,7 +82,7 @@ export default function OrdersList(props: any) {
     return (orders).map((order: any, index: number) => (
       <LinkContainer key={index} to={`/account/orders/` + order.orderId}>
         <tr>
-          <td>{order.content ? <span data-tooltip={order.content}>{truncate(order.content)}</span>
+          <td>{order.content ? <span className="a-link" data-tooltip={order.content}>{truncate(order.content)}</span>
             : formatFilename(order.attachment)}</td>
           <td>{order.wordcount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
           <td>{order.delivery} hours</td>

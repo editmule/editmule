@@ -64,16 +64,16 @@ export default function Account(props: any) {
                   <ul className="menu-vertical">
                     <li key="account-orders">
                       <LinkContainer to="/account/orders">
-                        <a href="#">
+                        <div className="a-link">
                           Orders
-                          </a>
+                        </div>
                       </LinkContainer>
                     </li>
                     <li key="acount-settings">
                       <LinkContainer to="/account/settings">
-                        <a href="#">
+                        <div className="a-link">
                           Account Settings
-                          </a>
+                        </div>
                       </LinkContainer>
                     </li>
                   </ul>

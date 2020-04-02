@@ -51,7 +51,7 @@ export default function Configuration(props: any) {
     const newPrice = (+oldPrice + +deliveryDiscount).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return (
       <div>
-        <span><span style={{textDecoration: 'line-through'}}>${oldPrice}</span> ${newPrice}</span>
+        <span><span style={{ textDecoration: 'line-through' }}>${oldPrice}</span> ${newPrice}</span>
       </div>
     )
   }
@@ -70,16 +70,16 @@ export default function Configuration(props: any) {
           <div className="feature feature-2"> <i className="icon icon-Clock-Back color--primary"></i>
             <div className="feature__body">
               <h5>Delivery Within 24 Hours</h5>
-              <p>We'll get your document back to you within 24 hours or less, guaranteed.</p>
+              <p>We'll get your document back to you in as little as 24 hours, guaranteed.</p>
             </div>
           </div>
-          <div className="feature feature-2"> <i className="icon color--primary icon-Security-Check"></i>
+          <div className="feature feature-2"> <i className="icon color--primary icon-Cloud-Secure"></i>
             <div className="feature__body">
               <h5>Secure and Confidential</h5>
-              <p>All work is kept strictly confidential and stored behind industry standard AES-256 encryption.</p>
+              <p>All work is kept protected under NDA and AES-256 encryption by default.</p>
             </div>
           </div>
-          <div className="feature feature-2"> <i className="icon color--primary icon-File-Edit"></i>
+          <div className="feature feature-2"> <i className="icon color--primary icon-File-Refresh"></i>
             <div className="feature__body">
               <h5>Unlimited Revisions</h5>
               <p>Made some changes and need the document looked at again? Send it back.</p>
@@ -117,16 +117,8 @@ export default function Configuration(props: any) {
             {renderPrices()}
             <div className="row">
               <div className="col-12 mt-2">
-                <div style={{ width: '100%' }} className="validate-required">
-                  <label htmlFor="wordcount-custom">
-                    <div className="row">
-                      <div style={{ width: '100%' }} className="col-12 text-left">
-                        <input className="validate-required" id="wordcount-custom" type="text" name="wordcount" placeholder="Custom wordcount" />
-                      </div>
-                      <div className="col-6 text-right">
-                      </div>
-                    </div>
-                  </label>
+                <div className="col-12 text-left validate-required">
+                  <input className="validate-required" id="wordcount-custom" type="text" name="wordcount" placeholder="Custom wordcount" />
                 </div>
               </div>
             </div>
@@ -204,15 +196,3 @@ export default function Configuration(props: any) {
     </div >
   );
 }
-
-// <Form.Check
-//   required
-//   type="radio"
-//   name="wordcount"
-//   value="custom"
-//   label={
-//     <Form.Control
-//       type="text"
-//       placeholder="Enter word count"
-//     />
-//   } />

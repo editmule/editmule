@@ -102,7 +102,6 @@ export default class ChangePassword extends Component<AppProps, AppState> {
             size="lg"
             className="btn btn-primary"
             text="Change Password"
-            loadingText="Changing…"
             disabled={!this.validateForm()}
             isLoading={this.state.isChanging}
           />

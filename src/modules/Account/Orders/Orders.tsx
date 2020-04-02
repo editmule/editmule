@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import React, { useRef, useState, useEffect } from 'react';
 import { API, Storage } from 'aws-amplify';
 import { Form } from 'react-bootstrap';
@@ -5,6 +7,7 @@ import ReactGA from 'react-ga';
 
 import { LoaderButton } from 'modules/LoaderButton';
 import { s3Upload } from 'libs/aws';
+import { validateURL } from 'libs/utils';
 import config from 'config';
 
 import './Orders.css';
@@ -13,7 +16,8 @@ export default function Orders(props: any) {
   const file = useRef(null);
   const [order, setOrder] = useState(null);
   const [content, setContent] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [formValidated, setFormValidated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
@@ -43,22 +47,24 @@ export default function Orders(props: any) {
       } catch (e) {
         alert(e);
       }
+
+      setIsLoading(false);
     }
 
     onLoad();
   }, [props.match.params.id]);
-
-  function validateForm() {
-    if (content) return content.length > 0;
-    return false;
-  }
 
   function formatFilename(str: string) {
     return str.replace(/^\w+-/, "");
   }
 
   function handleFileChange(event: any) {
-    file.current = event.target.files[0];
+    file.current = event.target.files ? event.target.files[0] : null;
+    if (file.current && file.current.name !== "") {
+      setFormValidated(true);
+    } else {
+      setFormValidated(false);
+    }
   }
 
   function saveOrder(order: any) {
@@ -102,6 +108,11 @@ export default function Orders(props: any) {
     return API.del('orders', `/orders/${props.match.params.id}`);
   }
 
+  function handleContentChange(event: any) {
+    setContent((event.target as HTMLTextAreaElement).value);
+    setFormValidated(validateURL((event.target as HTMLTextAreaElement).value));
+  }
+
   async function handleDelete(event: any) {
     event.preventDefault();
 
@@ -124,16 +135,15 @@ export default function Orders(props: any) {
     }
   }
 
-  return (
-    <div className="">
-      <h4>Order</h4>
-      {order && (
+  function renderContent() {
+    return (
+      order && (
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="content">
             <Form.Control
               value={content}
               as="textarea"
-              onChange={e => setContent((e.target as HTMLTextAreaElement).value)}
+              onChange={handleContentChange}
             />
           </Form.Group>
           {
@@ -170,23 +180,45 @@ export default function Orders(props: any) {
             }
             <Form.Control onChange={handleFileChange} type="file" />
           </Form.Group>
-          <LoaderButton
-            type="submit"
-            size="lg"
-            className="btn btn-primary"
-            text="Save"
-            isLoading={isLoading}
-            disabled={!validateForm()}
-          />
-          <LoaderButton
-            size="lg"
-            className="btn btn-danger"
-            text="Delete"
-            onClick={handleDelete}
-            isLoading={isDeleting}
-          />
-        </Form>
-      )}
+          <div className="row">
+            <div className="col-12">
+              <LoaderButton
+                type="submit"
+                size="lg"
+                className="btn btn--primary"
+                text="Update"
+                isLoading={isLoading}
+                disabled={!formValidated}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12">
+              <LoaderButton
+                size="lg"
+                className="btn btn-danger"
+                text="Delete"
+                onClick={handleDelete}
+                isLoading={isDeleting}
+              />
+            </div>
+          </div >
+        </Form >
+      )
+    );
+  }
+
+  return (
+    <div className="">
+      <h4>Order</h4>
+      {isLoading ?
+        <section className="height-30 text-center">
+          <div className="spinner-border" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </section>
+        : renderContent()
+      }
     </div>
   );
 }

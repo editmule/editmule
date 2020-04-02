@@ -72,48 +72,56 @@ function BillingForm({ checkoutError, isLoading, onSubmit, isAuthenticated, ...p
   }
 
   return (
-    <form className="BillingForm row" onSubmit={handleSubmitClick}>
+    <form className="BillingForm" onSubmit={handleSubmitClick}>
       {!isAuthenticated && renderEmailForm()}
-      <div className="col-12">
-        <label>Cardholder&apos;s name</label>
-        <input
-          className="validate-required"
-          type="text"
-          id="name"
-          value={fields.name}
-          onChange={handleFieldChange}
-          placeholder="Name on the card"
-        />
+      <div className="row">
+        <div className="col-12">
+          <label>Cardholder&apos;s name</label>
+          <input
+            className="validate-required"
+            type="text"
+            id="name"
+            value={fields.name}
+            onChange={handleFieldChange}
+            placeholder="Name on the card"
+          />
+        </div>
       </div>
-      <div className="col-12">
-        <label>Card details</label>
-        <CardElement
-          className="card-field validate-required"
-          onChange={e => setIsCardComplete(e.complete)}
-          style={{
-            base: { fontSize: "18px", fontFamily: '"Open Sans", sans-serif', fontWeight: 400 }
-          }}
-        />
+      <div className="row">
+        <div className="col-12">
+          <label>Card details</label>
+          <CardElement
+            className="card-field validate-required"
+            onChange={e => setIsCardComplete(e.complete)}
+            style={{
+              base: { fontSize: "18px", fontFamily: '"Open Sans", sans-serif', fontWeight: 400 }
+            }}
+          />
+        </div>
       </div>
       {
         checkoutError &&
-        <div className="col-12">
-          <div className="alert bg--error">
-            <div className="alert__body">
-              <span>{checkoutError}</span>
+        <div className="row">
+          <div className="col-12">
+            <div className="alert bg--error">
+              <div className="alert__body">
+                <span>{checkoutError}</span>
+              </div>
             </div>
           </div>
         </div>
       }
-      <div className="col-12">
-        <LoaderButton
-          type="submit"
-          size="lg"
-          text="Place your order"
-          className="btn btn--primary type--uppercase"
-          isLoading={loading}
-          disabled={!validateForm()}
-        />
+      <div className="row">
+        <div className="col-12">
+          <LoaderButton
+            type="submit"
+            size="lg"
+            text="Place your order"
+            className="btn btn--primary type--uppercase"
+            isLoading={loading}
+            disabled={!validateForm()}
+          />
+        </div>
       </div>
     </form>
   );

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Modal } from 'react-bootstrap';
@@ -22,8 +22,6 @@ export default function Cart(props: any) {
   const [grandTotal, setGrandTotal] = useState(initialGrandTotal);
   const [infoModalOpen, setInfoModalOpen] = useState(false);
   const [isLoading] = useState(false);
-
-  const node = useRef();
 
   useEffect(() => {
     window.scrollTo(0, 0);

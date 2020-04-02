@@ -4,7 +4,6 @@ import { Auth } from 'aws-amplify';
 import './App.css';
 import { LinkContainer } from 'react-router-bootstrap';
 import { withRouter } from 'react-router-dom';
-import config from 'config';
 
 import { Routes } from 'modules/Routes';
 
@@ -49,17 +48,17 @@ function App(props: any) {
               <div className="row">
                 <div className="col-3 col-md-2">
                   <LinkContainer to="/">
-                    <a href="">
+                    <div className="hover">
                       <img className="logo logo-dark" alt="logo" src="/img/logo-dark.png"></img>
                       <img className="logo logo-light" alt="logo" src="/img/logo-light.png"></img>
-                    </a>
+                    </div>
                   </LinkContainer>
                 </div>
-                <a href="" className="col-9 col-md-10 text-right">
+                <div className="col-9 col-md-10 text-right hover">
                   <div className="hamburger-toggle" data-toggle-class="#menu1;hidden-xs hidden-sm">
                     <i className="icon icon--sm stack-interface stack-menu"></i>
                   </div>
-                </a>
+                </div>
               </div>
             </div>
           </div>
@@ -69,10 +68,10 @@ function App(props: any) {
                 <div className="col-lg-2 col-md-2 hidden-xs">
                   <div className="bar__module">
                     <LinkContainer to="/">
-                      <a href="">
+                      <div className="hover">
                         <img className="logo logo-dark" alt="logo" src="/img/logo-dark.png"></img>
                         <img className="logo logo-light" alt="logo" src="/img/logo-light.png"></img>
-                      </a>
+                      </div>
                     </LinkContainer>
                   </div>
                 </div>
@@ -83,7 +82,7 @@ function App(props: any) {
                         <ul className="menu-horizontal text-left">
                           <li>
                             <LinkContainer to="/cart">
-                              <a href="">Cart</a>
+                              <a href="#/">Cart</a>
                             </LinkContainer>
                           </li>
                           <li className="dropdown">
@@ -97,16 +96,16 @@ function App(props: any) {
                                     <ul className="menu-vertical">
                                       <li>
                                         <LinkContainer to="/account/orders">
-                                          <a href="">Orders</a>
+                                          <a href="#/">Orders</a>
                                         </LinkContainer>
                                       </li>
                                       <li>
                                         <LinkContainer to="/account/settings">
-                                          <a href="">Settings</a>
+                                          <a href="#/">Settings</a>
                                         </LinkContainer>
                                       </li>
                                       <li className="separate" onClick={handleLogout}>
-                                        <a href="">Log Out</a>
+                                        <a href="#/">Log Out</a>
                                       </li>
                                     </ul>
                                   </div>
@@ -131,12 +130,12 @@ function App(props: any) {
                         <ul className="menu-horizontal text-left">
                           <li>
                             <LinkContainer to="/cart">
-                              <a href="">Cart</a>
+                              <a href="#/">Cart</a>
                             </LinkContainer>
                           </li>
                           <li>
                             <LinkContainer to="/login">
-                              <a href="">Log In</a>
+                              <a href="#/">Log In</a>
                             </LinkContainer>
                           </li>
                         </ul>
@@ -166,13 +165,13 @@ function App(props: any) {
         <div className="container">
           <div className="row">
             <div className="col-md-6">
-              <img alt="Image" className="logo" src="/img/logo-dark.png" />
+              <img alt="logo" className="logo" src="/img/logo-dark.png" />
               <ul className="list-inline list--hover">
                 <li className="list-inline-item">
                   <LinkContainer to="/order">
-                    <a href="#">
+                    <div className="hover">
                       <span className="type--fine-print">Get Started</span>
-                    </a>
+                    </div>
                   </LinkContainer>
                 </li>
                 <li className="list-inline-item">
@@ -181,9 +180,25 @@ function App(props: any) {
               </ul>
             </div>
             <div className="col-md-6 text-md-right text-center-xs">
-              <span className="type--fine-print">&copy; <span className="update-year"></span> Edit Mule</span>
-              <a className="type--fine-print" href="#">Privacy Policy</a>
-              <a className="type--fine-print" href="#">Legal</a>
+              <ul className="list-inline list--hover">
+                <li className="list-inline-item">
+                  <span className="type--fine-print">&copy; 2020 Edit Mule</span>
+                </li>
+                <li className="list-inline-item">
+                  <LinkContainer to="/privacy">
+                    <div className="hover">
+                      <span className="type--fine-print">Privacy</span>
+                    </div>
+                  </LinkContainer>
+                </li>
+                <li className="list-inline-item">
+                <LinkContainer to="/terms">
+                  <div className="hover">
+                    <span className="type--fine-print">Terms</span>
+                  </div>
+                </LinkContainer>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

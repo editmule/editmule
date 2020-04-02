@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Elements, StripeProvider } from "react-stripe-elements";
 import { API } from 'aws-amplify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,8 +19,6 @@ export default function Checkout(props: any) {
   const [checkoutError, setCheckoutError] = useState('');
   const [infoModalOpen, setInfoModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const node = useRef();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -89,20 +87,7 @@ export default function Checkout(props: any) {
         <section>
           <div className="container">
             <div className="row justify-content-between">
-              <div className="col-md-7">
-                <StripeProvider apiKey={config.STRIPE_KEY}>
-                  <Elements>
-                    <BillingForm
-                      checkoutError={checkoutError}
-                      orders={orders}
-                      isLoading={isLoading}
-                      onSubmit={handleFormSubmit}
-                      isAuthenticated={props.isAuthenticated}
-                    />
-                  </Elements>
-                </StripeProvider>
-              </div>
-              <div className="col-md-4">
+              <div className="col-md-4 order-md-12">
                 <div className="boxed boxed--border">
                 <div className="row">
                   <div className="col-12">
@@ -135,6 +120,19 @@ export default function Checkout(props: any) {
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className="col-md-7 order-md-1">
+                <StripeProvider apiKey={config.STRIPE_KEY}>
+                  <Elements>
+                    <BillingForm
+                      checkoutError={checkoutError}
+                      orders={orders}
+                      isLoading={isLoading}
+                      onSubmit={handleFormSubmit}
+                      isAuthenticated={props.isAuthenticated}
+                    />
+                  </Elements>
+                </StripeProvider>
               </div>
             </div>
           </div>

@@ -17,10 +17,6 @@ export default function Upload(props: any) {
     window.scrollTo(0, 0);
   }, []);
 
-  function validateForm() {
-    return (validateURL(props.content) || props.file.current != null);
-  }
-
   function handleFileChange(event: any) {
     props.file.current = event.target.files ? event.target.files[0] : null;
     if (props.file.current && props.file.current.name !== "") {
@@ -36,7 +32,7 @@ export default function Upload(props: any) {
         <hr data-title="Or attach a file" />
         <Form.Group controlId="file">
           <Form.Control onChange={handleFileChange} type="file" />
-          <span className="type--fine-print block">or <a onClick={handleDocumentUploadCancel} href="#">cancel</a></span>
+          <span className="type--fine-print block">or <div onClick={handleDocumentUploadCancel} className="a-link">cancel</div></span>
         </Form.Group>
       </>
     :
@@ -72,7 +68,7 @@ export default function Upload(props: any) {
         <div>
           <h2>Link your document</h2>
           <p className="lead">
-            We highly recommend sharing your document as a Google Docs link for ease of editing and commenting. Please make sure that your document is set to "Anyone with the link can edit". <a href="https://support.google.com/drive/answer/2494822" target="_blank">Learn more</a>
+            We highly recommend sharing your document as a Google Docs link for ease of editing and commenting. Please make sure that your document is set to "Anyone with the link can edit". <a href="https://support.google.com/drive/answer/2494822" rel='noreferrer noopener' target="_blank">Learn more</a>
           </p>
         </div>
       </div>
@@ -86,7 +82,7 @@ export default function Upload(props: any) {
             type="text"
             disabled={showDocumentUpload}
             name="Google Docs link" />
-          <span className="type--fine-print block">or <a onClick={handleDocumentUpload} href="#">upload your document</a></span>
+          <span className="type--fine-print block">or <div onClick={handleDocumentUpload} className="a-link">upload your document</div></span>
           {
             showDocumentUpload && renderFileUpload()
 

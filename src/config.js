@@ -61,14 +61,10 @@ const production = {
 // Default to development mode if not explicitely set
 let config = development;
 if (process.env.REACT_APP_CONFIG_MODE) {
-  switch(process.env.REACT_APP_CONFIG_MODE) {
-    case 'production':
-      config = production;
-      break;
-    case 'staging':
-      config = staging;
-      break;
-  }
+  if (process.env.REACT_APP_CONFIG_MODE === 'production')
+    config = production
+  else if (process.env.REACT_APP_CONFIG_MODE === 'staging')
+    config = staging
 }
 
 export default {
