@@ -18,7 +18,7 @@ function NonDisclosureAgreement(props: any) {
               <article>
                 <div className="article__title text-center">
                   <h1>Non-Disclosure Agreement</h1>
-                  <span>This confidentiality agreement applies by default to all documents submitted to Edit Mule and ensures full document confidentiality throughout the Edit Mule editing process.</span>
+                  <span>This confidentiality agreement applies by default to all documents submitted to Edit Mule.</span>
                 </div>
                 <div className="article__body">
                   <p>

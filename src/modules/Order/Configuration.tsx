@@ -1,11 +1,13 @@
 // @ts-nocheck
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { wordcountToPricing, deliveryToPricing, subtotalPricing, calculateSavings } from 'libs/utils';
 
 import { LoaderButton } from 'modules/LoaderButton';
 import './Order.css';
 
 export default function Configuration(props: any) {
+
+  const [selectedWordcount, setSelectedWordcount] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -25,7 +27,12 @@ export default function Configuration(props: any) {
       <div className="row mt-2" key={index}>
         <div className="col-12">
           <div style={{ width: '100%' }} className="input-radio input-radio--innerlabel">
-            <input id={`wordcount-${wordcount}`} type="radio" name="wordcount" value={wordcount} />
+            <input
+              id={`wordcount-${wordcount}`}
+              type="radio" name="wordcount"
+              value={wordcount}
+              onChange={e=>setSelectedWordcount(e.target.value)}
+              checked={Number(selectedWordcount)===Number(wordcount)}/>
             <label htmlFor={`wordcount-${wordcount}`}>
               <div className="row">
                 <div className="col-4 text-left">
@@ -118,7 +125,7 @@ export default function Configuration(props: any) {
             <div className="row">
               <div className="col-12 mt-2">
                 <div className="col-12 text-left validate-required">
-                  <input className="validate-required" id="wordcount-custom" type="text" name="wordcount" placeholder="Custom wordcount" />
+                  <input className="validate-required" onClick={e=>setSelectedWordcount(null)} id="wordcount-custom" type="text" name="wordcount" placeholder="Custom wordcount" />
                 </div>
               </div>
             </div>
