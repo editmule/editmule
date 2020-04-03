@@ -55,6 +55,26 @@ function Home() {
               <LinkContainer to="/order">
                 <a href="#/" className="block">
                   <div className="feature boxed boxed--border border--round">
+                    <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/CPU.svg"></img>
+                    <span className="h5 color--primary">Product Briefs</span>
+                  </div>
+                </a>
+              </LinkContainer>
+            </div>
+            <div className="col-md-3">
+              <LinkContainer to="/order">
+                <a href="#/" className="block">
+                  <div className="feature boxed boxed--border border--round">
+                    <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Project.svg"></img>
+                    <span className="h5 color--primary">Reports and Proposals</span>
+                  </div>
+                </a>
+              </LinkContainer>
+            </div>
+            <div className="col-md-3">
+              <LinkContainer to="/order">
+                <a href="#/" className="block">
+                  <div className="feature boxed boxed--border border--round">
                     <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Speach-BubbleDialog.svg"></img>
                     <span className="h5 color--primary">Memos and Announcements</span>
                   </div>
@@ -65,8 +85,8 @@ function Home() {
               <LinkContainer to="/order">
                 <a href="#/" className="block">
                   <div className="feature boxed boxed--border border--round">
-                  <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Tablet.svg"></img>
-                  <span className="h5 color--primary">Blog Posts</span>
+                    <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Tablet.svg"></img>
+                    <span className="h5 color--primary">Blog Posts</span>
                   </div>
                 </a>
               </LinkContainer>
@@ -75,8 +95,8 @@ function Home() {
               <LinkContainer to="/order">
                 <a href="#/" className="block">
                   <div className="feature boxed boxed--border border--round">
-                  <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Project.svg"></img>
-                  <span className="h5 color--primary">Reports and Proposals</span>
+                    <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Code-Window.svg"></img>
+                    <span className="h5 color--primary">Documentation</span>
                   </div>
                 </a>
               </LinkContainer>
@@ -85,8 +105,8 @@ function Home() {
               <LinkContainer to="/order">
                 <a href="#/" className="block">
                   <div className="feature boxed boxed--border border--round">
-                  <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/CPU.svg"></img>
-                  <span className="h5 color--primary">Product Briefs</span>
+                    <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Notepad.svg"></img>
+                    <span className="h5 color--primary">Applications</span>
                   </div>
                 </a>
               </LinkContainer>
@@ -95,28 +115,8 @@ function Home() {
               <LinkContainer to="/order">
                 <a href="#/" className="block">
                   <div className="feature boxed boxed--border border--round">
-                    <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Email.svg"></img>
-                    <span className="h5 color--primary">Emails</span>
-                  </div>
-                </a>
-              </LinkContainer>
-            </div>
-            <div className="col-md-3">
-              <LinkContainer to="/order">
-                <a href="#/" className="block">
-                  <div className="feature boxed boxed--border border--round">
-                  <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Notepad.svg"></img>
-                  <span className="h5 color--primary">Applications</span>
-                  </div>
-                </a>
-              </LinkContainer>
-            </div>
-            <div className="col-md-3">
-              <LinkContainer to="/order">
-                <a href="#/" className="block">
-                  <div className="feature boxed boxed--border border--round">
-                  <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Spell-Check.svg"></img>
-                  <span className="h5 color--primary">Miscellaneous</span>
+                    <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Spell-Check.svg"></img>
+                    <span className="h5 color--primary">Miscellaneous</span>
                   </div>
                 </a>
               </LinkContainer>
@@ -139,17 +139,17 @@ function Home() {
             </div>
             <div className="col-md-4">
               <div className="feature feature--featured feature-4 boxed boxed--lg boxed--border editing-features">
-              <img className="icon--svg" width="42" height="42" alt="Header" src="/icons/Security-Check.svg"></img>
+                <img className="icon--svg" width="42" height="42" alt="Header" src="/icons/Security-Check.svg"></img>
                 <h4>NDAs and 256-bit Security</h4>
                 <hr />
                 <p>
-                  Every document submitted to Edit Mule is secured behind 256-bit encryption and covered under our copyeditor <Link to="/nda">Non-Disclosure Agreement</Link> by default.
+                  Every document submitted to Edit Mule is secured behind AES-256 encryption and covered under our copyeditor <Link to="/nda">Non-Disclosure Agreement</Link> by default.
                 </p>
               </div>
             </div>
             <div className="col-md-4">
               <div className="feature feature-4 boxed boxed--lg boxed--border editing-features">
-              <img className="icon--svg" width="42" height="42" alt="Header" src="/icons/File-Refresh.svg"></img>
+                <img className="icon--svg" width="42" height="42" alt="Header" src="/icons/File-Refresh.svg"></img>
                 <h4>Unlimited Revisions</h4>
                 <hr />
                 <p>
