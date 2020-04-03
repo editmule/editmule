@@ -29,9 +29,9 @@ function Home() {
               </p>
               <LinkContainer to="/order">
                 <div className="btn btn--primary type--uppercase">
-                  <span className="btn__text">
+                  <div className="btn__text">
                     Get Started
-                  </span>
+                  </div>
                 </div>
               </LinkContainer>
             </div>
@@ -45,7 +45,7 @@ function Home() {
               <LinkContainer to="/order">
                 <a href="#/" className="block">
                   <div className="feature boxed boxed--border border--round">
-                    <i className="icon--lg icon-Newspaper"></i>
+                    <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Newspaper.svg"></img>
                     <span className="h5 color--primary">Press Releases</span>
                   </div>
                 </a>
@@ -55,7 +55,7 @@ function Home() {
               <LinkContainer to="/order">
                 <a href="#/" className="block">
                   <div className="feature boxed boxed--border border--round">
-                    <i className="icon--lg icon-Speach-BubbleDialog"></i>
+                    <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Speach-BubbleDialog.svg"></img>
                     <span className="h5 color--primary">Memos and Announcements</span>
                   </div>
                 </a>
@@ -65,8 +65,8 @@ function Home() {
               <LinkContainer to="/order">
                 <a href="#/" className="block">
                   <div className="feature boxed boxed--border border--round">
-                    <i className="icon--lg icon-Tablet"></i>
-                    <span className="h5 color--primary">Blog Posts</span>
+                  <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Tablet.svg"></img>
+                  <span className="h5 color--primary">Blog Posts</span>
                   </div>
                 </a>
               </LinkContainer>
@@ -75,8 +75,8 @@ function Home() {
               <LinkContainer to="/order">
                 <a href="#/" className="block">
                   <div className="feature boxed boxed--border border--round">
-                    <i className="icon--lg icon-Project"></i>
-                    <span className="h5 color--primary">Reports and Proposals</span>
+                  <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Project.svg"></img>
+                  <span className="h5 color--primary">Reports and Proposals</span>
                   </div>
                 </a>
               </LinkContainer>
@@ -85,8 +85,8 @@ function Home() {
               <LinkContainer to="/order">
                 <a href="#/" className="block">
                   <div className="feature boxed boxed--border border--round">
-                    <i className="icon--lg icon-CPU"></i>
-                    <span className="h5 color--primary">Product Briefs</span>
+                  <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/CPU.svg"></img>
+                  <span className="h5 color--primary">Product Briefs</span>
                   </div>
                 </a>
               </LinkContainer>
@@ -95,7 +95,7 @@ function Home() {
               <LinkContainer to="/order">
                 <a href="#/" className="block">
                   <div className="feature boxed boxed--border border--round">
-                    <i className="icon--lg icon-Email"></i>
+                    <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Email.svg"></img>
                     <span className="h5 color--primary">Emails</span>
                   </div>
                 </a>
@@ -105,8 +105,8 @@ function Home() {
               <LinkContainer to="/order">
                 <a href="#/" className="block">
                   <div className="feature boxed boxed--border border--round">
-                    <i className="icon--lg icon-Notepad"></i>
-                    <span className="h5 color--primary">Applications</span>
+                  <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Notepad.svg"></img>
+                  <span className="h5 color--primary">Applications</span>
                   </div>
                 </a>
               </LinkContainer>
@@ -115,8 +115,8 @@ function Home() {
               <LinkContainer to="/order">
                 <a href="#/" className="block">
                   <div className="feature boxed boxed--border border--round">
-                    <i className="icon--lg icon-Spell-Check"></i>
-                    <span className="h5 color--primary">Miscellaneous</span>
+                  <img className="icon--svg" width="72" height="72" alt="Header" src="/icons/Spell-Check.svg"></img>
+                  <span className="h5 color--primary">Miscellaneous</span>
                   </div>
                 </a>
               </LinkContainer>
@@ -129,7 +129,7 @@ function Home() {
           <div className="row">
             <div className="col-md-4">
               <div className="feature feature-4 boxed boxed--lg boxed--border editing-features">
-                <i className="icon icon-File-Edit"></i>
+                <img className="icon--svg" width="42" height="42" alt="Header" src="/icons/File-Edit.svg"></img>
                 <h4>In-Depth Copyediting</h4>
                 <hr />
                 <p>
@@ -139,7 +139,7 @@ function Home() {
             </div>
             <div className="col-md-4">
               <div className="feature feature--featured feature-4 boxed boxed--lg boxed--border editing-features">
-                <i className="icon icon-Security-Check"></i>
+              <img className="icon--svg" width="42" height="42" alt="Header" src="/icons/Security-Check.svg"></img>
                 <h4>NDAs and 256-bit Security</h4>
                 <hr />
                 <p>
@@ -149,7 +149,7 @@ function Home() {
             </div>
             <div className="col-md-4">
               <div className="feature feature-4 boxed boxed--lg boxed--border editing-features">
-                <i className="icon icon-File-Refresh"></i>
+              <img className="icon--svg" width="42" height="42" alt="Header" src="/icons/File-Refresh.svg"></img>
                 <h4>Unlimited Revisions</h4>
                 <hr />
                 <p>
@@ -189,9 +189,9 @@ function Home() {
                 <div className="col-lg-4 col-md-3 text-center">
                   <LinkContainer to="/order">
                     <div className="btn btn--primary type--uppercase">
-                      <span className="btn__text">
+                      <div className="btn__text">
                         Order Now
-                      </span>
+                      </div>
                     </div>
                   </LinkContainer>
                 </div>
@@ -205,9 +205,9 @@ function Home() {
               <div className="col-lg-4 col-md-3 text-center">
                 <LinkContainer to="/order">
                   <div className="btn btn--primary type--uppercase">
-                    <span className="btn__text">
+                    <div className="btn__text">
                       Order Now
-                    </span>
+                    </div>
                   </div>
                 </LinkContainer>
               </div>

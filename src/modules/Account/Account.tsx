@@ -52,7 +52,7 @@ export default function Account(props: any) {
                     </section>
                     :
                     <>
-                      <i className="user-icon icon icon-Eyeglasses-Smiley color--primary"></i>
+                      <img className="icon--svg user-icon" width="64" height="64" alt="Header" src="/icons/Eyeglasses-Smiley.svg"></img>
                       <span className="h5">{currentUser.attributes.email.toLowerCase()}</span>
                       <span>{currentUser.attributes.email_verified ? "Email Verified" : "Email Not Verified"}</span>
                       <span className="label">Early Adopter</span>

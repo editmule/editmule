@@ -29,14 +29,14 @@ function BillingForm({ checkoutError, isLoading, onSubmit, isAuthenticated, ...p
         <div className="col-sm-6">
           <LinkContainer to="/login?redirect=/checkout">
             <div className="btn block btn--primary">
-              <span className="btn__text">Log in</span>
+              <div className="btn__text">Log in</div>
             </div>
           </LinkContainer>
         </div>
         <div className="col-sm-6">
           <LinkContainer to="/signup?redirect=/checkout">
             <div className="btn block">
-              <span className="btn__text">Sign Up</span>
+              <div className="btn__text">Sign Up</div>
             </div>
           </LinkContainer>
         </div>

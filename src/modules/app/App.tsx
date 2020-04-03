@@ -126,9 +126,9 @@ function App(props: any) {
                             <div className="bar__module">
                               <LinkContainer to="/order">
                                 <div className="btn btn--sm btn--primary type--uppercase">
-                                  <span className="btn__text">
+                                  <div className="btn__text">
                                     Order Now
-                            </span>
+                                  </div>
                                 </div>
                               </LinkContainer>
                             </div>
@@ -151,12 +151,12 @@ function App(props: any) {
                             <div className="bar__module">
                               <LinkContainer to="/signup">
                                 <div className="btn btn--sm type--uppercase">
-                                  <span className="btn__text">Sign Up</span>
+                                  <div className="btn__text">Sign Up</div>
                                 </div>
                               </LinkContainer>
                               <LinkContainer to="/order">
                                 <div className="btn btn--sm btn--primary type--uppercase">
-                                  <span className="btn__text">Order Now</span>
+                                  <div className="btn__text">Order Now</div>
                                 </div>
                               </LinkContainer>
                             </div>

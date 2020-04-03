@@ -74,19 +74,19 @@ export default function Configuration(props: any) {
         </div>
         <hr className="short" />
         <div className="boxed boxed--lg boxed--border hidden-xs feature-large">
-          <div className="feature feature-2"> <i className="icon icon-Clock-Back color--primary"></i>
+          <div className="feature feature-2"><img className="icon--svg" width="42" height="42" alt="Header" src="/icons/Clock-Back.svg"></img>
             <div className="feature__body">
               <h5>Delivery Within 24 Hours</h5>
               <p>We'll get your document back to you in as little as 24 hours, guaranteed.</p>
             </div>
           </div>
-          <div className="feature feature-2"> <i className="icon color--primary icon-Cloud-Secure"></i>
+          <div className="feature feature-2"><img className="icon--svg" width="42" height="42" alt="Header" src="/icons/Cloud-Secure.svg"></img>
             <div className="feature__body">
               <h5>Secure and Confidential</h5>
               <p>All work is kept protected under NDA and AES-256 encryption by default.</p>
             </div>
           </div>
-          <div className="feature feature-2"> <i className="icon color--primary icon-File-Refresh"></i>
+          <div className="feature feature-2"><img className="icon--svg" width="42" height="42" alt="Header" src="/icons/File-Refresh-Blue.svg"></img>
             <div className="feature__body">
               <h5>Unlimited Revisions</h5>
               <p>Made some changes and need the document looked at again? Send it back.</p>

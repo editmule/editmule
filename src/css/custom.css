@@ -90,3 +90,10 @@ table {
 .editing-features p:last-of-type{
   margin-bottom: 0!important;
 }
+
+.user-icon {
+  margin-bottom: 0.68421052631579em;
+}
+.icon--svg {
+  fill:#666666;
+}
