@@ -41,9 +41,9 @@
     "predeploy:staging": "node ./bin/scripts/predeploy.js",
     "deploy:staging": "node ./bin/scripts/deploy.js",
     "postdeploy:staging": "node ./bin/scripts/postdeploy.js",
-    "predeploy:prod": "NODE_ENV=production node ./bin/scripts/predeploy.js",
-    "deploy:prod": "NODE_ENV=production node ./bin/scripts/deploy.js",
-    "postdeploy:prod": "NODE_ENV=production node ./bin/scripts/postdeploy.js"
+    "predeploy:production": "NODE_ENV=production node ./bin/scripts/predeploy.js",
+    "deploy:production": "NODE_ENV=production node ./bin/scripts/deploy.js",
+    "postdeploy:production": "NODE_ENV=production node ./bin/scripts/postdeploy.js"
   },
   "eslintConfig": {
     "extends": "react-app"
