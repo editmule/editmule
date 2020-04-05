@@ -38,12 +38,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy:staging": "node ./scripts/predeploy.js",
-    "deploy:staging": "node ./scripts/deploy.js",
-    "postdeploy:staging": "node ./scripts/postdeploy.js",
-    "predeploy:prod": "NODE_ENV=production node ./scripts/predeploy.js",
-    "deploy:prod": "NODE_ENV=production node ./scripts/deploy.js",
-    "postdeploy:prod": "NODE_ENV=production node ./scripts/postdeploy.js"
+    "predeploy:staging": "node ./bin/scripts/predeploy.js",
+    "deploy:staging": "node ./bin/scripts/deploy.js",
+    "postdeploy:staging": "node ./bin/scripts/postdeploy.js",
+    "predeploy:prod": "NODE_ENV=production node ./bin/scripts/predeploy.js",
+    "deploy:prod": "NODE_ENV=production node ./bin/scripts/deploy.js",
+    "postdeploy:prod": "NODE_ENV=production node ./bin/scripts/postdeploy.js"
   },
   "eslintConfig": {
     "extends": "react-app"

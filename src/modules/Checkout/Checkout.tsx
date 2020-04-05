@@ -51,11 +51,17 @@ export default function Checkout(props: any) {
 
     try {
       // TODO: Authorize payment (but don't charge until orders complete)
-      await billUser({
+      const order = await billUser({
         orders,
         email: email,
         isAuthenticated: isAuthenticated,
         source: token.id
+      });
+
+      // Record transaction in Google Analytics
+      ReactGA.plugin.execute('ecommerce', 'addTransaction', {
+        id: order.orderNum,
+        revenue: order.cost*100
       });
 
       // Clear cart
@@ -66,7 +72,7 @@ export default function Checkout(props: any) {
       props.history.push("/thanks");
 
     } catch (e) {
-      setCheckoutError(`Uh oh, something went wrong. Please try again. Error: ${e.message}`);
+      setCheckoutError(`Uh oh, something went wrong. Please check your card details and try again. Error: ${e.message}`);
       setIsLoading(false);
     }
   }
@@ -89,11 +95,11 @@ export default function Checkout(props: any) {
             <div className="row justify-content-between">
               <div className="col-md-4 order-md-12">
                 <div className="boxed boxed--border">
-                <div className="row">
-                  <div className="col-12">
-                    <h3>Order Summary</h3>
+                  <div className="row">
+                    <div className="col-12">
+                      <h3>Order Summary</h3>
+                    </div>
                   </div>
-                </div>
                   <div className="row">
                     <div className="col-8">
                       <span className="h5">Order Subtotal:</span>
