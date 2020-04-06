@@ -38,7 +38,8 @@ if (config.CONFIG_MODE === 'production')
   ReactGA.initialize('UA-162301238-1');
 else if (config.CONFIG_MODE === 'staging')
   ReactGA.initialize('UA-162301238-2');
-
+  ReactGA.plugin.require('ecommerce', { debug: true });
+  
 ReactDOM.render(
   <Router >
     <App />

@@ -59,7 +59,18 @@ export default function Checkout(props: any) {
       });
 
       // Record transaction in Google Analytics
-      ReactGA.plugin.require('ecommerce');
+      ReactGA.plugin.execute(
+        'ecommerce',
+        'addItem',
+        {
+          id: order.orderNum,
+          name: 'Copyediting jobs',
+          sku: '--', // seems to be required
+          price: order.cost * 100,
+          category: 'Copyediting',
+          quantity: order.orders.length
+        }
+      );
       ReactGA.plugin.execute('ecommerce', 'addTransaction', {
         id: order.orderNum,
         revenue: order.cost * 100
