@@ -59,10 +59,13 @@ export default function Checkout(props: any) {
       });
 
       // Record transaction in Google Analytics
+      ReactGA.plugin.require('ecommerce');
       ReactGA.plugin.execute('ecommerce', 'addTransaction', {
         id: order.orderNum,
-        revenue: order.cost*100
+        revenue: order.cost * 100
       });
+      ReactGA.plugin.execute('ecommerce', 'send');
+      ReactGA.plugin.execute('ecommerce', 'clear');
 
       // Clear cart
       localStorage.setItem('EditMuleCart', JSON.stringify([]));
