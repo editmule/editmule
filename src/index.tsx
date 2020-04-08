@@ -34,12 +34,10 @@ Amplify.configure({
   }
 });
 
-if (config.CONFIG_MODE === 'production')
-  ReactGA.initialize('UA-162301238-1');
-else if (config.CONFIG_MODE === 'staging')
-  ReactGA.initialize('UA-162301238-2');
-  ReactGA.plugin.require('ecommerce', { debug: true });
-  
+ReactGA.initialize(config.google.GA_TRACKING_ID);
+ReactGA.ga('require', config.google.OPT_CONTAINER_ID);
+ReactGA.plugin.require('ecommerce');
+
 ReactDOM.render(
   <Router >
     <App />

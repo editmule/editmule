@@ -15,6 +15,10 @@ const development = {
     USER_POOL_ID: "us-east-1_unaCRHOVU",
     APP_CLIENT_ID: "3rbl1nhup1fsgeqgenpmggjpok",
     IDENTITY_POOL_ID: "us-east-1:67faef25-1dbc-4aa9-b523-be3dd9920edf"
+  },
+  google: {
+    GA_TRACKING_ID: "",
+    OPT_CONTAINER_ID: ""
   }
 };
 
@@ -35,6 +39,10 @@ const staging = {
     USER_POOL_ID: "us-east-1_unaCRHOVU",
     APP_CLIENT_ID: "3rbl1nhup1fsgeqgenpmggjpok",
     IDENTITY_POOL_ID: "us-east-1:67faef25-1dbc-4aa9-b523-be3dd9920edf"
+  },
+  google: {
+    GA_TRACKING_ID: "UA-162301238-2",
+    OPT_CONTAINER_ID: ""
   }
 };
 
@@ -55,6 +63,10 @@ const production = {
     USER_POOL_ID: "us-east-1_0sa3SjRLP",
     APP_CLIENT_ID: "2rgjidsj9pfu3co173g6p49gfk",
     IDENTITY_POOL_ID: "us-east-1:743d02dd-99e2-4ed7-ad8f-583398425d6c"
+  },
+  google: {
+    GA_TRACKING_ID: "UA-162301238-1",
+    OPT_CONTAINER_ID: "GTM-WD2MC2N"
   }
 };
 
