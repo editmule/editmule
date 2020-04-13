@@ -41,6 +41,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "deploy:both": "yarn deploy:staging && yarn deploy:production",
     "predeploy:staging": "node ./bin/scripts/predeploy.js",
     "deploy:staging": "node ./bin/scripts/deploy.js",
     "postdeploy:staging": "node ./bin/scripts/postdeploy.js",
