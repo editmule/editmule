@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import MD from 'react-markdown';
 import moment from 'moment';
@@ -44,25 +44,44 @@ export default function SinglePost(props: any) {
     onLoad();
   }, [id]);
 
-  function renderContent(post:any) {
+  function renderContent(post: any) {
     return (
-      <section>
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-10 col-lg-8">
-              <article>
-                <div className="article__title text-center">
-                  <h2>{post.title || ""}</h2>
-                  <span>{moment(post.date).format('MMMM Do YYYY') || ""}</span>
-                </div>
-                <div className="article__body">
-                  <MD source={post.body} />
-                </div>
-              </article>
+      <>
+        <section>
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-md-10 col-lg-8">
+                <article>
+                  <div className="article__title text-center">
+                    <h2>{post.title || ""}</h2>
+                    <span>{moment(post.date).format('MMMM Do YYYY') || ""}</span>
+                  </div>
+                  <div className="article__body">
+                    <MD source={post.body} />
+                  </div>
+                </article>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+        <section className="text-center bg--secondary">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8 col-lg-6">
+                <div className="cta">
+                  <h2>Start writing flawlessly</h2>
+                  <Link to="/order" className="btn btn--primary type--uppercase">
+                    <div className="btn__text">
+                      Order Now
+                    </div>
+                  </Link>
+                  <p className="type--fine-print">or <Link to="/blog">back to blog</Link></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
     )
   }
 
