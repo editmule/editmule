@@ -1,4 +1,5 @@
 // Development: used for actively developing locally using non-production resources
+// - contentful: draft API key for unpublished "draft" content
 const development = {
   CONFIG_MODE: "development",
   STRIPE_KEY: "pk_test_Xt1sNlUfR6bZwd66WfxRPHGg00E9SpX4Sy",
@@ -19,10 +20,15 @@ const development = {
   google: {
     GA_TRACKING_ID: "",
     OPT_CONTAINER_ID: ""
-  }
+  },
+  contentful: {
+    SPACE_ID: "8uq0ia8kcaw2",
+    ACCESS_TOKEN: "omrWh_4jMwzCY9LY05l-CVMIthUAMYUz3dpEG5zAoK4"
+  },
 };
 
 // Staging: testing in live environment, but using non-production resources (staging.editmule.com)
+// - contentful: draft API key for unpublished "draft" content
 const staging = {
   CONFIG_MODE: "staging",
   STRIPE_KEY: "pk_test_Xt1sNlUfR6bZwd66WfxRPHGg00E9SpX4Sy",
@@ -43,7 +49,11 @@ const staging = {
   google: {
     GA_TRACKING_ID: "UA-162301238-2",
     OPT_CONTAINER_ID: ""
-  }
+  },
+  contentful: {
+    SPACE_ID: "8uq0ia8kcaw2",
+    ACCESS_TOKEN: "omrWh_4jMwzCY9LY05l-CVMIthUAMYUz3dpEG5zAoK4"
+  },
 };
 
 // Production: full client-facing site with live production resources (www.editmule.com)
@@ -67,7 +77,11 @@ const production = {
   google: {
     GA_TRACKING_ID: "UA-162301238-1",
     OPT_CONTAINER_ID: "GTM-WD2MC2N"
-  }
+  },
+  contentful: {
+    SPACE_ID: "8uq0ia8kcaw2",
+    ACCESS_TOKEN: "omrWh_4jMwzCY9LY05l-CVMIthUAMYUz3dpEG5zAoK4"
+  },
 };
 
 // Default to development mode if not explicitely set
@@ -82,5 +96,6 @@ if (process.env.REACT_APP_CONFIG_MODE) {
 export default {
   // Add common config values here
   MAX_ATTACHMENT_SIZE: 5000000,
+  BLOG_POSTS_PER_PAGE: 6,
   ...config
 };

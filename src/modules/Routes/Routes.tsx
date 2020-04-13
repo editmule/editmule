@@ -18,6 +18,7 @@ import { NonDisclosureAgreement } from 'modules/Documents';
 import { Privacy } from 'modules/Documents';
 import { Terms } from 'modules/Documents';
 import { Cookies } from 'modules/Documents';
+import { BlogHome } from 'modules/Blog';
 import { NotFound } from 'modules/NotFound';
 
 function Routes({ appProps }: any) {
@@ -36,6 +37,7 @@ function Routes({ appProps }: any) {
       <UnauthenticatedRoute path="/login/reset" exact component={ResetPassword} appProps={appProps} />
       <UnauthenticatedRoute path="/signup" exact component={Signup} appProps={appProps} />
       <AuthenticatedRoute path="/account" component={Account} appProps={appProps} />
+      <AppliedRoute path="/blog" component={BlogHome} appProps={appProps} />
       { /* Finally, catch all unmatched routes */ }
       <Route component={NotFound} />
     </Switch>

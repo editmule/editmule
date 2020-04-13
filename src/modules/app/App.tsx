@@ -80,6 +80,11 @@ function App(props: any) {
                       <div className="bar__module">
                         <ul className="menu-horizontal text-left">
                           <li>
+                            <LinkContainer to="/blog">
+                              <a href="#/">Blog</a>
+                            </LinkContainer>
+                          </li>
+                          <li>
                             <LinkContainer to="/cart">
                               <a href="#/">Cart</a>
                             </LinkContainer>
@@ -127,6 +132,11 @@ function App(props: any) {
                     : <>
                       <div className="bar__module">
                         <ul className="menu-horizontal text-left">
+                          <li>
+                            <LinkContainer to="/blog">
+                              <a href="#/">Blog</a>
+                            </LinkContainer>
+                          </li>
                           <li>
                             <LinkContainer to="/cart">
                               <a href="#/">Cart</a>
