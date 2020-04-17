@@ -25,7 +25,7 @@ function BillingForm({ checkoutError, isLoading, onSubmit, isAuthenticated, ...p
 
   function renderEmailForm() {
     return (
-      <>
+      <div className="row">
         <div className="col-sm-6">
           <LinkContainer to="/login?redirect=/checkout">
             <div className="btn block btn--primary">
@@ -53,7 +53,7 @@ function BillingForm({ checkoutError, isLoading, onSubmit, isAuthenticated, ...p
             placeholder="Email address"
           />
         </div>
-      </ >
+      </div>
     );
   }
 
