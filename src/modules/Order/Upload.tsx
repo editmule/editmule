@@ -63,7 +63,7 @@ export default function Upload(props: any) {
   }
 
   return (
-    <div className="row justify-content-around">
+    <div className="row justify-content-around height-60">
       <div className="col-md-6 col-lg-5">
         <div>
           <h2>Link your document</h2>
