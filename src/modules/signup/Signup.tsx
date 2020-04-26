@@ -7,7 +7,7 @@ import { useFormFields } from 'libs/hooks';
 import ReactGA from 'react-ga';
 
 import './Signup.css';
-export default function Signup(props: any) {
+export function Signup(props: any) {
   const [fields, handleFieldChange] = useFormFields({
     email: "",
     password: "",

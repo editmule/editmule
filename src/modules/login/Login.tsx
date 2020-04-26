@@ -9,7 +9,7 @@ import { LoaderButton } from 'modules/LoaderButton';
 import { useFormFields } from 'libs/hooks';
 import './Login.css';
 
-function Login(props: any) {
+export function Login(props: any) {
   const [loginError, setLoginError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [fields, handleFieldChange] = useFormFields({
@@ -96,5 +96,3 @@ function Login(props: any) {
     </div>
   );
 }
-
-export default Login;

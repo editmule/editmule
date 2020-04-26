@@ -8,14 +8,14 @@ import { Loader } from 'modules/Loader';
 
 // Build these critical purchase flow components into the main build
 import { Home } from 'modules/Home';
-import { Login } from 'modules/Login';
-import { Signup } from 'modules/Signup';
 import { Order } from 'modules/Order';
 import { Cart } from 'modules/Cart';
 import { Checkout } from 'modules/Checkout';
 
 // Lazy load components not critical to standard purchase flow
 const Account = React.lazy(() => import('modules/Account'));
+const Login = React.lazy(() => import('modules/Login'));
+const Signup = React.lazy(() => import('modules/Signup'));
 const ResetPassword = React.lazy(() => import('modules/ResetPassword'));
 const Thanks = React.lazy(() => import('modules/Thanks'));
 const NonDisclosureAgreement = React.lazy(() => import('modules/Documents/NonDisclosureAgreement'));
