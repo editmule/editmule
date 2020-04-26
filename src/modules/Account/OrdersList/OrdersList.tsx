@@ -9,6 +9,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { subtotalPricing } from 'libs/utils';
 import './OrdersList.css';
 
+import { Loader } from 'modules/Loader';
+
 export default function OrdersList(props: any) {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -97,11 +99,7 @@ export default function OrdersList(props: any) {
     <div className="">
       <h4>Orders</h4>
       { isLoading ?
-        <section className="height-30 text-center">
-          <div className="spinner-border" role="status">
-            <span className="sr-only">Loading...</span>
-          </div>
-        </section>
+        <Loader />
         : renderContent()
       }
     </div>

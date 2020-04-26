@@ -9,7 +9,7 @@ import './Blog.css';
 
 const contentful = require('contentful');
 
-export default function SinglePost(props: any) {
+export function SinglePost(props: any) {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(true);

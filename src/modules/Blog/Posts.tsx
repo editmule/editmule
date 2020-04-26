@@ -8,7 +8,7 @@ import './Blog.css';
 
 const contentful = require('contentful');
 
-export default function Posts(props: any) {
+export function Posts(props: any) {
   const { num } = useParams();
   const [posts, setPosts] = useState([]);
   const [totalPosts, setTotalPosts] = useState(0);

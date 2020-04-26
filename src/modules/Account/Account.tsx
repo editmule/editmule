@@ -11,10 +11,11 @@ import { Settings } from 'modules/Account/Settings';
 import { ChangeEmail } from 'modules/Account/ChangeEmail';
 import { ChangePassword } from 'modules/Account/ChangePassword';
 import { NotFound } from 'modules/NotFound';
+import { Loader } from 'modules/Loader';
 
 import { Switch, Route } from 'react-router-dom';
 
-export default function Account(props: any) {
+export function Account(props: any) {
   const [currentUser, setCurrentUser] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -45,11 +46,7 @@ export default function Account(props: any) {
               <div className="boxed boxed--lg boxed--border">
                 <div className="text-block text-center">
                   {isLoading ?
-                    <section className="height-30 text-center">
-                      <div className="spinner-border" role="status">
-                        <span className="sr-only">Loading...</span>
-                      </div>
-                    </section>
+                    <Loader />
                     :
                     <>
                       <img className="icon--svg user-icon" width="64" height="64" alt="Header" src="/icons/Eyeglasses-Smiley.svg"></img>

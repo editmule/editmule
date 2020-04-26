@@ -24,7 +24,7 @@ interface AppState {
   isSendingCode: boolean
 }
 
-export default class ResetPassword extends Component<AppProps, AppState> {
+export class ResetPassword extends Component<AppProps, AppState> {
   constructor(props: any) {
     super(props);
 

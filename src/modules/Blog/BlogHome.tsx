@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Posts } from 'modules/Blog';
-import { SinglePost } from 'modules/Blog';
+import { Posts } from './Posts';
+import { SinglePost } from './SinglePost';
 import { NotFound } from 'modules/NotFound';
 
 import { Switch, Route } from 'react-router-dom';
 
-export default function BlogHome(props: any) {
+export function BlogHome(props: any) {
   return (
     <div className="main-container Blog">
       <Switch>

@@ -4,7 +4,7 @@ import ReactGA from 'react-ga';
 
 import './Thanks.css';
 
-export default function Thanks(props: any) {
+export function Thanks(props: any) {
 
   useEffect(() => {
     window.scrollTo(0, 0);

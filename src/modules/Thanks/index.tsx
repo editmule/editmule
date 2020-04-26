@@ -1,1 +1,1 @@
-export { default as Thanks } from './Thanks';
+export { Thanks as default } from './Thanks';

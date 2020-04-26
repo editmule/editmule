@@ -4,7 +4,7 @@ import ReactGA from 'react-ga';
 
 import './NotFound.css';
 
-function Nav() {
+export function NotFound(props: any) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -29,5 +29,3 @@ function Nav() {
     </div>
   );
 }
-
-export default Nav;
