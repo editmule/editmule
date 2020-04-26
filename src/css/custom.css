@@ -97,3 +97,19 @@ table {
 .icon--svg {
   fill:#666666;
 }
+
+.Home h1 {
+  font-weight: 600;
+}
+
+.Home h2 {
+  font-weight: 700;
+}
+
+.pt-11 {
+  padding-top: 11.14285714em;
+}
+
+.pb-13 {
+  padding-bottom: 13em;
+}
