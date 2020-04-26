@@ -127,7 +127,7 @@ function Home() {
       <section className="space--lg">
         <div className="container">
           <div className="row justify-content-around">
-            <div className="col-md-4 order-md-12 pb-5"> <img alt="Writing" src="/img/message_sent.svg"></img> </div>
+            <div className="col-md-4 order-md-12 pb-5 col-sm-6"> <img alt="Writing" src="/img/message_sent.svg"></img> </div>
             <div className="col-md-6 col-lg-5 order-md-1 pb-5">
               <div className="switchable__text">
                 <h2>In-Depth Copyediting</h2>
@@ -140,7 +140,7 @@ function Home() {
       <section className="space--lg">
         <div className="container">
           <div className="row justify-content-around">
-            <div className="col-md-4 pb-5"> <img alt="Writing" src="/img/security_on.svg"></img> </div>
+            <div className="col-md-4 pb-5 col-sm-6"> <img alt="Writing" src="/img/security_on.svg"></img> </div>
             <div className="col-md-6 col-lg-5 pb-5">
               <div className="switchable__text">
                 <h2>NDAs and 256-bit Security</h2>
@@ -153,7 +153,7 @@ function Home() {
       <section className="space--lg">
         <div className="container">
           <div className="row justify-content-around">
-            <div className="col-md-4 order-md-12 pb-5"> <img alt="Writing" src="/img/reviewed_docs.svg"></img> </div>
+            <div className="col-md-4 order-md-12 pb-5 col-sm-6"> <img alt="Writing" src="/img/reviewed_docs.svg"></img> </div>
             <div className="col-md-6 col-lg-5 order-md-1 pb-5">
               <div className="switchable__text">
                 <h2>Unlimited Revisions</h2>
