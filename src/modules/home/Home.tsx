@@ -157,7 +157,7 @@ function Home() {
             <div className="col-md-6 col-lg-5 order-md-1 pb-5">
               <div className="switchable__text">
                 <h2>Unlimited Revisions</h2>
-                <p className="lead">Made some changes and need the document looked at again? We'll review it again for free as many times as you need, no questions asked.</p>
+                <p className="lead">Made some changes and need the document looked at again? We'll review it again for free within 72 hours as many times as you need, no questions asked.</p>
               </div>
             </div>
           </div>
