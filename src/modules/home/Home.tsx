@@ -131,7 +131,7 @@ function Home() {
             <div className="col-md-6 col-lg-5 order-md-1 pb-5">
               <div className="switchable__text">
                 <h2>In-Depth Copyediting</h2>
-                <p className="lead">Beyond simple proofreading for spelling and grammar, we reword and rework writing where necessary for structure, clarity and consistency.</p>
+                <p className="lead">Beyond simple proofreading for spelling and grammar, we reword and rework writing where necessary for structure, clarity, and consistency.</p>
               </div>
             </div>
           </div>
