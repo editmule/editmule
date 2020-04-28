@@ -2,6 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { hydrate, render } from "react-dom";
 import './custom.scss';
 import { App } from 'modules/App';
 import * as serviceWorker from './serviceWorker';
@@ -38,11 +39,18 @@ ReactGA.initialize(config.google.GA_TRACKING_ID);
 ReactGA.ga('require', config.google.OPT_CONTAINER_ID);
 ReactGA.plugin.require('ecommerce');
 
-ReactDOM.render(
-  <Router >
+const rootElement = document.getElementById("root");
+if (rootElement.hasChildNodes()) {
+ hydrate(
+   <Router >
     <App />
-  </Router>,
-  document.getElementById('root'));
+    </Router>, rootElement);
+} else {
+ render(
+   <Router >
+     <App />
+   </Router>, rootElement);
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
