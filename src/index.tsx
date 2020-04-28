@@ -1,7 +1,6 @@
 // @ts-nocheck
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { hydrate, render } from "react-dom";
 import './custom.scss';
 import { App } from 'modules/App';

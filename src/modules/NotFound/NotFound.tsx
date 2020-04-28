@@ -15,8 +15,9 @@ export function NotFound(props: any) {
     <div className="main-container">
       <section className="height-80 text-center">
         <div className="container pos-vertical-center">
-          <div className="row">
-            <div className="col-md-12">
+          <div className="row justify-content-around">
+            <div className="col-xs-6 col-md-4">
+              <img className="pb-5" alt="Writing" src="/img/not_found.svg"></img>
               <h1 className="h1--large">404</h1>
               <p className="lead">
                 Sorry, page not found!
